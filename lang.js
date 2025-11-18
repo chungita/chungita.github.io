@@ -9,7 +9,7 @@ const translations = {
         'nav_contact': '聯絡我',
         'lang_toggle': 'English', // 按鈕上顯示的文字
         'about_title': '你好，我是鍾易達',
-        'about_subtitle': '生醫工程畢業生 '專精於微小探頭and導管設計',
+        'about_subtitle': '生醫工程畢業生，專精於微小探頭and導管設計',
         'about_desc': '我畢業於清華大學生醫工程學系。我熱衷於開發能改善人類健康的技術',
         'cv_button': '下載我的履歷 (CV)',
         'projects_title': '作品集',
@@ -86,4 +86,5 @@ document.addEventListener('DOMContentLoaded', () => {
         // 重新翻譯頁面
         translatePage(currentLang);
     });
+
 });
