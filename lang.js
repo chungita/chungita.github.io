@@ -21,8 +21,8 @@ const translations = {
         'project3_desc': '[簡短描述]：使用 SolidWorks 進行參數化設計，並透過 3D 列印製作出符合人體工學的低成本義肢手掌原型。',
         'contact_title': '聯絡我',
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
-        'contact_email': 'Email: your.email@example.com',
-        'footer_text': '&copy; 2025 [你的名字]. All Rights Reserved.',
+        'contact_email': 'Email: joe.chungita@gmail.com',
+        'footer_text': '&copy; 2025 [CHUNG, I-TA. All Rights Reserved.',
     },
     // 英文內容
     'en': {
@@ -88,3 +88,4 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
