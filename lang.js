@@ -9,7 +9,7 @@ const translations = {
         'nav_contact': '聯絡我',
         'lang_toggle': 'English', // 按鈕上顯示的文字
         'about_title': '你好，我是鍾易達',
-        'about_subtitle': '生醫工程畢業生，專精於微小探頭and導管設計',
+        'about_subtitle': '生醫工程畢業生|專精於微小探頭and導管設計',
         'about_desc': '我畢業於清華大學生醫工程學系。我熱衷於開發能改善人類健康的技術',
         'cv_button': '下載我的履歷 (CV)',
         'projects_title': '作品集',
@@ -22,19 +22,19 @@ const translations = {
         'contact_title': '聯絡我',
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
         'contact_email': 'Email: joe.chungita@gmail.com',
-        'footer_text': '&copy; 2025 [CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
     },
     // 英文內容
     'en': {
         'site_title': 'Your Name - BME Portfolio',
-        'your_name': '[Your Name]',
+        'your_name': 'CHUNG, I-TA',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
         'nav_contact': 'Contact',
         'lang_toggle': '中文', // 按鈕上顯示的文字
-        'about_title': 'Hi, I am [Your Name]',
+        'about_title': 'Hi, I am CHUNG, I-TA',
         'about_subtitle': 'Biomedical Engineer | Specialized in Medical Imaging and Biosignals',
-        'about_desc': 'I am a BME graduate from [Your University]. I am passionate about developing technologies to improve human health. My expertise includes ECG/EEG signal analysis with Python, deep learning for medical image recognition, and prototyping medical devices with SolidWorks.',
+        'about_desc': 'I am a BME graduate from NTHU. I am passionate about developing technologies to improve human health. My expertise includes ECG/EEG signal analysis with Python, deep learning for medical image recognition, and prototyping medical devices with SolidWorks.',
         'cv_button': 'Download My CV',
         'projects_title': 'Projects',
         'project1_title': 'Project 1: Real-time ECG Monitoring App',
@@ -46,7 +46,7 @@ const translations = {
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: your.email@example.com',
-        'footer_text': '&copy; 2025 [Your Name]. All Rights Reserved.',
+        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
     }
 };
 
@@ -88,4 +88,5 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
 
