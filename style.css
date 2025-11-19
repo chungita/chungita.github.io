@@ -277,6 +277,25 @@ footer {
     box-shadow: 0 6px 18px rgba(0,0,0,0.08);
 }
 
+.image-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.image-row img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    border: 1px solid #222;
+}
+
+.image-row > img {
+    flex: 1 1 0;
+}
+
 .video-row {
     display: flex;
     gap: 12px;
@@ -304,6 +323,14 @@ footer {
     }
 
     .video-row > video {
-        width: 100%;
+        width: 100% !important;
+    }
+
+    .image-row {
+        flex-direction: column;
+    }
+
+    .image-row > img {
+        width: 100% !important;
     }
 }
