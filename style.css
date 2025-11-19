@@ -264,3 +264,46 @@ footer {
         height: 120px;
     }
 }
+
+/* =================================
+   Project 2: image and video row styles
+   ================================= */
+.project-image {
+    display: block;
+    margin: 12px 0;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+}
+
+.video-row {
+    display: flex;
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 12px;
+}
+
+.video-row video {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    background: #000;
+    border: 1px solid #222;
+}
+
+/* When there's two videos, allow them to split evenly */
+.video-row > video {
+    flex: 1 1 0;
+}
+
+@media (max-width: 700px) {
+    .video-row {
+        flex-direction: column;
+    }
+
+    .video-row > video {
+        width: 100%;
+    }
+}
