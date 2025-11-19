@@ -290,10 +290,13 @@ footer {
     border-radius: 6px;
     object-fit: cover;
     border: 1px solid #222;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 .image-row > img {
-    flex: 1 1 0;
+    flex: 1 1 48%;
+    max-width: 48%;
 }
 
 .video-row {
@@ -301,6 +304,9 @@ footer {
     gap: 12px;
     align-items: stretch;
     margin-top: 12px;
+    flex-wrap: wrap;
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
 .video-row video {
@@ -310,11 +316,14 @@ footer {
     object-fit: cover;
     background: #000;
     border: 1px solid #222;
+    box-sizing: border-box;
+    max-width: 100%;
 }
 
 /* When there's two videos, allow them to split evenly */
 .video-row > video {
-    flex: 1 1 0;
+    flex: 1 1 48%;
+    max-width: 48%;
 }
 
 @media (max-width: 700px) {
@@ -323,7 +332,9 @@ footer {
     }
 
     .video-row > video {
-        width: 100% !important;
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
     }
 
     .image-row {
@@ -331,6 +342,8 @@ footer {
     }
 
     .image-row > img {
-        width: 100% !important;
+        flex: 1 1 100%;
+        max-width: 100%;
+        width: 100%;
     }
 }
