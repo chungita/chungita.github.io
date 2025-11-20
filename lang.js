@@ -23,6 +23,7 @@ const translations = {
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'more_details': '更多細節',
     },
     // 英文內容
     'en': {
@@ -47,6 +48,7 @@ const translations = {
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'more_details': 'More Details',
     }
 };
 

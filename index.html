@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="zh-TW"> <head>
+<html lang="zh-TW">
+<head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title data-key="site_title"></title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -10,7 +11,12 @@
     <header>
         <nav>
             <div class="logo" data-key="your_name"></div>
-            <ul>
+            <button id="hamburger" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu" class="nav-menu">
                 <li><a href="#about" data-key="nav_about"></a></li>
                 <li><a href="#projects" data-key="nav_projects"></a></li>
                 <li><a href="#contact" data-key="nav_contact"></a></li>
@@ -21,11 +27,11 @@
 
     <main>
         <section id="about">
-            <img src="images\chungita_nthu_2024_graduation_photo.jpg" alt="你的大頭貼" class="profile-pic">
+            <img src="images/chungita_nthu_2024_graduation_photo.jpg" alt="My Headshot " class="profile-pic">
             <h1 data-key="about_title"></h1>
             <p class="subtitle" data-key="about_subtitle"></p>
             <p data-key="about_desc"></p>
-            <a href="files\I-Ta Chung_CV.pdf" class="cta-button" target="_blank" data-key="cv_button"></a>
+            <a href="files/I-Ta Chung_CV.pdf" class="cta-button" target="_blank" data-key="cv_button"></a>
         </section>
 
         <section id="projects">
@@ -33,33 +39,30 @@
 
             <div class="project-card">
                 <h3 data-key="project1_title"></h3>
-                <div class="image-row">
-                    <img src="images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
-                    <img src="images/catheter_FPC.jpg" alt="Catheter photo 2">
-                </div>
                 <div>
-                    <video controls>
+                    <img src="images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
+                    <video id="catheter-video-main" autoplay loop muted playsinline controls>
                         <source src="files/catheter.mp4" type="video/mp4">
-                        您的瀏覽器不支援此影片。<a href="files/catheter.mp4">下載影片</a>
                     </video>
                 </div>
+
                 <p data-key="project1_desc"></p>
+                <p><a class="project-more" href="projects/project1.html" data-key="more_details"></a></p>
             </div>
 
             <div class="project-card">
                 <h3 data-key="project2_title"></h3>
-                <img src="images/4ch_transducer.png" alt="4-channel transducer" class="project-image">
+                <img src="images/4ch_transducer.png" class="project-image">
                 <div class="video-row">
                     <video autoplay loop muted playsinline controls>
                         <source src="files/votexxz-acoustic-field.mp4" type="video/mp4">
-                        您的瀏覽器不支援此影片。<a href="files/votexxz-acoustic-field.mp4">下載影片</a>
                     </video>
                     <video autoplay loop muted playsinline controls>
                         <source src="files/votexxy-acoustic-field.mp4" type="video/mp4">
-                        您的瀏覽器不支援此影片。<a href="files/votexxy-acoustic-field.mp4">下載影片</a>
                     </video>
                 </div>
                 <p data-key="project2_desc"></p>
+                <p><a class="project-more" href="projects/project2.html" data-key="more_details"></a></p>
             </div>
 
             <div class="project-card">
@@ -67,6 +70,7 @@
                 <img src="images/project3-prosthetic-1.jpg" alt="義肢 SolidWorks 模型">
                 <img src="images/project3-prosthetic-2.jpg" alt="3D 列印成品">
                 <p data-key="project3_desc"></p>
+                <p><a class="project-more" href="projects/project3.html" data-key="more_details"></a></p>
             </div>
 
         </section>
@@ -87,5 +91,28 @@
     </footer>
 
     <script src="lang.js"></script>
+    <script>
+        // 漢堡菜單切換
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 點擊菜單項時關閉菜單
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // 點擊語言切換按鈕時不關閉菜單
+        document.getElementById('lang-toggle').addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    </script>
 </body>
 </html>

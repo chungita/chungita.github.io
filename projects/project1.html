@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="project1_title">專案 1</title>
+    <link rel="stylesheet" href="../style.css">
+ </head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html">返回首頁</a>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h1 data-key="project1_title">專案 1：導管相關研究</h1>
+            <div class="image-row">
+                <img src="../images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
+            </div>
+
+            <div class="media-row">
+                <video id="catheter-video" controls>
+                    <source src="../files/catheter.mp4" type="video/mp4">
+                </video>
+                <img id="fpc-image" class="fpc-image" src="../images/catheter_FPC.jpg" alt="Catheter FPC">
+            </div>
+            <section>
+                <h2>專案說明</h2>
+                <p data-key="project1_desc">在此放置專案詳細描述，研究動機、方法、成果與未來展望。</p>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p data-key="footer_text"></p>
+    </footer>
+    <script src="../lang.js"></script>
+    <script>
+        (function(){
+            const vid = document.getElementById('catheter-video');
+            const img = document.getElementById('fpc-image');
+            if(!vid || !img) return;
+
+            function setImgHeight(){
+                // get the video's rendered height
+                const rect = vid.getBoundingClientRect();
+                const h = Math.round(rect.height);
+                if(h <= 0) return;
+
+                // ensure box-sizing includes border so assigned height equals rendered height
+                img.style.boxSizing = 'border-box';
+                img.style.display = 'block';
+
+                // avoid upscaling small images: use naturalHeight if available
+                const natural = img.naturalHeight || Infinity;
+                const target = Math.min(h, natural);
+
+                // use max-height so we only shrink the image to match the video height
+                img.style.maxHeight = target + 'px';
+                img.style.height = 'auto';
+                img.style.width = 'auto';
+                img.style.objectFit = 'contain';
+            }
+
+            // debounce helper for ResizeObserver callbacks
+            let resizeTimer = null;
+            function debouncedUpdate(){
+                if(resizeTimer) clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    setImgHeight();
+                    resizeTimer = null;
+                }, 100);
+            }
+
+            if(window.ResizeObserver){
+                const ro = new ResizeObserver(debouncedUpdate);
+                ro.observe(vid);
+                const parent = vid.parentElement;
+                if(parent) ro.observe(parent);
+            } else {
+                vid.addEventListener('loadedmetadata', setImgHeight);
+                vid.addEventListener('loadeddata', setImgHeight);
+                vid.addEventListener('play', setImgHeight);
+                window.addEventListener('resize', () => setTimeout(setImgHeight, 120));
+                window.addEventListener('load', () => setTimeout(setImgHeight, 200));
+            }
+
+            // initial sync
+            setTimeout(setImgHeight, 250);
+        })();
+    </script>
+</body>
+</html>

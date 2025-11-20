@@ -1,3 +1,9 @@
+html{
+    margin: 0;
+    padding: 0;
+    /* 確保平滑滾動套用在實際進行滾動的元素上 */
+    scroll-behavior: smooth; 
+}
 /* =================================
    基本重設與全域設定
    ================================= */
@@ -6,10 +12,6 @@ body {
     line-height: 1.6;
     background-color: #f4f7f6; /* 柔和的背景灰 */
     color: #333;
-    margin: 0;
-    padding: 0;
-    /* 讓錨點跳轉更平滑 */
-    scroll-behavior: smooth; 
 }
 
 /* =================================
@@ -29,7 +31,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1000px; /* 限制導覽列內容寬度 */
+    max-width: 1200px; /* 限制導覽列內容寬度 */
     margin: 0 auto;
 }
 
@@ -57,6 +59,46 @@ nav a {
 
 nav a:hover {
     color: #00a896;
+}
+
+/* 漢堡菜單按鈕 */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    gap: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #005f73;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(8px, 8px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(8px, -8px);
+}
+
+/* 導覽菜單 */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
 }
 
 /* 語言切換按鈕樣式 */
@@ -173,34 +215,7 @@ section h2 {
     font-size: 1.5rem;
 }
 
-/* 讓圖片自適應寬度 */
-.project-card img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-top: 10px;
-    border: 1px solid #ddd;
-}
 
-/* 影片容器 (保持 16:9 比例) */
-.video-container {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 比例 (9 / 16 = 0.5625) */
-    height: 0;
-    overflow: hidden;
-    max-width: 100%;
-    background: #000;
-    margin-top: 15px;
-    border-radius: 5px;
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
 
 /* =================================
    3. 聯絡方式 (Contact)
@@ -237,16 +252,61 @@ footer {
    ================================= */
 @media (max-width: 768px) {
     nav {
-        flex-direction: column;
-        gap: 15px;
+        position: relative;
+        flex-wrap: wrap;
     }
 
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        gap: 15px;
+    .hamburger {
+        display: flex;
+        order: 2;
     }
-    
+
+    .nav-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 20px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 2px solid #e0e0e0;
+    }
+
+    .nav-menu.active {
+        display: flex;
+    }
+
+    .nav-menu li {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .nav-menu li:last-child {
+        border-bottom: none;
+    }
+
+    .nav-menu li a,
+    .nav-menu li button {
+        display: block;
+        width: 100%;
+        text-align: left;
+    }
+
+    .nav-menu li button {
+        background: none;
+        border: none;
+        padding: 0;
+        font-size: 1rem;
+        color: #005f73;
+        font-weight: 500;
+        cursor: pointer;
+    }
+
     main {
         padding: 10px;
     }
@@ -266,84 +326,76 @@ footer {
 }
 
 /* =================================
-   Project 2: image and video row styles
+   Project Media Styles (Project 1, 2, 3)
    ================================= */
-.project-image {
-    display: block;
-    margin: 12px 0;
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-}
 
-.image-row {
+/* Project 1: Flex container for image and video */
+.project-card > div {
     display: flex;
-    gap: 12px;
-    align-items: center;
-    margin-top: 12px;
-}
-
-.image-row img {
-    width: 100%;
-    height: auto;
-    border-radius: 6px;
-    object-fit: cover;
-    border: 1px solid #222;
-    box-sizing: border-box;
-    max-width: 100%;
-}
-
-.image-row > img {
-    flex: 1 1 48%;
-    max-width: 48%;
-}
-
-.video-row {
-    display: flex;
+    flex-direction: column;
     gap: 12px;
     align-items: stretch;
     margin-top: 12px;
-    flex-wrap: wrap;
     max-width: 100%;
+    width: 100%;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
-.video-row video {
+/* Project 1: Image and Video styling */
+.project-card > div > img,
+.project-card > div > video {
     width: 100%;
     height: auto;
+    min-height: 250px;
+    object-fit: contain;
     border-radius: 6px;
-    object-fit: cover;
-    background: #000;
+    border: 1px solid #222;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+}
+
+/* Project 2: Main image */
+.project-image {
+    display: block;
+    margin: 12px 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
     border: 1px solid #222;
     box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+}
+
+/* Project 2: Video row styles */
+.video-row {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: 12px;
     max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
 }
 
-/* When there's two videos, allow them to split evenly */
+/* Project 2: Videos in row */
 .video-row > video {
-    flex: 1 1 48%;
-    max-width: 48%;
-}
-
-@media (max-width: 700px) {
-    .video-row {
-        flex-direction: column;
-    }
-
-    .video-row > video {
-        flex: 1 1 100%;
-        max-width: 100%;
-        width: 100%;
-    }
-
-    .image-row {
-        flex-direction: column;
-    }
-
-    .image-row > img {
-        flex: 1 1 100%;
-        max-width: 100%;
-        width: 100%;
-    }
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    display: block;
+    padding: 8px;
 }
