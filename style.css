@@ -246,7 +246,6 @@ footer {
     color: #777;
     margin-top: 20px;
 }
-
 /* =================================
    響應式設計 (RWD for Mobile)
    ================================= */
@@ -263,7 +262,7 @@ footer {
 
     .nav-menu {
         position: absolute;
-        top: 100%;
+        top: calc(140%);
         left: 0;
         right: 0;
         background-color: #fff;
@@ -284,6 +283,7 @@ footer {
     .nav-menu li {
         padding: 10px 0;
         border-bottom: 1px solid #eee;
+        width: calc(100% - 50px);
     }
 
     .nav-menu li:last-child {
@@ -309,6 +309,7 @@ footer {
 
     main {
         padding: 10px;
+        max-width: 100%;
     }
 
     section {
@@ -323,14 +324,22 @@ footer {
         width: 120px;
         height: 120px;
     }
-}
+
+    /* 在小螢幕上將視頻改為垂直排列 */
+    .video-row {
+        flex-direction: column;
+    }
+
+} /* <--- 這裡是你原本遺失的關鍵括號，將手機版樣式結束在這裡 */
+
 
 /* =================================
    Project Media Styles (Project 1, 2, 3)
+   這部分現在回到全域（包含 Desktop），影片就會並排了
    ================================= */
 
 /* Project 1: Flex container for image and video */
-.project-card > div {
+.project-card > div:not(.video-row) {
     display: flex;
     flex-direction: column;
     gap: 12px;
@@ -372,10 +381,10 @@ footer {
     padding: 8px;
 }
 
-/* Project 2: Video row styles */
+/* Project 2: Video row styles (電腦版設定) */
 .video-row {
     display: flex;
-    flex-direction: column;
+    flex-direction: row; /* 確保是橫向排列 */
     gap: 12px;
     align-items: stretch;
     justify-content: center;
@@ -384,13 +393,16 @@ footer {
     width: 100%;
     box-sizing: border-box;
     overflow: visible;
+    padding: 0; /* 修正：如果你的容器已經有寬度限制，這裡不需要額外 padding 擠壓空間 */
 }
 
 /* Project 2: Videos in row */
 .video-row > video {
-    width: 100%;
+    /* 修正計算：(100% - 12px gap) / 2 = 50% - 6px */
+    flex: 1 1 calc(50% - 6px); 
+    max-width: calc(50% - 6px);
     height: auto;
-    min-height: 250px;
+    max-height: 400px; /* 建議加上最大高度限制，避免影片過高 */
     object-fit: contain;
     border-radius: 6px;
     border: 1px solid #222;
