@@ -247,7 +247,7 @@ footer {
     margin-top: 20px;
 }
 /* =================================
-   響應式設計 (RWD for Mobile)
+   響應式設計 (RWD for Mobile - 選單與基礎設定)
    ================================= */
 @media (max-width: 768px) {
     nav {
@@ -324,21 +324,18 @@ footer {
         width: 120px;
         height: 120px;
     }
+    
+    /* 注意：這裡不放 .video-row 的設定，統一移到最下方處理 */
 
-    /* 在小螢幕上將視頻改為垂直排列 */
-    .video-row {
-        flex-direction: column;
-    }
-
-} /* <--- 這裡是你原本遺失的關鍵括號，將手機版樣式結束在這裡 */
+} /* RWD 選單設定結束 */
 
 
 /* =================================
    Project Media Styles (Project 1, 2, 3)
-   這部分現在回到全域（包含 Desktop），影片就會並排了
+   預設樣式 (Desktop / Global)
    ================================= */
 
-/* Project 1: Flex container for image and video */
+/* Project 1: Image and Video Container */
 .project-card > div:not(.video-row) {
     display: flex;
     flex-direction: column;
@@ -351,7 +348,7 @@ footer {
     overflow: hidden;
 }
 
-/* Project 1: Image and Video styling */
+/* Project 1 & General: Image and Video styling */
 .project-card > div > img,
 .project-card > div > video {
     width: 100%;
@@ -381,10 +378,10 @@ footer {
     padding: 8px;
 }
 
-/* Project 2: Video row styles (電腦版設定) */
+/* Project 2: Video row styles (電腦版預設：並排) */
 .video-row {
     display: flex;
-    flex-direction: row; /* 確保是橫向排列 */
+    flex-direction: row; /* 橫向 */
     gap: 12px;
     align-items: stretch;
     justify-content: center;
@@ -393,16 +390,16 @@ footer {
     width: 100%;
     box-sizing: border-box;
     overflow: visible;
-    padding: 0; /* 修正：如果你的容器已經有寬度限制，這裡不需要額外 padding 擠壓空間 */
+    padding: 0;
 }
 
-/* Project 2: Videos in row */
+/* Project 2: Videos in row (電腦版寬度計算) */
 .video-row > video {
-    /* 修正計算：(100% - 12px gap) / 2 = 50% - 6px */
+    /* (100% - 12px gap) / 2 = 50% - 6px */
     flex: 1 1 calc(50% - 6px); 
     max-width: calc(50% - 6px);
     height: auto;
-    max-height: 400px; /* 建議加上最大高度限制，避免影片過高 */
+    max-height: 400px;
     object-fit: contain;
     border-radius: 6px;
     border: 1px solid #222;
@@ -410,4 +407,19 @@ footer {
     background: #f4f7f6;
     display: block;
     padding: 8px;
+}
+
+/* =================================
+   Project 2 Mobile Override
+   修正手機版堆疊問題 (放在檔案最後面以確保權重最高)
+   ================================= */
+@media (max-width: 768px) {
+    .video-row {
+        flex-direction: column; /* 強制改回垂直 */
+    }
+    
+    .video-row > video {
+        max-width: 100%; /* 手機版寬度佔滿 */
+        flex: 1 1 auto;
+    }
 }
