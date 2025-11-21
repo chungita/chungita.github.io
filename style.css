@@ -215,7 +215,67 @@ section h2 {
     font-size: 1.5rem;
 }
 
+/* =================================
+   2.5 經歷 (Experiences)
+   ================================= */
+.experience-item {
+    position: relative;
+    padding-left: 25px;
+    margin-bottom: 40px;
+    border-left: 3px solid #e0e0e0; /* 左側時間軸線條 */
+}
 
+/* 最後一個項目不需要額外的底部邊距 */
+.experience-item:last-child {
+    margin-bottom: 10px;
+    border-left: 3px solid transparent; /* 隱藏線條但保留間距 */
+}
+
+/* 時間軸的小圓點裝飾 */
+.experience-item::before {
+    content: '';
+    position: absolute;
+    left: -8px; /* 圓點位置調整 */
+    top: 5px;
+    width: 13px;
+    height: 13px;
+    background-color: #00a896;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    box-shadow: 0 0 0 2px #00a896; /* 雙層圓圈效果 */
+}
+
+.experience-item h3 {
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+    color: #333;
+}
+
+.experience-company {
+    font-weight: bold;
+    color: #005f73;
+    font-size: 1.1rem;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.experience-meta {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 12px;
+    font-style: italic;
+}
+
+.experience-desc ul {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.experience-desc li {
+    margin-bottom: 8px;
+    color: #555;
+}
 
 /* =================================
    3. 聯絡方式 (Contact)
@@ -325,7 +385,6 @@ footer {
         height: 120px;
     }
     
-    /* 注意：這裡不放 .video-row 的設定，統一移到最下方處理 */
 
 } /* RWD 選單設定結束 */
 

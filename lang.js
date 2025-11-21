@@ -6,6 +6,7 @@ const translations = {
         'your_name': '鍾易達',
         'nav_about': '關於我',
         'nav_projects': '作品集',
+        "nav_experiences": '經歷',
         'nav_contact': '聯絡我',
         'lang_toggle': 'English', // 按鈕上顯示的文字
         'about_title': '你好，我是鍾易達',
@@ -19,6 +20,26 @@ const translations = {
         'project2_desc': '[簡短描述]：用於視覺化超音波聲場傳遞。',
         'project3_title': '專案三：Drone object tracking using YOLOv12',
         'project3_desc': '[簡短描述]：訓練 YOLOv12 模型以即時偵測並追蹤無人機攝影機畫面中的特定物體。',
+        "experiences_title": "經歷", // 注意拼字修正
+        // 經歷 1: SoundJet
+        'exp1_title': '研發實習生',
+        'exp1_company': '聲捷醫學 (SoundJet Medical Inc.)',
+        'exp1_meta': '2024 年 - 2025 年 | 台灣',
+        'exp1_desc': `
+            <ul>
+                <li>針對導管製程開發自動化針頭注射系統，提升生產精確度。</li>
+                <li>參與醫療器材原型設計與驗證流程。</li>
+            </ul>`,
+            
+        // 經歷 2: NCKU RA
+        'exp2_title': '研究助理',
+        'exp2_company': '國立成功大學 (NCKU)',
+        'exp2_meta': '2023 年 - 2024 年 | 台灣，台南',
+        'exp2_desc': `
+            <ul>
+                <li>專注於基於人工智慧的結構健康監測 (AISHM) 研究。</li>
+                <li>應用深度學習模型分析結構數據，協助開發預測維護系統。</li>
+            </ul>`,
         'contact_title': '聯絡我',
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
         'contact_email': 'Email: joe.chungita@gmail.com',
@@ -31,6 +52,7 @@ const translations = {
         'your_name': 'CHUNG, I-TA',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
+        "nav_experiences": 'Experiences',
         'nav_contact': 'Contact',
         'lang_toggle': '中文', // 按鈕上顯示的文字
         'about_title': 'Hi, I am Chung I-Ta',
@@ -44,6 +66,26 @@ const translations = {
         'project2_desc': 'Used to visualize ultrasound acoustic field propagation.',
         'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
         'project3_desc': 'Trained a YOLOv12 model to detect and track specific objects in drone camera footage in real-time.',
+        "experiences_title": "Experiences", // 注意拼字修正
+        // Experience 1: SoundJet
+        'exp1_title': 'R&D Intern',
+        'exp1_company': 'SoundJet Medical Inc.',
+        'exp1_meta': '2024 - 2025 | Taiwan',
+        'exp1_desc': `
+            <ul>
+                <li>Developed an automated needle injection system for catheter manufacturing, improving production precision.</li>
+                <li>Participated in medical device prototype design and validation processes.</li>
+            </ul>`,
+
+        // Experience 2: NCKU RA
+        'exp2_title': 'Research Assistant',
+        'exp2_company': 'National Cheng Kung University (NCKU)',
+        'exp2_meta': '2023 - 2024 | Tainan, Taiwan',
+        'exp2_desc': `
+            <ul>
+                <li>Focused on AI-based Structural Health Monitoring (AISHM).</li>
+                <li>Applied deep learning models to analyze structural data and assisted in developing predictive maintenance systems.</li>
+            </ul>`,
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',
