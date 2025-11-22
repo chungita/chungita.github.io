@@ -86,6 +86,7 @@ const translations = {
                 <li>Focused on AI-based Structural Health Monitoring (AISHM).</li>
                 <li>Applied deep learning models to analyze structural data and assisted in developing predictive maintenance systems.</li>
             </ul>`,
+            
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',

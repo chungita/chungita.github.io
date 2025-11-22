@@ -25,6 +25,7 @@ header {
     top: 0;
     z-index: 10;
     width: 90%; /* 修正寬度以配合 padding */
+    overflow: visible;
 }
 
 nav {
@@ -33,6 +34,7 @@ nav {
     align-items: center;
     max-width: 1200px; /* 限制導覽列內容寬度 */
     margin: 0 auto;
+    overflow: visible;
 }
 
 nav .logo {
@@ -59,6 +61,59 @@ nav a {
 
 nav a:hover {
     color: #00a896;
+}
+
+/* =================================
+   導覽列 (Header & Navbar) - 徽章展示櫃樣式
+   ================================= */
+
+/* 導覽列左側容器：用於包裝 logo 和徽章展示櫃，讓它們水平對齊 */
+
+/* nav-left 容器：包含 logo 與徽章展示櫃 */
+.nav-left {
+    display: flex;
+    align-items: center; /* 垂直居中對齊 */
+    gap: 15px; /* logo 與徽章展示櫃之間的間距 */
+}
+
+/* 徽章展示櫃容器 */
+.badge-showcase {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* 徽章之間的間距 */
+}
+
+/* 徽章圖片樣式 */
+.badge-showcase img {
+    width: 24px; /* Reduce badge size */
+    height: 24px;
+    object-fit: cover; /* 確保圖片不被拉伸 */
+    border-radius: 50%; /* 圓形徽章 */
+    background-color: #f4f7f6; /* 讓透明背景的徽章更好看 */
+    padding: 6px; /* Increase outer padding */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease; /* 懸停動畫 */
+}
+
+.badge-showcase img:hover {
+    transform: scale(3); /* 懸停時放大 */
+    border-color: #007bff; /* 懸停時邊框變色 */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 增加陰影使其更像「浮」起來 */
+    border-radius: 8px; /* 放大後變為方形/圓角 */
+    z-index: 100; /* 確保它在最上層 */
+}
+
+/* 響應式設計：在手機螢幕上隱藏徽章展示櫃，以節省空間 */
+@media (max-width: 768px) {
+    .emblem-showcase {
+        display: none;
+    }
+    
+    /* 因為徽章展示櫃隱藏了，將 nav-left 設為 block 或移除以讓 logo 正常佔位 */
+    .nav-left {
+        display: block; /* 讓 logo 獨自佔據一行 (或 flex 讓它居左) */
+        gap: 0;
+    }
 }
 
 /* 漢堡菜單按鈕 */
