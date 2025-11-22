@@ -154,6 +154,129 @@ document.addEventListener('DOMContentLoaded', () => {
         langToggleDesktop.addEventListener('click', switchLanguage);
     }
 
+    // 初始化圖片功能
+    setRandomGameImage();
+    setRandomProfilePicture();
+    
+    // 添加滾動事件監聽器
+    window.addEventListener('scroll', function() {
+        handleScrollForGameImage();
+        handleScrollForProfileImage();
+    });
+    
+    // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
+    handleScrollForGameImage();
+    handleScrollForProfileImage();
+
 });
+
+// 當前選擇的圖片索引
+let currentProfileIndex = -1;
+let currentGameIndex = -1;
+
+// 設置隨機大頭貼（不重複）
+function setRandomProfilePicture() {
+    const profileImages = [
+        'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
+        'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg'
+    ];
+    
+    let newIndex;
+    // 確保新圖片與上一張不同
+    do {
+        newIndex = Math.floor(Math.random() * profileImages.length);
+    } while (newIndex === currentProfileIndex && profileImages.length > 1);
+    
+    currentProfileIndex = newIndex;
+    const selectedImage = profileImages[currentProfileIndex];
+    
+    console.log('Setting profile picture to:', selectedImage); // 調試用
+    
+    // 設置大頭貼圖片源
+    const profilePic = document.getElementById('profile-pic');
+    if (profilePic) {
+        profilePic.src = selectedImage;
+        console.log('Profile picture element found and updated'); // 調試用
+    } else {
+        console.log('Profile picture element not found'); // 調試用
+    }
+}
+
+// 設置隨機遊戲圖片（不重複）
+function setRandomGameImage() {
+    const gameImages = [
+        'files/images/game/hornet.png',
+        'files/images/game/Melinoë.png', 
+        'files/images/game/steve.png',
+        'files/images/game/miyabi.png'
+    ];
+    
+    let newIndex;
+    // 確保新圖片與上一張不同
+    do {
+        newIndex = Math.floor(Math.random() * gameImages.length);
+    } while (newIndex === currentGameIndex && gameImages.length > 1);
+    
+    currentGameIndex = newIndex;
+    const selectedImage = gameImages[currentGameIndex];
+    
+    // 設置圖片源
+    const gameImageElement = document.getElementById('random-game-image');
+    if (gameImageElement) {
+        gameImageElement.src = selectedImage;
+    }
+}
+
+// 追蹤角色是否已顯示的狀態
+let isGameImageVisible = false;
+let isProfileImageVisible = false; // 大頭貼初始為不可見，以便首次載入時觸發設置
+
+// 監聽滾動事件，當滾動到關於部分時刷新大頭貼
+function handleScrollForProfileImage() {
+    const aboutSection = document.getElementById('about');
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    
+    if (!aboutSection) return;
+    
+    const sectionTop = aboutSection.offsetTop;
+    const sectionBottom = sectionTop + aboutSection.offsetHeight;
+    const windowHeight = window.innerHeight;
+    
+    // 當滾動到關於部分時（簡化檢測邏輯）
+    if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionBottom) {
+        // 只有當之前不可見時才重新選擇圖片
+        if (!isProfileImageVisible) {
+            setRandomProfilePicture();
+            isProfileImageVisible = true;
+        }
+    } else {
+        isProfileImageVisible = false;
+    }
+}
+
+// 監聽滾動事件，當滾動到經歷部分時顯示圖片
+function handleScrollForGameImage() {
+    const experiencesSection = document.getElementById('experiences');
+    const gameImageElement = document.getElementById('random-game-image');
+    
+    if (!experiencesSection || !gameImageElement) return;
+    
+    const sectionTop = experiencesSection.offsetTop;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    
+    // 當滾動到經歷部分時顯示圖片
+    if (scrollTop + windowHeight >= sectionTop) {
+        // 只有當角色之前不可見時才重新選擇圖片
+        if (!isGameImageVisible) {
+            setRandomGameImage();
+            isGameImageVisible = true;
+        }
+        gameImageElement.classList.add('show');
+    } else {
+        gameImageElement.classList.remove('show');
+        isGameImageVisible = false; // 角色消失時重置狀態
+    }
+}
 
 

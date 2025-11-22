@@ -795,3 +795,34 @@ footer {
         flex: 1 1 auto;
     }
 }
+
+/* =================================
+   21. 隨機遊戲圖片樣式
+   ================================= */
+
+/* 隨機遊戲圖片 - 位於右下角且被body遮住 */
+.random-game-image {
+    position: fixed;
+    bottom: 0;     /* 底端對齊網頁下方 */
+    right: 0;      /* 右側對齊網頁右邊 */
+    width: auto;   /* 寬度自動調整以保持比例 */
+    height: 200px; /* 統一設置高度為200px */
+    opacity: 0;    /* 初始完全透明 */
+    z-index: -1;   /* 確保在所有內容後面 */
+    pointer-events: none; /* 不影響頁面互動 */
+    transition: opacity 0.5s ease;
+}
+
+/* 當滾動到經歷部分時顯示圖片 */
+.random-game-image.show {
+    opacity: 0.3; /* 顯示時的半透明效果 */
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .random-game-image {
+        height: 180px; /* 手機版稍微縮小 */
+        bottom: 0;     /* 手機版也對齊底部 */
+        right: 0;      /* 手機版也對齊右側 */
+    }
+}

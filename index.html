@@ -134,33 +134,6 @@
 
     <script src="lang.js"></script>
     <script>
-        // 在頁面載入前就決定要使用哪張圖片，避免刷新效果
-        const headshotImages = [
-            'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
-            'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg'
-        ];
-        
-        // 隨機選擇一張圖片
-        const randomIndex = Math.floor(Math.random() * headshotImages.length);
-        const selectedImage = headshotImages[randomIndex];
-
-        // DOM載入完成後設置圖片
-        document.addEventListener('DOMContentLoaded', () => {
-            // 設置個人頭像
-            const profilePic = document.getElementById('profile-pic');
-            if (profilePic) {
-                profilePic.src = selectedImage;
-            }
-
-            // 處理血腥圖片的點擊事件
-            const censoredContainer = document.querySelector('.censored-image-container');
-            if (censoredContainer) {
-                censoredContainer.addEventListener('click', () => {
-                    censoredContainer.classList.add('revealed');
-                });
-            }
-        });
-
         // 漢堡菜單切換
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -176,6 +149,16 @@
                 hamburger.classList.remove('active');
                 navMenu.classList.remove('active');
             });
+        });
+
+        // 處理血腥圖片的點擊事件
+        document.addEventListener('DOMContentLoaded', () => {
+            const censoredContainer = document.querySelector('.censored-image-container');
+            if (censoredContainer) {
+                censoredContainer.addEventListener('click', () => {
+                    censoredContainer.classList.toggle('revealed');
+                });
+            }
         });
 
         // 點擊語言切換按鈕時的處理
@@ -194,5 +177,9 @@
             });
         }
     </script>
+
+    <!-- 隨機遊戲圖片，位於右下角且被body遮住 -->
+    <img id="random-game-image" class="random-game-image" alt="Random Game Character">
+
 </body>
 </html>
