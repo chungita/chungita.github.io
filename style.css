@@ -47,6 +47,8 @@ nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: #005f73; /* 生醫領域常用的藍綠色 */
+    white-space: nowrap; /* 防止文字換行 */
+    flex-shrink: 0; /* 防止在flex容器中被壓縮 */
 }
 
 /* 導航連結樣式 */
