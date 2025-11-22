@@ -3,12 +3,13 @@ const translations = {
     // 中文內容
     'zh': {
         'site_title': '鍾易達 - 個人網站',
-        'your_name': '鍾易達',
+        'my_name': '鍾易達',
         'nav_about': '關於我',
         'nav_projects': '作品集',
         "nav_experiences": '經歷',
         'nav_contact': '聯絡我',
-        'lang_toggle': 'English', // 按鈕上顯示的文字
+        'lang_toggle': 'English', // 桌面版按鈕文字
+        'lang_toggle_mobile': '🌐', // 手機版emoji
         'about_title': '鍾易達',
         'about_subtitle': '生醫工程學士畢業生|專精於微小探頭and導管設計',
         'about_desc': '畢業於清華大學生醫工程學系。我熱衷於開發能改善人類健康的技術',
@@ -24,10 +25,10 @@ const translations = {
         // 經歷 1: SoundJet
         'exp1_title': '研發實習生',
         'exp1_company': '聲捷醫學 (SoundJet Medical Inc.)',
-        'exp1_meta': '2024 年 - 2025 年 | 台灣',
+        'exp1_meta': '2023 年 - 2024 年 | 台灣',
         'exp1_desc': `
             <ul>
-                <li>針對導管製程開發自動化針頭注射系統，提升生產精確度。</li>
+                <li>針對導管製程開發自動化樹脂注射系統，提升生產精確度。</li>
                 <li>參與醫療器材原型設計與驗證流程。</li>
             </ul>`,
             
@@ -49,14 +50,15 @@ const translations = {
     // 英文內容
     'en': {
         'site_title': 'Chung I-Ta - Personal Website',
-        'your_name': 'CHUNG, I-TA',
+        'my_name': 'CHUNG, I-TA',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
         "nav_experiences": 'Experiences',
         'nav_contact': 'Contact',
-        'lang_toggle': '中文', // 按鈕上顯示的文字
+        'lang_toggle': '中文', // 桌面版按鈕文字
+        'lang_toggle_mobile': '🌐', // 手機版emoji
         'about_title': 'Chung I-Ta',
-        'about_subtitle': 'Biomedical Engineering (B.S.)| Specialized in Micro Probe and Catheter Design',
+        'about_subtitle': 'Biomedical Engineering (B.S.)<br>Specialized in Micro Transducer and Catheter Design',
         'about_desc': 'I graduated from the Department of Biomedical Engineering at NTHU. I am passionate about developing technologies that improve human health.',
         'cv_button': 'My CV',
         'projects_title': 'Projects',
@@ -70,10 +72,10 @@ const translations = {
         // Experience 1: SoundJet
         'exp1_title': 'R&D Intern',
         'exp1_company': 'SoundJet Medical Inc.',
-        'exp1_meta': '2024 - 2025 | Taiwan',
+        'exp1_meta': '2023 - 2024 | Taiwan',
         'exp1_desc': `
             <ul>
-                <li>Developed an automated needle injection system for catheter manufacturing, improving production precision.</li>
+                <li>Developed an automated needle epoxy injection system for catheter manufacturing, improving production precision.</li>
                 <li>Participated in medical device prototype design and validation processes.</li>
             </ul>`,
 
@@ -86,7 +88,7 @@ const translations = {
                 <li>Focused on AI-based Structural Health Monitoring (AISHM).</li>
                 <li>Applied deep learning models to analyze structural data and assisted in developing predictive maintenance systems.</li>
             </ul>`,
-            
+
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',
@@ -97,7 +99,8 @@ const translations = {
 
 // 2. DOM 載入完成後執行
 document.addEventListener('DOMContentLoaded', () => {
-    const langToggle = document.getElementById('lang-toggle');
+    const langToggleMobile = document.getElementById('lang-toggle');
+    const langToggleDesktop = document.getElementById('lang-toggle-desktop');
 
     // 翻譯頁面的函數
     const translatePage = (lang) => {
@@ -112,16 +115,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 element.innerHTML = translations[lang][key]; // 使用 innerHTML 才能正確顯示 &copy; 等符號
             }
         });
+        
+        // 特別處理手機版語言切換按鈕
+        if (langToggleMobile && translations[lang]['lang_toggle_mobile']) {
+            langToggleMobile.innerHTML = translations[lang]['lang_toggle_mobile'];
+        }
     };
 
-    // 獲取儲存的語言，若無則預設為 'zh'
-    let currentLang = localStorage.getItem('lang') || 'zh';
-    
-    // 立即翻譯頁面
-    translatePage(currentLang);
-
-    // 監聽切換按鈕點擊事件
-    langToggle.addEventListener('click', () => {
+    // 語言切換函數
+    const switchLanguage = () => {
         // 切換語言
         currentLang = (currentLang === 'zh') ? 'en' : 'zh';
         
@@ -130,7 +132,23 @@ document.addEventListener('DOMContentLoaded', () => {
         
         // 重新翻譯頁面
         translatePage(currentLang);
-    });
+    };
+
+    // 獲取儲存的語言，若無則預設為 'zh'
+    let currentLang = localStorage.getItem('lang') || 'zh';
+    
+    // 立即翻譯頁面
+    translatePage(currentLang);
+
+    // 監聽手機版切換按鈕點擊事件
+    if (langToggleMobile) {
+        langToggleMobile.addEventListener('click', switchLanguage);
+    }
+    
+    // 監聽桌面版切換按鈕點擊事件
+    if (langToggleDesktop) {
+        langToggleDesktop.addEventListener('click', switchLanguage);
+    }
 
 });
 

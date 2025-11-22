@@ -10,12 +10,15 @@
 
     <header>
         <nav>
-            <div class="logo" data-key="your_name"></div>
-            <div class="badge-showcase">
-                <img src="images/badge/KSHS_emblem.png" alt="badge 1">
-                <img src="images/badge/nthu_emblem.png" alt="badge 2">
-                <img src="images/badge/ROC_millitary_private_emblem.png" alt="badge 3">
+            <div class="nav-left">
+                <div class="logo" data-key="my_name"></div>
+                <div class="badge-showcase">
+                    <img src="images/badge/KSHS_emblem.png" alt="badge 1">
+                    <img src="images/badge/nthu_emblem.png" alt="badge 2">
+                    <img src="images/badge/ROC_millitary_private_emblem.png" alt="badge 3">
+                </div>
             </div>
+            <button id="lang-toggle" class="lang-toggle-mobile" data-key="lang_toggle_mobile"></button>
             <button id="hamburger" class="hamburger">
                 <span></span>
                 <span></span>
@@ -26,14 +29,14 @@
                 <li><a href="#projects" data-key="nav_projects"></a></li>
                 <li><a href="#experiences" data-key="nav_experiences"></a></li>
                 <li><a href="#contact" data-key="nav_contact"></a></li>
-                <li><button id="lang-toggle" data-key="lang_toggle"></button></li>
+                <li class="desktop-lang"><button id="lang-toggle-desktop" data-key="lang_toggle"></button></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <section id="about">
-            <img src="images/chungita_nthu_2024_graduation_photo.jpg" alt="My Headshot " class="profile-pic">
+            <img id="profile-pic" src="images/chungita_nthu_2024_graduation_photo.jpg" alt="My Headshot " class="profile-pic">
             <h1 data-key="about_title"></h1>
             <p class="subtitle" data-key="about_subtitle"></p>
             <p data-key="about_desc"></p>
@@ -83,19 +86,25 @@
 
         <section id="experiences">
             <h2 data-key="experiences_title"></h2>
-            
-            <div class="experience-item">
+
+            <div class="experience-card">
                 <h3 data-key="exp1_title"></h3>
-                <span class="experience-company" data-key="exp1_company"></span>
-                <div class="experience-meta" data-key="exp1_meta"></div>
-                <div class="experience-desc" data-key="exp1_desc"></div>
+                <div>
+                    <img src="images/exp1_1.jpg" alt="Experience 1 Photo">
+                </div>
+                <p class="experience-company" data-key="exp1_company"></p>
+                <p class="experience-meta" data-key="exp1_meta"></p>
+                <p class="experience-desc" data-key="exp1_desc"></p>
             </div>
 
-            <div class="experience-item">
+            <div class="experience-card">
                 <h3 data-key="exp2_title"></h3>
-                <span class="experience-company" data-key="exp2_company"></span>
-                <div class="experience-meta" data-key="exp2_meta"></div>
-                <div class="experience-desc" data-key="exp2_desc"></div>
+                <div>
+                    <img src="images/experience2-photo.jpg" alt="Experience 2 Photo">
+                </div>
+                <p class="experience-company" data-key="exp2_company"></p>
+                <p class="experience-meta" data-key="exp2_meta"></p>
+                <p class="experience-desc" data-key="exp2_desc"></p>
             </div>
         </section>
 
@@ -115,6 +124,24 @@
 
     <script src="lang.js"></script>
     <script>
+        // 隨機選擇大頭貼圖片
+        const headshotImages = [
+            'images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
+            'images/headshot/chungita_nthu_2024_graduation_photo2.jpg'
+        ];
+        
+        // 隨機選擇一張圖片
+        const randomIndex = Math.floor(Math.random() * headshotImages.length);
+        const selectedImage = headshotImages[randomIndex];
+        
+        // 設置大頭貼圖片
+        document.addEventListener('DOMContentLoaded', () => {
+            const profilePic = document.getElementById('profile-pic');
+            if (profilePic) {
+                profilePic.src = selectedImage;
+            }
+        });
+
         // 漢堡菜單切換
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -132,10 +159,21 @@
             });
         });
 
-        // 點擊語言切換按鈕時不關閉菜單
-        document.getElementById('lang-toggle').addEventListener('click', (e) => {
-            e.stopPropagation();
-        });
+        // 點擊語言切換按鈕時的處理
+        const langToggleDesktop = document.getElementById('lang-toggle-desktop');
+        const langToggleMobile = document.getElementById('lang-toggle');
+        
+        if (langToggleDesktop) {
+            langToggleDesktop.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+        
+        if (langToggleMobile) {
+            langToggleMobile.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
     </script>
 </body>
 </html>

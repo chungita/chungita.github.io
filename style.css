@@ -1,22 +1,29 @@
-html{
+/* =================================
+   1. 基礎設置與重置樣式
+   ================================= */
+
+/* HTML 基礎設置 */
+html {
     margin: 0;
     padding: 0;
-    /* 確保平滑滾動套用在實際進行滾動的元素上 */
-    scroll-behavior: smooth; 
+    scroll-behavior: smooth; /* 確保平滑滾動套用在實際進行滾動的元素上 */
 }
-/* =================================
-   基本重設與全域設定
-   ================================= */
+
+/* 全域字體和基礎樣式 */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
     background-color: #f4f7f6; /* 柔和的背景灰 */
     color: #333;
+    margin: 0;
+    padding: 0;
 }
 
 /* =================================
-   導覽列 (Header & Navbar)
+   2. 導航欄 (Header & Navbar)
    ================================= */
+
+/* 主要導航欄樣式 */
 header {
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
@@ -25,24 +32,24 @@ header {
     top: 0;
     z-index: 10;
     width: 90%; /* 修正寬度以配合 padding */
-    overflow: visible;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* 限制導覽列內容寬度 */
+    max-width: 1200px; /* 限制導航欄內容寬度 */
     margin: 0 auto;
-    overflow: visible;
 }
 
+/* Logo 樣式 */
 nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
     color: #005f73; /* 生醫領域常用的藍綠色 */
 }
 
+/* 導航連結樣式 */
 nav ul {
     list-style: none;
     display: flex;
@@ -64,17 +71,20 @@ nav a:hover {
 }
 
 /* =================================
-   導覽列 (Header & Navbar) - 徽章展示櫃樣式
+   3. 導航欄左側功能區域
    ================================= */
 
-/* 導覽列左側容器：用於包裝 logo 和徽章展示櫃，讓它們水平對齊 */
-
-/* nav-left 容器：包含 logo 與徽章展示櫃 */
+/* nav-left 容器：包含 logo、徽章展示櫃與語言切換 */
 .nav-left {
     display: flex;
     align-items: center; /* 垂直居中對齊 */
-    gap: 15px; /* logo 與徽章展示櫃之間的間距 */
+    gap: 15px; /* 元件之間的間距 */
+    flex: 1; /* 佔據剩餘空間 */
 }
+
+/* =================================
+   4. 徽章展示櫃樣式
+   ================================= */
 
 /* 徽章展示櫃容器 */
 .badge-showcase {
@@ -83,18 +93,19 @@ nav a:hover {
     gap: 8px; /* 徽章之間的間距 */
 }
 
-/* 徽章圖片樣式 */
+/* 徽章圖片基礎樣式 */
 .badge-showcase img {
-    width: 24px; /* Reduce badge size */
+    width: 24px;
     height: 24px;
     object-fit: cover; /* 確保圖片不被拉伸 */
     border-radius: 50%; /* 圓形徽章 */
     background-color: #f4f7f6; /* 讓透明背景的徽章更好看 */
-    padding: 6px; /* Increase outer padding */
+    padding: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease; /* 懸停動畫 */
 }
 
+/* 徽章懸停效果 */
 .badge-showcase img:hover {
     transform: scale(3); /* 懸停時放大 */
     border-color: #007bff; /* 懸停時邊框變色 */
@@ -103,20 +114,34 @@ nav a:hover {
     z-index: 100; /* 確保它在最上層 */
 }
 
-/* 響應式設計：在手機螢幕上隱藏徽章展示櫃，以節省空間 */
-@media (max-width: 768px) {
-    .emblem-showcase {
-        display: none;
-    }
-    
-    /* 因為徽章展示櫃隱藏了，將 nav-left 設為 block 或移除以讓 logo 正常佔位 */
-    .nav-left {
-        display: block; /* 讓 logo 獨自佔據一行 (或 flex 讓它居左) */
-        gap: 0;
-    }
+/* =================================
+   5. 語言切換功能
+   ================================= */
+
+/* 桌面版和手機版語言切換按鈕共同樣式 */
+#lang-toggle-desktop,
+.lang-toggle-mobile {
+    background: none;
+    border: none;
+    color: #005f73;
+    font-weight: 500;
+    font-size: 1rem;
+    font-family: inherit;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s;
 }
 
-/* 漢堡菜單按鈕 */
+#lang-toggle-desktop:hover,
+.lang-toggle-mobile:hover {
+    color: #00a896;
+}
+
+/* =================================
+   6. 漢堡選單按鈕
+   ================================= */
+
+/* 漢堡選單按鈕基礎樣式 */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -127,6 +152,7 @@ nav a:hover {
     gap: 5px;
 }
 
+/* 漢堡選單線條 */
 .hamburger span {
     width: 25px;
     height: 3px;
@@ -135,6 +161,7 @@ nav a:hover {
     transition: all 0.3s ease;
 }
 
+/* 漢堡選單激活狀態動畫 */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(8px, 8px);
 }
@@ -147,7 +174,7 @@ nav a:hover {
     transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* 導覽菜單 */
+/* 導航選單 */
 .nav-menu {
     list-style: none;
     display: flex;
@@ -156,34 +183,18 @@ nav a:hover {
     padding: 0;
 }
 
-/* 語言切換按鈕樣式 */
-#lang-toggle {
-    background: none;
-    border: none;
-    color: #005f73;
-    font-weight: 500;
-    font-size: 1rem; /* 確保字體大小一致 */
-    font-family: inherit; /* 繼承頁面字體 */
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.3s;
-}
-
-#lang-toggle:hover {
-    color: #00a896;
-}
-
-
 /* =================================
-   主要內容區塊
+   7. 主要內容區域
    ================================= */
+
+/* 主容器樣式 */
 main {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 20px auto; /* 頂部也增加 margin */
     padding: 20px;
 }
 
-/* 區塊通用樣式 */
+/* 通用區塊樣式 */
 section {
     background-color: #ffffff;
     margin-bottom: 25px;
@@ -192,6 +203,7 @@ section {
     box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 
+/* 通用標題樣式 */
 section h2 {
     font-size: 2rem;
     color: #005f73;
@@ -201,12 +213,14 @@ section h2 {
 }
 
 /* =================================
-   1. 關於我 (About Me)
+   8. 關於我 (About Me) 區域
    ================================= */
+
 #about {
     text-align: center;
 }
 
+/* 個人頭像樣式 */
 .profile-pic {
     width: 150px;
     height: 150px;
@@ -216,6 +230,7 @@ section h2 {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+/* 主標題和副標題樣式 */
 #about h1 {
     margin-top: 15px;
     margin-bottom: 5px;
@@ -228,11 +243,13 @@ section h2 {
     margin-top: 0;
 }
 
+/* 關於我段落樣式 */
 #about p {
     max-width: 700px; /* 讓段落易於閱讀 */
     margin: 15px auto; /* 置中 */
 }
 
+/* 行動按鈕樣式 */
 .cta-button {
     display: inline-block;
     background-color: #00a896;
@@ -251,8 +268,10 @@ section h2 {
 }
 
 /* =================================
-   2. 作品集 (Projects)
+   9. 作品集 (Projects) 區域
    ================================= */
+
+/* 專案卡片基礎樣式 */
 .project-card {
     margin-bottom: 30px;
     border-bottom: 1px solid #eee;
@@ -271,8 +290,125 @@ section h2 {
 }
 
 /* =================================
-   2.5 經歷 (Experiences)
+   10. 專案媒體展示樣式
    ================================= */
+
+/* Project 1: 圖片和影片容器 */
+.project-card > div:not(.video-row) {
+    display: flex;
+    flex-direction: column; /* 手機版預設為上下堆疊 */
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 12px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+/* 通用圖片和影片樣式 */
+.project-card > div > img,
+.project-card > div > video {
+    width: 100%;
+    height: auto;
+    min-height: 250px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #222;
+    display: block;
+    margin: 0;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+    overflow: hidden; /* 防止內容溢出 */
+}
+
+/* Project 2: 主要圖片樣式 */
+.project-image {
+    display: block;
+    margin: 12px 0;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+}
+
+/* Project 2: 影片列樣式 (電腦版預設：並排) */
+.video-row {
+    display: flex;
+    flex-direction: row; /* 橫向 */
+    gap: 12px;
+    align-items: stretch;
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: visible;
+    padding: 0;
+}
+
+/* Project 2: 列中的影片樣式 (電腦版寬度計算) */
+.video-row > video {
+    /* (100% - 12px gap) / 2 = 50% - 6px */
+    flex: 1 1 calc(50% - 6px); 
+    max-width: calc(50% - 6px);
+    height: auto;
+    max-height: 400px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    display: block;
+    padding: 8px;
+}
+
+/* =================================
+   11. 經歷 (Experiences) 區域
+   ================================= */
+
+/* 經歷卡片樣式 */
+.experience-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+}
+
+.experience-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #005f73;
+}
+
+.experience-card > div {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0;
+}
+
+.experience-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    object-fit: cover;
+}
+
+/* 經歷項目時間軸樣式 */
 .experience-item {
     position: relative;
     padding-left: 25px;
@@ -300,6 +436,7 @@ section h2 {
     box-shadow: 0 0 0 2px #00a896; /* 雙層圓圈效果 */
 }
 
+/* 經歷項目文字樣式 */
 .experience-item h3 {
     margin-top: 0;
     margin-bottom: 5px;
@@ -333,28 +470,33 @@ section h2 {
 }
 
 /* =================================
-   3. 聯絡方式 (Contact)
+   12. 聯絡方式 (Contact) 區域
    ================================= */
+
 #contact ul {
     list-style: none;
     padding-left: 0;
 }
+
 #contact li {
     margin-bottom: 10px;
     font-size: 1.1rem;
 }
+
 #contact a {
     text-decoration: none;
     color: #007a6e;
     font-weight: 500;
 }
+
 #contact a:hover {
     text-decoration: underline;
 }
 
 /* =================================
-   頁腳 (Footer)
+   13. 頁腳 (Footer) 區域
    ================================= */
+
 footer {
     text-align: center;
     padding: 20px;
@@ -362,19 +504,56 @@ footer {
     margin-top: 20px;
 }
 /* =================================
-   響應式設計 (RWD for Mobile - 選單與基礎設定)
+   14. 桌面版響應式樣式 (769px以上)
    ================================= */
+
+@media (min-width: 769px) {
+    /* 桌面版：隱藏手機版語言切換，顯示桌面版 */
+    .lang-toggle-mobile {
+        display: none;
+    }
+    
+    .desktop-lang {
+        display: block;
+    }
+
+    /* Project 1: 電腦版橫向排列 */
+    .project-card > div:not(.video-row) {
+        flex-direction: row; /* 電腦版改為左右並排 */
+        align-items: center;
+        gap: 20px;
+        overflow: hidden; /* 防止內容溢出 */
+    }
+    
+    .project-card > div:not(.video-row) > img,
+    .project-card > div:not(.video-row) > video {
+        flex: 1 1 calc(50% - 10px); /* 精確計算寬度，減去gap的一半 */
+        width: calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        height: 300px; /* 固定高度確保一致性 */
+        object-fit: contain; /* 確保內容適合容器 */
+    }
+}
+/* =================================
+   15. 手機版響應式樣式 (768px以下)
+   ================================= */
+
 @media (max-width: 768px) {
+    /* 導航欄手機版布局 */
     nav {
         position: relative;
         flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px; /* 語言切換和漢堡選單之間的間距 */
     }
 
+    /* 顯示漢堡選單按鈕 */
     .hamburger {
         display: flex;
-        order: 2;
+        order: 3; /* 漢堡選單在最右側 */
     }
 
+    /* 手機版導航選單 */
     .nav-menu {
         position: absolute;
         top: calc(140%);
@@ -422,6 +601,50 @@ footer {
         cursor: pointer;
     }
 
+    /* 手機版nav-left樣式調整 */
+    .nav-left {
+        display: flex; /* 保持flex布局 */
+        align-items: center;
+        flex: 1;
+        gap: 8px; /* 減少間距以容納更多元素 */
+        order: 1; /* nav-left在最左側 */
+    }
+
+    /* 手機版語言切換樣式 */
+    .desktop-lang {
+        display: none !important;
+    }
+    
+    .lang-toggle-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px; /* 與漢堡選單按鈕大小一致 */
+        height: 35px; /* 與漢堡選單按鈕大小一致 */
+        font-size: 1.2rem; /* 讓emoji更明顯 */
+        border-radius: 4px;
+        transition: background-color 0.3s, transform 0.2s;
+        order: 2; /* 放在漢堡選單左側 */
+    }
+    
+    .lang-toggle-mobile:hover {
+        background-color: rgba(0, 95, 115, 0.1);
+        transform: scale(1.05);
+    }
+
+    /* 手機版徽章展示櫃調整 */
+    .badge-showcase {
+        display: flex; /* 在手機版顯示徽章 */
+        gap: 6px; /* 減少徽章間距 */
+    }
+    
+    .badge-showcase img {
+        width: 20px; /* 手機版徽章稍微縮小 */
+        height: 20px;
+        padding: 4px; /* 減少padding */
+    }
+
+    /* 手機版主要內容調整 */
     main {
         padding: 10px;
         max-width: 100%;
@@ -440,100 +663,30 @@ footer {
         height: 120px;
     }
     
+    /* 手機版經歷卡片樣式 */
+    .experience-card {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .experience-card h3 {
+        font-size: 1.2rem;
+    }
+    
+    .experience-card img {
+        max-width: 100%;
+        height: auto;
+        max-height: 300px;
+        object-fit: contain;
+    }
 
-} /* RWD 選單設定結束 */
-
-
-/* =================================
-   Project Media Styles (Project 1, 2, 3)
-   預設樣式 (Desktop / Global)
-   ================================= */
-
-/* Project 1: Image and Video Container */
-.project-card > div:not(.video-row) {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: stretch;
-    margin-top: 12px;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-/* Project 1 & General: Image and Video styling */
-.project-card > div > img,
-.project-card > div > video {
-    width: 100%;
-    height: auto;
-    min-height: 250px;
-    object-fit: contain;
-    border-radius: 6px;
-    border: 1px solid #222;
-    display: block;
-    margin: 0;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
-}
-
-/* Project 2: Main image */
-.project-image {
-    display: block;
-    margin: 12px 0;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    border: 1px solid #222;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
-}
-
-/* Project 2: Video row styles (電腦版預設：並排) */
-.video-row {
-    display: flex;
-    flex-direction: row; /* 橫向 */
-    gap: 12px;
-    align-items: stretch;
-    justify-content: center;
-    margin-top: 12px;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: visible;
-    padding: 0;
-}
-
-/* Project 2: Videos in row (電腦版寬度計算) */
-.video-row > video {
-    /* (100% - 12px gap) / 2 = 50% - 6px */
-    flex: 1 1 calc(50% - 6px); 
-    max-width: calc(50% - 6px);
-    height: auto;
-    max-height: 400px;
-    object-fit: contain;
-    border-radius: 6px;
-    border: 1px solid #222;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    display: block;
-    padding: 8px;
-}
-
-/* =================================
-   Project 2 Mobile Override
-   修正手機版堆疊問題 (放在檔案最後面以確保權重最高)
-   ================================= */
-@media (max-width: 768px) {
+    /* Project 2 手機版覆蓋樣式 - 修正手機版堆疊問題 */
     .video-row {
         flex-direction: column; /* 強制改回垂直 */
     }
     
     .video-row > video {
-        max-width: 100%; /* 手機版寬度佔滿 */
+        max-width: 100%; /* 手機版寬度占滿 */
         flex: 1 1 auto;
     }
 }
