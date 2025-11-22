@@ -13,9 +13,9 @@
             <div class="nav-left">
                 <div class="logo" data-key="my_name"></div>
                 <div class="badge-showcase">
-                    <img src="images/badge/KSHS_emblem.png" alt="badge 1">
-                    <img src="images/badge/nthu_emblem.png" alt="badge 2">
-                    <img src="images/badge/ROC_millitary_private_emblem.png" alt="badge 3">
+                    <img src="files/images/badge/KSHS_emblem.png" alt="badge 1">
+                    <img src="files/images/badge/nthu_emblem.png" alt="badge 2">
+                    <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3">
                 </div>
             </div>
             <button id="lang-toggle" class="lang-toggle-mobile" data-key="lang_toggle_mobile"></button>
@@ -40,7 +40,7 @@
             <h1 data-key="about_title"></h1>
             <p class="subtitle" data-key="about_subtitle"></p>
             <p data-key="about_desc"></p>
-            <a href="files/I-Ta Chung_CV.pdf" class="cta-button" target="_blank" data-key="cv_button"></a>
+            <a href="files/PDF/I-Ta Chung_CV.pdf" class="cta-button" target="_blank" data-key="cv_button"></a>
         </section>
 
         <section id="projects">
@@ -49,9 +49,9 @@
             <div class="project-card">
                 <h3 data-key="project1_title"></h3>
                 <div>
-                    <img src="images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
+                    <img src="files/images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
                     <video id="catheter-video-main" autoplay loop muted playsinline controls>
-                        <source src="files/catheter.mp4" type="video/mp4">
+                        <source src="files/videos/catheter.mp4" type="video/mp4">
                     </video>
                 </div>
 
@@ -61,13 +61,13 @@
 
             <div class="project-card">
                 <h3 data-key="project2_title"></h3>
-                <img src="images/4ch_transducer.png" class="project-image">
+                <img src="files/images/4ch_transducer.png" class="project-image">
                 <div class="video-row">
                     <video autoplay loop muted playsinline controls>
-                        <source src="files/votexxz-acoustic-field.mp4" type="video/mp4">
+                        <source src="files/videos/votexxz-acoustic-field.mp4" type="video/mp4">
                     </video>
                     <video autoplay loop muted playsinline controls>
-                        <source src="files/votexxy-acoustic-field.mp4" type="video/mp4">
+                        <source src="files/videos/votexxy-acoustic-field.mp4" type="video/mp4">
                     </video>
                 </div>
                 <p data-key="project2_desc"></p>
@@ -76,8 +76,8 @@
 
             <div class="project-card">
                 <h3 data-key="project3_title"></h3>
-                <img src="images/project3-prosthetic-1.jpg" alt="義肢 SolidWorks 模型">
-                <img src="images/project3-prosthetic-2.jpg" alt="3D 列印成品">
+                <img src="files/images/project3-prosthetic-1.jpg" alt="義肢 SolidWorks 模型">
+                <img src="files/images/project3-prosthetic-2.jpg" alt="3D 列印成品">
                 <p data-key="project3_desc"></p>
                 <p><a class="project-more" href="projects/project3.html" data-key="more_details"></a></p>
             </div>
@@ -90,7 +90,17 @@
             <div class="experience-card">
                 <h3 data-key="exp1_title"></h3>
                 <div>
-                    <img src="images/exp1_1.jpg" alt="Experience 1 Photo">
+                    <img src="files/images/exp1_1.jpg" alt="Experience 1 Photo">
+                    <div class="censored-image-container">
+                        <img src="files/images/porcine_pulmonary.jpg" alt="Porcine Pulmonary Photo" class="censored-image">
+                        <div class="warning-overlay">
+                            <div class="warning-text">
+                                <span class="warning-icon">⚠️</span>
+                                <p data-key="warning_content"></p>
+                                <p data-key="warning_click"></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <p class="experience-company" data-key="exp1_company"></p>
                 <p class="experience-meta" data-key="exp1_meta"></p>
@@ -100,7 +110,7 @@
             <div class="experience-card">
                 <h3 data-key="exp2_title"></h3>
                 <div>
-                    <img src="images/experience2-photo.jpg" alt="Experience 2 Photo">
+                    <img src="files/images/experience2-photo.jpg" alt="Experience 2 Photo">
                 </div>
                 <p class="experience-company" data-key="exp2_company"></p>
                 <p class="experience-meta" data-key="exp2_meta"></p>
@@ -126,8 +136,8 @@
     <script>
         // 在頁面載入前就決定要使用哪張圖片，避免刷新效果
         const headshotImages = [
-            'images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
-            'images/headshot/chungita_nthu_2024_graduation_photo2.jpg'
+            'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
+            'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg'
         ];
         
         // 隨機選擇一張圖片
@@ -140,6 +150,14 @@
             const profilePic = document.getElementById('profile-pic');
             if (profilePic) {
                 profilePic.src = selectedImage;
+            }
+
+            // 處理血腥圖片的點擊事件
+            const censoredContainer = document.querySelector('.censored-image-container');
+            if (censoredContainer) {
+                censoredContainer.addEventListener('click', () => {
+                    censoredContainer.classList.add('revealed');
+                });
             }
         });
 

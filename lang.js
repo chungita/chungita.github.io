@@ -46,6 +46,8 @@ const translations = {
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
         'more_details': '更多細節',
+        'warning_content': '血腥內容警告',
+        'warning_click': '點擊查看',
     },
     // 英文內容
     'en': {
@@ -94,6 +96,8 @@ const translations = {
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
         'more_details': 'More Details',
+        'warning_content': 'Graphic Content Warning',
+        'warning_click': 'Click to View',
     }
 };
 
@@ -134,8 +138,8 @@ document.addEventListener('DOMContentLoaded', () => {
         translatePage(currentLang);
     };
 
-    // 獲取儲存的語言，若無則預設為 'zh'
-    let currentLang = localStorage.getItem('lang') || 'zh';
+    // 獲取儲存的語言，若無則預設為 'en'
+    let currentLang = localStorage.getItem('lang') || 'en';
     
     // 立即翻譯頁面
     translatePage(currentLang);
