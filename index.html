@@ -37,10 +37,6 @@
     <main>
         <section id="about">
             <img id="profile-pic" src="" alt="My Headshot " class="profile-pic">
-            <script>
-                // 立即設置圖片源，避免載入延遲
-                document.getElementById('profile-pic').src = selectedImage;
-            </script>
             <h1 data-key="about_title"></h1>
             <p class="subtitle" data-key="about_subtitle"></p>
             <p data-key="about_desc"></p>
@@ -137,6 +133,15 @@
         // 隨機選擇一張圖片
         const randomIndex = Math.floor(Math.random() * headshotImages.length);
         const selectedImage = headshotImages[randomIndex];
+
+        // DOM載入完成後設置圖片
+        document.addEventListener('DOMContentLoaded', () => {
+            // 設置個人頭像
+            const profilePic = document.getElementById('profile-pic');
+            if (profilePic) {
+                profilePic.src = selectedImage;
+            }
+        });
 
         // 漢堡菜單切換
         const hamburger = document.getElementById('hamburger');
