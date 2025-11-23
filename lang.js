@@ -155,26 +155,36 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 初始化圖片功能
-    setRandomGameImage();
+    selectNewGameAndTarget(); // 預先選擇一組角色和目標
     setRandomProfilePicture();
     
     // 添加滾動事件監聽器
     window.addEventListener('scroll', function() {
-        handleScrollForGameImage();
         handleScrollForProfileImage();
+        handleScrollForGameImage();
+        handleScrollForTargetImage();
     });
     
     // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
-    handleScrollForGameImage();
     handleScrollForProfileImage();
+    handleScrollForGameImage();
+    handleScrollForTargetImage();
 
 });
 
-// 當前選擇的圖片索引
-let currentProfileIndex = -1;
-let currentGameIndex = -1;
+// =================================
+//   3. 圖片管理相關變數
+// =================================
 
-// 設置隨機大頭貼（不重複）
+// 當前選擇的圖片索引（用於避免連續顯示相同圖片）
+let currentProfileIndex = -1;        // 大頭貼索引
+let currentGameIndex = -1;           // 遊戲角色索引
+let currentSelectedGameImage = null; // 當前選擇的遊戲角色圖片路徑
+
+/**
+ * 設置隨機大頭貼（確保不重複）
+ * 功能：從兩張照片中隨機選擇一張，確保與上次顯示的不同
+ */
 function setRandomProfilePicture() {
     const profileImages = [
         'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
@@ -182,56 +192,140 @@ function setRandomProfilePicture() {
     ];
     
     let newIndex;
-    // 確保新圖片與上一張不同
+    // 隨機選擇一張與上次不同的圖片
     do {
         newIndex = Math.floor(Math.random() * profileImages.length);
     } while (newIndex === currentProfileIndex && profileImages.length > 1);
     
+    // 更新索引和圖片源
     currentProfileIndex = newIndex;
     const selectedImage = profileImages[currentProfileIndex];
     
-    console.log('Setting profile picture to:', selectedImage); // 調試用
-    
-    // 設置大頭貼圖片源
     const profilePic = document.getElementById('profile-pic');
     if (profilePic) {
         profilePic.src = selectedImage;
-        console.log('Profile picture element found and updated'); // 調試用
-    } else {
-        console.log('Profile picture element not found'); // 調試用
     }
 }
 
-// 設置隨機遊戲圖片（不重複）
-function setRandomGameImage() {
+/**
+ * 選擇新的遊戲角色和對應的目標圖片（確保不重複）
+ * 功能：隨機選擇一個遊戲角色，並自動設置對應的目標圖片
+ * 注意：角色和目標圖片會保持配對關係
+ */
+function selectNewGameAndTarget() {
     const gameImages = [
         'files/images/game/hornet.png',
         'files/images/game/Melinoë.png', 
         'files/images/game/steve.png',
-        'files/images/game/miyabi.png'
+        'files/images/game/miyabi.png',
+        'files/images/game/miku.png'
     ];
     
     let newIndex;
-    // 確保新圖片與上一張不同
+    // 隨機選擇一個與上次不同的角色
     do {
         newIndex = Math.floor(Math.random() * gameImages.length);
     } while (newIndex === currentGameIndex && gameImages.length > 1);
     
+    // 更新當前選擇的角色
     currentGameIndex = newIndex;
-    const selectedImage = gameImages[currentGameIndex];
+    currentSelectedGameImage = gameImages[currentGameIndex];
     
-    // 設置圖片源
-    const gameImageElement = document.getElementById('random-game-image');
-    if (gameImageElement) {
-        gameImageElement.src = selectedImage;
+    // 設置對應的目標圖片
+    setTargetImage(currentSelectedGameImage);
+}
+
+/**
+ * 根據遊戲角色設置對應的目標圖片
+ * @param {string} gameImagePath - 遊戲角色圖片的路徑
+ */
+function setTargetImage(gameImagePath) {
+    // 角色名稱到目標圖片的映射表
+    const targetMapping = {
+        'hornet.png': 'hornet_target.png',
+        'Melinoë.png': 'Melinoë_target.png',
+        'steve.png': 'steve_target.png',
+        'miyabi.png': 'miyabi_target.png',
+        'miku.png': 'miku_target.png'
+    };
+    
+    // 從路徑中提取檔名
+    const fileName = gameImagePath.split('/').pop();
+    const targetFileName = targetMapping[fileName];
+    
+    if (targetFileName) {
+        const targetImagePath = `files/images/game/target/${targetFileName}`;
+        const targetImageElement = document.getElementById('target-image');
+        if (targetImageElement) {
+            targetImageElement.src = targetImagePath;
+        }
+    } else {
+        console.error('找不到對應的目標圖片:', fileName);
     }
 }
 
-// 追蹤角色是否已顯示的狀態
-let isGameImageVisible = false;
-let isProfileImageVisible = false; // 大頭貼初始為不可見，以便首次載入時觸發設置
+// =================================
+//   4. 滾動狀態追蹤變數
+// =================================
 
-// 監聽滾動事件，當滾動到關於部分時刷新大頭貼
+// 圖片顯示狀態標記
+let isGameImageVisible = false;       // 遊戲角色圖片是否已顯示
+let isProfileImageVisible = false;    // 大頭貼是否已顯示
+let isTargetImageVisible = false;     // 目標圖片是否已顯示
+
+/**
+ * 處理目標圖片的滾動顯示邏輯
+ * 
+ * 顯示規則：
+ * 1. 滾動超過 Projects 一半時顯示目標圖片
+ * 2. 目標圖片會保持顯示，包括在經歷部分
+ * 3. 向上滾動離開經歷部分時，目標圖片與角色圖片一起消失
+ * 4. 重新向下滾動超過 Projects 一半時會刷新新的目標圖片
+ */
+function handleScrollForTargetImage() {
+    const projectsSection = document.getElementById('projects');
+    const experiencesSection = document.getElementById('experiences');
+    const targetImageElement = document.getElementById('target-image');
+    
+    if (!projectsSection || !experiencesSection || !targetImageElement) return;
+    
+    // 計算各區域位置
+    const projectsSectionTop = projectsSection.offsetTop;
+    const projectsSectionHeight = projectsSection.offsetHeight;
+    const experiencesSectionTop = experiencesSection.offsetTop;
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const halfwayPoint = projectsSectionTop + (projectsSectionHeight / 2);
+    const viewportBottom = scrollTop + windowHeight;
+    
+    // 檢查是否應該顯示目標圖片
+    if (viewportBottom >= halfwayPoint && viewportBottom >= experiencesSectionTop) {
+        // 在經歷部分或之後 - 保持顯示目標圖片
+        if (!isTargetImageVisible) {
+            selectNewGameAndTarget();
+            isTargetImageVisible = true;
+        }
+        targetImageElement.classList.add('show');
+    } else if (viewportBottom >= halfwayPoint && viewportBottom < experiencesSectionTop) {
+        // 在 Projects 下半部分但未到經歷 - 顯示目標圖片
+        if (!isTargetImageVisible) {
+            selectNewGameAndTarget();
+            isTargetImageVisible = true;
+        }
+        targetImageElement.classList.add('show');
+    } else if (viewportBottom < experiencesSectionTop) {
+        // 向上滾動離開經歷部分 - 與角色圖片一起消失
+        targetImageElement.classList.remove('show');
+        isTargetImageVisible = false;
+    }
+}
+
+/**
+ * 處理大頭貼的滾動顯示邏輯
+ * 
+ * 顯示規則：
+ * - 每次滾動進入「關於我」區域時，隨機更換大頭貼
+ */
 function handleScrollForProfileImage() {
     const aboutSection = document.getElementById('about');
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -242,19 +336,26 @@ function handleScrollForProfileImage() {
     const sectionBottom = sectionTop + aboutSection.offsetHeight;
     const windowHeight = window.innerHeight;
     
-    // 當滾動到關於部分時（簡化檢測邏輯）
+    // 檢查視窗是否在「關於我」區域內
     if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionBottom) {
-        // 只有當之前不可見時才重新選擇圖片
+        // 只有在首次進入時才更換圖片
         if (!isProfileImageVisible) {
             setRandomProfilePicture();
             isProfileImageVisible = true;
         }
     } else {
+        // 離開區域時重置狀態，以便下次進入時重新更換
         isProfileImageVisible = false;
     }
 }
 
-// 監聽滾動事件，當滾動到經歷部分時顯示圖片
+/**
+ * 處理遊戲角色圖片的滾動顯示邏輯
+ * 
+ * 顯示規則：
+ * - 滾動到經歷部分時顯示角色圖片（右下角）
+ * - 角色圖片與之前選擇的目標圖片配對
+ */
 function handleScrollForGameImage() {
     const experiencesSection = document.getElementById('experiences');
     const gameImageElement = document.getElementById('random-game-image');
@@ -265,17 +366,23 @@ function handleScrollForGameImage() {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     
-    // 當滾動到經歷部分時顯示圖片
+    // 檢查視窗是否到達經歷部分
     if (scrollTop + windowHeight >= sectionTop) {
-        // 只有當角色之前不可見時才重新選擇圖片
+        // 首次到達時設置圖片源（使用之前選擇的角色）
         if (!isGameImageVisible) {
-            setRandomGameImage();
+            if (currentSelectedGameImage) {
+                gameImageElement.src = currentSelectedGameImage;
+            }
             isGameImageVisible = true;
         }
+        // 顯示角色圖片
         gameImageElement.classList.add('show');
     } else {
+        // 離開經歷部分時隱藏圖片
         gameImageElement.classList.remove('show');
-        isGameImageVisible = false; // 角色消失時重置狀態
+        if (scrollTop + windowHeight < sectionTop) {
+            isGameImageVisible = false;
+        }
     }
 }
 

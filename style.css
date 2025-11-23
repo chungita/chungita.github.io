@@ -806,7 +806,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     right: 0;      /* 右側對齊網頁右邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 200px; /* 統一設置高度為200px */
+    height: 150px; /* 統一設置高度為200px */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -824,5 +824,34 @@ footer {
         height: 180px; /* 手機版稍微縮小 */
         bottom: 0;     /* 手機版也對齊底部 */
         right: 0;      /* 手機版也對齊右側 */
+    }
+}
+
+/* =================================
+   22. 目標圖片樣式
+   ================================= */
+
+/* 目標圖片 - 位於左下角 */
+.target-image {
+    position: fixed;
+    bottom: 0;     /* 底端對齊網頁下方 */
+    left: 0;       /* 左側對齊網頁左邊 */
+    width: auto;   /* 寬度自動調整以保持比例 */
+    height: 120px; /* 目標圖片設定較小的高度 */
+    opacity: 0;    /* 初始完全透明 */
+    z-index: -1;   /* 確保在所有內容後面 */
+    pointer-events: none; /* 不影響頁面互動 */
+    transition: opacity 0.5s ease;
+}
+
+/* 當滾動過 projects 一半時顯示圖片 */
+.target-image.show {
+    opacity: 0.4; /* 顯示時的半透明效果 */
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .target-image {
+        height: 80px; /* 手機版更小 */
     }
 }
