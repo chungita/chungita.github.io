@@ -4,37 +4,147 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-key="project1_title">專案 1</title>
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="project-style.css">
  </head>
 <body>
     <header>
         <nav>
-            <a href="../index.html">返回首頁</a>
+            <a href="../index.html" data-key="back_home">◀ 返回首頁</a>
+            <button id="lang-toggle" data-key="lang_toggle">English</button>
         </nav>
     </header>
     <main>
         <article>
-            <h1 data-key="project1_title">專案 1：導管相關研究</h1>
+            <h1 data-key="project1_title">專案一：超聲波輔助溶栓導管</h1>
+            
             <div class="image-row">
-                <img src="../images/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
+                <img src="../files/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Ultrasound-assisted Thrombolytic Catheter">
             </div>
 
-            <div class="media-row">
-                <video id="catheter-video" controls>
-                    <source src="../files/catheter.mp4" type="video/mp4">
-                </video>
-                <img id="fpc-image" class="fpc-image" src="../images/catheter_FPC.jpg" alt="Catheter FPC">
-            </div>
             <section>
-                <h2>專案說明</h2>
-                <p data-key="project1_desc">在此放置專案詳細描述，研究動機、方法、成果與未來展望。</p>
+                <h2 data-key="project1_overview_title">專案概述</h2>
+                <p data-key="project1_overview_desc">
+                    本專案旨在開發結合超音波技術與藥物溶栓的創新導管系統，透過超音波的機械振動效應增強溶栓藥物的效果，
+                    同時降低對周圍健康組織的損傷。此導管整合了柔性電路板（FPC）技術，實現精密的超音波換能器控制與訊號傳輸。
+                </p>
+            </section>
+
+            <section>
+                <h2 data-key="project1_prototype_title">導管原型展示</h2>
+                <p data-key="project1_prototype_desc">
+                    下方展示導管原型的動態演示影片以及柔性電路板（FPC）的設計細節。FPC作為導管的核心控制元件，
+                    提供了超音波換能器所需的電氣連接與訊號控制功能，其柔性特性使導管能夠適應人體血管的彎曲結構。
+                </p>
+                <div class="media-row">
+                    <video id="catheter-video" controls>
+                        <source src="../files/project_1/catheter.mp4" type="video/mp4">
+                    </video>
+                    <img id="fpc-image" class="fpc-image" src="../files/project_1/catheter_FPC.jpg" alt="Catheter FPC Design">
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project1_types_title">導管類型比較</h2>
+                <p data-key="project1_types_desc">
+                    在研發過程中，我們測試了多種導管配置方案，包括搭配Dynaflex管、Zuss管以及無外管設計。
+                    每種設計都針對不同的臨床需求與操作場景進行了優化，以下展示各類型導管的實際外觀與結構特性。
+                </p>
+                
+                <div class="catheter-types-grid">
+                    <div class="catheter-type-item">
+                        <img src="../files/project_1/catheter_dynaflex_tube.jpg" alt="Dynaflex Tube Catheter">
+                        <p class="image-caption" data-key="project1_dynaflex_caption">Dynaflex管配置</p>
+                    </div>
+                    <div class="catheter-type-item">
+                        <img src="../files/project_1/catheter_zuss_tube.jpg" alt="Zuss Tube Catheter">
+                        <p class="image-caption" data-key="project1_zuss_caption">Zuss管配置</p>
+                    </div>
+                    <div class="catheter-type-item">
+                        <img src="../files/project_1/catheter_no_tube.jpg" alt="No Tube Catheter">
+                        <p class="image-caption" data-key="project1_notube_caption">無外管配置</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project1_welding_title">製程技術：精密焊接</h2>
+                <p data-key="project1_welding_desc">
+                    導管製作的關鍵步驟之一是超音波換能器的精密焊接。透過嚴格的焊接工藝控制，
+                    確保換能器與FPC之間的電氣連接穩定可靠，同時維持導管的微型化設計。
+                    以下展示焊接製程的各個階段，從初始焊接到最終成品的完整過程。
+                </p>
+                
+                <div class="welding-grid">
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_process_1.jpg" alt="Welding Process Step 1">
+                        <p class="image-caption" data-key="project1_welding1_caption">焊接製程 - 步驟一</p>
+                    </div>
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_process_2.jpg" alt="Welding Process Step 2">
+                        <p class="image-caption" data-key="project1_welding2_caption">焊接製程 - 步驟二</p>
+                    </div>
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_process_finish_front.jpg" alt="Welding Finished - Front View">
+                        <p class="image-caption" data-key="project1_welding_front_caption">焊接完成 - 正面視角</p>
+                    </div>
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_process_finish_side.jpg" alt="Welding Finished - Side View">
+                        <p class="image-caption" data-key="project1_welding_side_caption">焊接完成 - 側面視角</p>
+                    </div>
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_finish_ground_wire.jpg" alt="Ground Wire Welding - Front">
+                        <p class="image-caption" data-key="project1_ground_front_caption">接地線焊接 - 正面</p>
+                    </div>
+                    <div class="welding-item">
+                        <img src="../files/project_1/weilding_finish_ground_wire_side.jpg" alt="Ground Wire Welding - Side">
+                        <p class="image-caption" data-key="project1_ground_side_caption">接地線焊接 - 側面</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project1_tech_title">技術特色</h2>
+                <div data-key="project1_tech_desc">
+                    <ul>
+                        <li><strong>超音波增強溶栓：</strong>利用超音波的空化效應與機械振動，顯著提升溶栓藥物的穿透力與作用效率</li>
+                        <li><strong>柔性電路整合：</strong>採用FPC技術實現導管的柔性與可操控性，適應複雜的血管路徑</li>
+                        <li><strong>多管配置方案：</strong>針對不同臨床場景開發多種導管外管配置，提供靈活的治療選擇</li>
+                        <li><strong>精密製造工藝：</strong>運用微型焊接技術確保換能器的穩定性與可靠性</li>
+                        <li><strong>生物相容性設計：</strong>所有材料均符合醫療級標準，確保患者安全</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project1_applications_title">應用領域</h2>
+                <div data-key="project1_applications_desc">
+                    <ul>
+                        <li><strong>急性缺血性中風：</strong>快速溶解腦血管栓塞，恢復腦部血流供應</li>
+                        <li><strong>深層靜脈栓塞：</strong>治療下肢深層靜脈血栓，預防肺栓塞併發症</li>
+                        <li><strong>急性心肌梗塞：</strong>輔助冠狀動脈血栓的快速清除</li>
+                        <li><strong>周邊動脈疾病：</strong>改善周邊血管的血流通暢性</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project1_future_title">未來展望</h2>
+                <div data-key="project1_future_desc">
+                    <ul>
+                        <li>進行動物實驗驗證，評估臨床安全性與有效性</li>
+                        <li>開發即時超音波影像導引系統，實現精準定位</li>
+                        <li>優化超音波參數控制演算法，提升治療效率</li>
+                        <li>申請醫療器材認證，推動臨床試驗與商業化應用</li>
+                        <li>探索與其他治療技術（如光熱治療）的聯合應用可能性</li>
+                    </ul>
+                </div>
             </section>
         </article>
     </main>
     <footer>
         <p data-key="footer_text"></p>
     </footer>
-    <script src="../lang.js"></script>
+    <script src="project-lang.js"></script>
     <script>
         (function(){
             const vid = document.getElementById('catheter-video');

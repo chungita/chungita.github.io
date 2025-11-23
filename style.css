@@ -837,7 +837,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     left: 0;       /* 左側對齊網頁左邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 120px; /* 目標圖片設定較小的高度 */
+    height: 200px; /* 目標圖片設定較小的高度 */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -852,6 +852,6 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .target-image {
-        height: 80px; /* 手機版更小 */
+        height: 180px; /* 手機版與角色圖片保持一致的高度 */
     }
 }

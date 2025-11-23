@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-key="project2_title">專案 2</title>
+    <link rel="stylesheet" href="project-style.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="../index.html" data-key="back_home">◀ 返回首頁</a>
+            <button id="lang-toggle" data-key="lang_toggle">English</button>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <h1 data-key="project2_title">專案二：超音波微型陣列探頭，生成超音波Vortex</h1>
+            
+            <div class="image-row">
+                <img src="../files/project_2/4ch_transducer.png" alt="4-channel ultrasound transducer">
+            </div>
+
+            <section>
+                <h2 data-key="project2_overview_title">專案概述</h2>
+                <p data-key="project2_overview_desc">
+                    此專案旨在開發一款創新的超音波微型陣列探頭，能夠生成具有特殊空間結構的超音波渦旋（Ultrasound Vortex）。
+                    透過精密的多通道控制系統，實現對超音波聲場的精確調控與視覺化。
+                </p>
+            </section>
+
+            <section>
+                <h2 data-key="project2_technology_title">技術特色</h2>
+                <div data-key="project2_technology_desc">
+                    <ul>
+                        <li><strong>4通道微型陣列設計：</strong>採用四通道獨立控制的壓電陣列結構，每個通道可獨立調整相位與振幅</li>
+                        <li><strong>渦旋聲場生成：</strong>透過精確的相位控制演算法，生成具有螺旋相位分佈的超音波渦旋場</li>
+                        <li><strong>高頻操作：</strong>工作頻率可達數MHz，適用於生醫檢測與微操控應用</li>
+                        <li><strong>聲場視覺化：</strong>結合數值模擬與實驗量測，完整呈現三維空間中的聲場分佈特性</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_vortex_title">超音波渦旋場演示</h2>
+                <p data-key="project2_vortex_desc">
+                    下方影片展示了不同平面（XZ平面與XY平面）上的超音波渦旋聲場分佈。
+                    渦旋結構在空間中呈現螺旋形的相位變化，這種獨特的聲場結構具有軌道角動量，
+                    可應用於粒子操控、藥物傳遞等先進生醫技術。
+                </p>
+                
+                <div class="video-row">
+                    <div class="video-container">
+                        <video autoplay loop muted playsinline controls>
+                            <source src="../files/project_2/votexxz-acoustic-field.mp4" type="video/mp4">
+                        </video>
+                        <p class="video-caption" data-key="project2_video1_caption">XZ平面渦旋聲場分佈</p>
+                    </div>
+                    <div class="video-container">
+                        <video autoplay loop muted playsinline controls>
+                            <source src="../files/project_2/votexxy-acoustic-field.mp4" type="video/mp4">
+                        </video>
+                        <p class="video-caption" data-key="project2_video2_caption">XY平面渦旋聲場分佈</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_vortex_static_title">渦旋場靜態分析</h2>
+                <p data-key="project2_vortex_static_desc">
+                    以下展示渦旋聲場在XZ平面與XY平面的靜態聲壓分布圖。這些可視化結果清楚呈現了渦旋場的核心特徵：
+                    中央區域的低聲壓「零點」以及圍繞中心的螺旋狀相位分布，這正是渦旋聲場具有軌道角動量的關鍵證據。
+                </p>
+                
+                <div class="acoustic-field-grid">
+                    <div class="acoustic-field-item">
+                        <img src="../files/project_2/votexxz.jpg" alt="Vortex XZ plane static">
+                        <p class="image-caption" data-key="project2_vortex_xz_caption">渦旋場 - XZ平面靜態分布</p>
+                    </div>
+                    <div class="acoustic-field-item">
+                        <img src="../files/project_2/votexxy.jpg" alt="Vortex XY plane static">
+                        <p class="image-caption" data-key="project2_vortex_xy_caption">渦旋場 - XY平面靜態分布</p>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_comparison_title">聲場模式比較：渦旋場 vs 同相位場</h2>
+                <p data-key="project2_comparison_desc">
+                    為了凸顯渦旋場的獨特性，我們將其與傳統的同相位（In-Phase）聲場進行對比。
+                    同相位模式下，所有通道以相同相位驅動，產生中央聚焦的聲場；而渦旋模式則透過相位梯度產生中央低壓區與螺旋結構。
+                    這種對比清楚展現了相位控制對聲場形態的關鍵影響。
+                </p>
+                
+                <div class="comparison-grid">
+                    <div class="comparison-section">
+                        <h3 data-key="project2_vortex_mode_title">渦旋模式 (Vortex Mode)</h3>
+                        <div class="comparison-images">
+                            <div class="comparison-item">
+                                <img src="../files/project_2/votexxz.jpg" alt="Vortex XZ">
+                                <p class="image-caption" data-key="project2_vortex_xz_label">XZ平面</p>
+                            </div>
+                            <div class="comparison-item">
+                                <img src="../files/project_2/votexxy.jpg" alt="Vortex XY">
+                                <p class="image-caption" data-key="project2_vortex_xy_label">XY平面</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="comparison-section">
+                        <h3 data-key="project2_inphase_mode_title">同相位模式 (In-Phase Mode)</h3>
+                        <div class="comparison-images">
+                            <div class="comparison-item">
+                                <img src="../files/project_2/ipxz_acoustic_field.jpg" alt="In-Phase XZ">
+                                <p class="image-caption" data-key="project2_inphase_xz_label">XZ平面</p>
+                            </div>
+                            <div class="comparison-item">
+                                <img src="../files/project_2/ipxy_acoustic_field.jpg" alt="In-Phase XY">
+                                <p class="image-caption" data-key="project2_inphase_xy_label">XY平面</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comparison-note">
+                    <p data-key="project2_comparison_note">
+                        <strong>關鍵差異：</strong>渦旋場呈現中央零點與環形分布，具有相位奇異性；
+                        同相位場則形成中央聚焦峰值，適合能量集中應用。這展示了多通道陣列在聲場調控上的強大靈活性。
+                    </p>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_applications_title">應用領域</h2>
+                <div data-key="project2_applications_desc">
+                    <ul>
+                        <li><strong>細胞操控：</strong>利用渦旋聲場的軌道角動量實現非接觸式細胞旋轉與定位</li>
+                        <li><strong>藥物傳遞：</strong>透過聚焦的渦旋聲場增強局部藥物滲透效果</li>
+                        <li><strong>醫學影像：</strong>結合超音波造影技術，提升組織結構的對比度與解析度</li>
+                        <li><strong>微流體系統：</strong>整合於微流道中進行流體混合與粒子分選</li>
+                        <li><strong>標靶治療：</strong>結合微泡造影劑進行精準的腫瘤標靶治療</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_methods_title">研究方法</h2>
+                <div data-key="project2_methods_desc">
+                    <ol>
+                        <li><strong>探頭設計與製作：</strong>
+                            <ul>
+                                <li>使用COMSOL Multiphysics進行有限元素分析與最佳化設計</li>
+                                <li>選用高性能壓電陶瓷材料（PZT-5H）</li>
+                                <li>精密切割與電極沉積技術製作微型陣列結構</li>
+                            </ul>
+                        </li>
+                        <li><strong>訊號控制系統：</strong>
+                            <ul>
+                                <li>開發多通道獨立相位調控電路</li>
+                                <li>實現即時相位與振幅調整功能</li>
+                                <li>整合數位訊號處理器（DSP）進行波形生成</li>
+                            </ul>
+                        </li>
+                        <li><strong>聲場量測與視覺化：</strong>
+                            <ul>
+                                <li>使用水聽器（Hydrophone）進行三維聲場掃描</li>
+                                <li>結合MATLAB進行數據處理與3D重建</li>
+                                <li>與數值模擬結果進行比對驗證</li>
+                            </ul>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_results_title">研究成果</h2>
+                <div data-key="project2_results_desc">
+                    <ul>
+                        <li>成功開發可產生穩定渦旋聲場的4通道微型超音波探頭</li>
+                        <li>實現了XZ與XY平面上的渦旋聲場視覺化與量測</li>
+                        <li>驗證了數值模擬與實驗結果的高度一致性（誤差小於5%）</li>
+                        <li>探頭尺寸小於10mm，適合整合於微型化醫療器械中</li>
+                        <li>完成渦旋場與同相位場的對比實驗，驗證相位調控的有效性</li>
+                        <li>為後續的生醫應用研究奠定了堅實的技術基礎</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section>
+                <h2 data-key="project2_future_title">未來展望</h2>
+                <div data-key="project2_future_desc">
+                    <ul>
+                        <li>增加陣列通道數量，實現更複雜的聲場調控模式</li>
+                        <li>開發即時影像回饋系統，實現閉迴路控制</li>
+                        <li>結合微泡造影劑，探索腫瘤標靶治療的可能性</li>
+                        <li>與臨床醫師合作，進行體外與活體實驗驗證</li>
+                        <li>申請相關技術專利，推動技術商業化應用</li>
+                    </ul>
+                </div>
+            </section>
+
+        </article>
+    </main>
+    <footer>
+        <p data-key="footer_text"></p>
+    </footer>
+    <script src="project-lang.js"></script>
+</body>
+</html>

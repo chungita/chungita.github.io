@@ -32,14 +32,13 @@ const translations = {
                 <li>參與醫療器材原型設計與驗證流程。</li>
             </ul>`,
             
-        // 經歷 2: NCKU RA
-        'exp2_title': '研究助理',
-        'exp2_company': '國立成功大學 (NCKU)',
-        'exp2_meta': '2023 年 - 2024 年 | 台灣，台南',
+        // 經歷 2: 中醫社社長
+        'exp2_title': '中醫社社長',
+        'exp2_company': '國立清華大學 (NTHU)',
+        'exp2_meta': '2021 - 2023 | 台灣',
         'exp2_desc': `
             <ul>
-                <li>專注於基於人工智慧的結構健康監測 (AISHM) 研究。</li>
-                <li>應用深度學習模型分析結構數據，協助開發預測維護系統。</li>
+                <li>執行多次偏鄉義診，學習中醫臨床知識。</li>
             </ul>`,
         'contact_title': '聯絡我',
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
@@ -81,14 +80,13 @@ const translations = {
                 <li>Participated in medical device prototype design and validation processes.</li>
             </ul>`,
 
-        // Experience 2: NCKU RA
-        'exp2_title': 'Research Assistant',
-        'exp2_company': 'National Cheng Kung University (NCKU)',
-        'exp2_meta': '2023 - 2024 | Tainan, Taiwan',
+        // Experience 2: 中醫社社長
+        'exp2_title': 'President of Chinese Medicine Club ',
+        'exp2_company': 'National Tsing Hua University (NTHU)',
+        'exp2_meta': '2021 - 2023 | Taiwan',
         'exp2_desc': `
             <ul>
-                <li>Focused on AI-based Structural Health Monitoring (AISHM).</li>
-                <li>Applied deep learning models to analyze structural data and assisted in developing predictive maintenance systems.</li>
+                <li>Organized multiple medical outreach programs in rural areas and learned clinical knowledge of traditional Chinese medicine.</li>
             </ul>`,
 
         'contact_title': 'Contact Me',
