@@ -81,7 +81,7 @@ const translations = {
             </ul>`,
 
         // Experience 2: 中醫社社長
-        'exp2_title': 'President of Chinese Medicine Club ',
+        'exp2_title': 'President of Traditional Chinese Medicine Club',
         'exp2_company': 'National Tsing Hua University (NTHU)',
         'exp2_meta': '2021 - 2023 | Taiwan',
         'exp2_desc': `
@@ -92,7 +92,7 @@ const translations = {
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         'more_details': 'More Details',
         'warning_content': 'Graphic Content Warning',
         'warning_click': 'Click to View',

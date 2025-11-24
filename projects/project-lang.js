@@ -4,7 +4,7 @@ const translations = {
         'site_title': '鍾易達 - 個人網站',
         'back_home': '◀ 返回首頁',
         'lang_toggle': 'English',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         
         // Project 1
         'project1_title': '專案一：超聲波輔助溶栓導管',
@@ -140,7 +140,7 @@ const translations = {
         'site_title': 'I-Ta Chung - Personal Website',
         'back_home': '◀ Back to Home',
         'lang_toggle': '中文',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         
         // Project 1
         'project1_title': 'Project 1: Ultrasound-assisted Thrombolytic Catheter',

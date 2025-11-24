@@ -416,18 +416,18 @@ section h2 {
     color: #005f73;
 }
 
-.experience-card > div {
+/* 經歷媒體容器：統一圖片/特殊內容外層 */
+.experience-media {
     display: flex;
     justify-content: center;
     margin: 15px 0;
-    gap: 15px; /* 添加圖片間距 */
-    flex-wrap: wrap; /* 允許在小螢幕上換行 */
+    gap: 15px;
+    flex-wrap: wrap; /* 手機與窄螢幕允許換行 */
 }
 
 .experience-card img {
     height: auto;
     max-height: 400px; /* 設置最大高度 */
-    width: calc(50% - 7.5px); /* 每個框占一半寬度，減去間距的一半 */
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     object-fit: contain; /* 改為 contain 以保持比例且不裁切 */
@@ -438,31 +438,45 @@ section h2 {
     box-sizing: border-box;
 }
 
+/* Experience 1：桌面/平板並排顯示，寬度各半 */
+.experience-card:first-child .experience-media > img,
+.experience-card:first-child .experience-media > .censored-image-container {
+    flex: 1 1 calc(50% - 7.5px);
+    max-width: calc(50% - 7.5px);
+    height: 400px; /* 統一高度 */
+    object-fit: contain; /* 確保圖片比例正確 */
+}
+
+/* Experience 2：單張圖片占滿可用寬度 */
+.experience-card:last-child .experience-media img {
+    width: 100%;
+    max-width: 100%;
+}
+
 /* 血腥內容警告樣式 */
 .censored-image-container {
     position: relative;
-    width: calc(50% - 7.5px);
     height: auto;
     max-height: 400px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border: 1px solid #222;
     background: #f4f7f6;
-    padding: 12px;
+    padding: 0; /* 移除所有 padding */
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
 }
 
 .censored-image {
-    width: 100% !important;
-    height: auto !important;
-    max-height: 376px; /* 減去padding後的最大高度 */
+    width: 100%;
+    height: 100%; /* 填滿容器 */
+    max-height: 400px; /* 與容器保持一致 */
     object-fit: contain;
     transition: filter 0.3s ease;
     border: none !important;
     box-shadow: none !important;
-    padding: 0 !important;
+    padding: 0;
     border-radius: 0;
     position: relative;
 }
@@ -800,10 +814,37 @@ footer {
     .experience-card img {
         max-width: 100%;
         height: auto;
-        max-height: 300px;
+        max-height: none;
         object-fit: contain;
     }
-
+    
+    /* 手機版經歷媒體堆疊顯示 (850px以下) */
+    .experience-media {
+        flex-wrap: nowrap;
+        flex-direction: column;
+    }
+    
+    .experience-card:first-child .experience-media > img,
+    .experience-card:first-child .experience-media > .censored-image-container {
+        max-width: 100%;
+        flex: 1 1 100%;
+        width: 100%;
+        max-height: none !important;
+        height: auto !important;
+    }
+    
+    /* 手機版 censored-image-container 特殊處理 */
+    .censored-image-container {
+        max-height: none !important;
+        height: auto !important;
+    }
+    
+    /* 手機版 censored-image 特殊處理 */
+    .censored-image {
+        max-height: none !important;
+        height: auto !important;
+    }
+    
     /* Project 2 手機版覆蓋樣式 - 修正手機版堆疊問題 */
     .video-row {
         flex-direction: column; /* 強制改回垂直 */
@@ -825,7 +866,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     right: 0;      /* 右側對齊網頁右邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 150px; /* 統一設置高度為200px */
+    height: 100px; /* 統一設置高度為100px */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -856,7 +897,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     left: 0;       /* 左側對齊網頁左邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 200px; /* 目標圖片設定較小的高度 */
+    height: 50px; /* 目標圖片設定較小的高度 */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -871,6 +912,6 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .target-image {
-        height: 180px; /* 手機版與角色圖片保持一致的高度 */
+        height: 100px; /* 手機版與角色圖片保持一致的高度 */
     }
 }

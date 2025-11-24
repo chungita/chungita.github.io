@@ -6,7 +6,7 @@ const translations = {
         'site_title': '鍾易達 - 個人網站',
         'back_home': '◀ 返回首頁',
         'lang_toggle': 'English',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         
         // Experience 1: SoundJet 實習
         'exp1_title': '研發實習生',
@@ -93,7 +93,7 @@ const translations = {
         'site_title': 'I-Ta Chung - Personal Website',
         'back_home': '◀ Back to Home',
         'lang_toggle': '中文',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         
         // Experience 1: SoundJet Internship
         'exp1_title': 'R&D Intern',
