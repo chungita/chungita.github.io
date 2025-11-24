@@ -12,7 +12,7 @@ const translations = {
         'lang_toggle_mobile': '🌐', // 手機版emoji
         'about_title': '鍾易達',
         'about_subtitle': '生醫工程學士畢業生|專精於微小探頭and導管設計',
-        'about_desc': '畢業於清華大學生醫工程學系。我熱衷於開發能改善人類健康的技術',
+        'about_desc': '<strong><em>「今日的科學是明日的技術。」</em><br>- Edward Teller -</strong>',
         'cv_button': '我的履歷 (CV)',
         'projects_title': '作品集',
         'project1_title': '專案一：超聲波輔助溶栓導管',
@@ -60,7 +60,7 @@ const translations = {
         'lang_toggle_mobile': '🌐', // 手機版emoji
         'about_title': 'Chung I-Ta',
         'about_subtitle': 'Biomedical Engineering (B.S.)<br>Specialized in Micro Transducer and Catheter Design',
-        'about_desc': 'I graduated from the Department of Biomedical Engineering at NTHU.<br>I am passionate about developing technologies that improve human health.',
+        'about_desc': '<strong><em>"The science of today is the technology of tomorrow."</em><br>- Edward Teller -</strong>',
         'cv_button': 'My CV',
         'projects_title': 'Projects',
         'project1_title': 'Project 1: Ultrasound-assisted Thrombolytic Catheter',
