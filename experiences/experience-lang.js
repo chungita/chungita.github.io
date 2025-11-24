@@ -245,4 +245,83 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langToggle) {
         langToggle.addEventListener('click', switchLanguage);
     }
+
+    // 初始化遊戲圖片和目標圖片
+    selectNewGameAndTarget();
+    showImages();
 });
+
+// =================================
+//   圖片管理相關變數和函數
+// =================================
+
+/**
+ * 選擇新的遊戲角色和對應的目標圖片
+ * 功能：隨機選擇一個遊戲角色，並自動設置對應的目標圖片
+ */
+function selectNewGameAndTarget() {
+    const gameImages = [
+        '../files/images/game/hornet.png',
+        '../files/images/game/Melinoë.png', 
+        '../files/images/game/steve.png',
+        '../files/images/game/miyabi.png',
+        '../files/images/game/miku.png'
+    ];
+    
+    // 隨機選擇一個角色
+    const randomIndex = Math.floor(Math.random() * gameImages.length);
+    const selectedGameImage = gameImages[randomIndex];
+    
+    // 設置遊戲角色圖片
+    const gameImageElement = document.getElementById('random-game-image');
+    if (gameImageElement) {
+        gameImageElement.src = selectedGameImage;
+    }
+    
+    // 設置對應的目標圖片
+    setTargetImage(selectedGameImage);
+}
+
+/**
+ * 根據遊戲角色設置對應的目標圖片
+ * @param {string} gameImagePath - 遊戲角色圖片的路徑
+ */
+function setTargetImage(gameImagePath) {
+    // 角色名稱到目標圖片的映射表
+    const targetMapping = {
+        'hornet.png': 'hornet_target.png',
+        'Melinoë.png': 'Melinoë_target.png',
+        'steve.png': 'steve_target.png',
+        'miyabi.png': 'miyabi_target.png',
+        'miku.png': 'miku_target.png'
+    };
+    
+    // 從路徑中提取檔名
+    const fileName = gameImagePath.split('/').pop();
+    const targetFileName = targetMapping[fileName];
+    
+    if (targetFileName) {
+        const targetImagePath = `../files/images/game/target/${targetFileName}`;
+        const targetImageElement = document.getElementById('target-image');
+        if (targetImageElement) {
+            targetImageElement.src = targetImagePath;
+        }
+    }
+}
+
+/**
+ * 顯示遊戲角色和目標圖片
+ * 頁面載入時立即顯示圖片
+ */
+function showImages() {
+    const gameImageElement = document.getElementById('random-game-image');
+    const targetImageElement = document.getElementById('target-image');
+    
+    if (gameImageElement) {
+        gameImageElement.classList.add('show');
+    }
+    
+    if (targetImageElement) {
+        targetImageElement.classList.add('show');
+    }
+}

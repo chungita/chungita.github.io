@@ -150,27 +150,22 @@
             if(!vid || !img) return;
 
             function setImgHeight(){
-                // get the video's rendered height
                 const rect = vid.getBoundingClientRect();
                 const h = Math.round(rect.height);
                 if(h <= 0) return;
 
-                // ensure box-sizing includes border so assigned height equals rendered height
                 img.style.boxSizing = 'border-box';
                 img.style.display = 'block';
 
-                // avoid upscaling small images: use naturalHeight if available
                 const natural = img.naturalHeight || Infinity;
                 const target = Math.min(h, natural);
 
-                // use max-height so we only shrink the image to match the video height
                 img.style.maxHeight = target + 'px';
                 img.style.height = 'auto';
                 img.style.width = 'auto';
                 img.style.objectFit = 'contain';
             }
 
-            // debounce helper for ResizeObserver callbacks
             let resizeTimer = null;
             function debouncedUpdate(){
                 if(resizeTimer) clearTimeout(resizeTimer);
@@ -193,7 +188,6 @@
                 window.addEventListener('load', () => setTimeout(setImgHeight, 200));
             }
 
-            // initial sync
             setTimeout(setImgHeight, 250);
         })();
     </script>

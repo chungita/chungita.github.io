@@ -1,6 +1,3 @@
-// 專案詳細頁面專用的語言翻譯系統
-// 只包含專案頁面需要的翻譯內容
-
 const translations = {
     // 中文內容
     'zh': {
@@ -283,44 +280,32 @@ const translations = {
     }
 };
 
-// DOM 載入完成後執行翻譯
 document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle');
 
-    // 翻譯頁面的函數
     const translatePage = (lang) => {
-        // 更新 <html> 的 lang 屬性
         document.documentElement.lang = lang;
         
-        // 抓取所有帶有 data-key 的元素
         document.querySelectorAll('[data-key]').forEach(element => {
             const key = element.getAttribute('data-key');
-            // 檢查 translations 物件和對應的 lang 是否有這個 key
             if (translations[lang] && translations[lang][key]) {
                 element.innerHTML = translations[lang][key];
             }
         });
     };
 
-    // 語言切換函數
     const switchLanguage = () => {
-        // 切換語言
         currentLang = (currentLang === 'zh') ? 'en' : 'zh';
         
-        // 儲存新的語言選擇到 localStorage
         localStorage.setItem('lang', currentLang);
         
-        // 重新翻譯頁面
         translatePage(currentLang);
     };
 
-    // 獲取儲存的語言，若無則預設為 'en'
     let currentLang = localStorage.getItem('lang') || 'en';
     
-    // 立即翻譯頁面
     translatePage(currentLang);
 
-    // 監聽語言切換按鈕點擊事件
     if (langToggle) {
         langToggle.addEventListener('click', switchLanguage);
     }
