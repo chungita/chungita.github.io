@@ -90,7 +90,7 @@ const translations = {
     
     // 英文內容
     'en': {
-        'site_title': 'Chung I-Ta - Personal Website',
+        'site_title': 'I-Ta Chung - Personal Website',
         'back_home': '◀ Back to Home',
         'lang_toggle': '中文',
         'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',

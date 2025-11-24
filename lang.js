@@ -13,7 +13,7 @@ const translations = {
         'about_title': '鍾易達',
         'about_subtitle': '生醫工程學士畢業生|專精於微小探頭and導管設計',
         'about_desc': '<strong><em>「今日的科學是明日的技術。」</em><br>- Edward Teller -</strong>',
-        'cv_button': '我的履歷 (CV)',
+        'cv_button': '個人履歷 (CV)',
         'projects_title': '作品集',
         'project1_title': '專案一：超聲波輔助溶栓導管',
         'project1_desc': '開發與驗證結合超音波導引與藥物溶栓的導管原型，以提升血栓溶解效率並降低對周圍組織的損傷。',
@@ -33,7 +33,7 @@ const translations = {
             </ul>`,
             
         // 經歷 2: 中醫社社長
-        'exp2_title': '中醫社社長',
+        'exp2_title': '清華大學中醫社社長',
         'exp2_company': '國立清華大學 (NTHU)',
         'exp2_meta': '2021 - 2023 | 台灣',
         'exp2_desc': `
@@ -43,25 +43,25 @@ const translations = {
         'contact_title': '聯絡我',
         'contact_desc': '歡迎透過以下方式與我聯繫，討論合作機會或任何問題！',
         'contact_email': 'Email: joe.chungita@gmail.com',
-        'footer_text': '&copy; 2025 CHUNG, I-TA. All Rights Reserved.',
+        'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         'more_details': '更多細節',
         'warning_content': '血腥內容警告',
         'warning_click': '點擊查看',
     },
     // 英文內容
     'en': {
-        'site_title': 'Chung I-Ta - Personal Website',
-        'my_name': 'CHUNG, I-TA',
+        'site_title': 'I-Ta Chung - Personal Website',
+        'my_name': 'I-TA Chung',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
         "nav_experiences": 'Experiences',
         'nav_contact': 'Contact',
         'lang_toggle': '中文', // 桌面版按鈕文字
         'lang_toggle_mobile': '🌐', // 手機版emoji
-        'about_title': 'Chung I-Ta',
+        'about_title': 'I-Ta Chung',
         'about_subtitle': 'Biomedical Engineering (B.S.)<br>Specialized in Micro Transducer and Catheter Design',
         'about_desc': '<strong><em>"The science of today is the technology of tomorrow."</em><br>- Edward Teller -</strong>',
-        'cv_button': 'My CV',
+        'cv_button': 'Personal CV',
         'projects_title': 'Projects',
         'project1_title': 'Project 1: Ultrasound-assisted Thrombolytic Catheter',
         'project1_desc': 'Developed and validated a prototype catheter combining ultrasound with thrombolytic medicine delivery to improve clot dissolution efficiency while minimizing collateral tissue damage.',
