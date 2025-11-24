@@ -270,6 +270,25 @@ section h2 {
     transform: translateY(-2px); /* 輕微上浮效果 */
 }
 
+/* 更多細節按鈕樣式 */
+.detail-button {
+    display: inline-block;
+    background-color: #4a90e2;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 15px;
+    font-weight: bold;
+    font-size: 0.95rem;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.detail-button:hover {
+    background-color: #357abd;
+    transform: translateY(-2px);
+}
+
 /* =================================
    9. 作品集 (Projects) 區域
    ================================= */

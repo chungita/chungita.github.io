@@ -13,7 +13,7 @@ const translations = {
         'exp1_company': '聲捷醫學 (SoundJet Medical Inc.)',
         'exp1_meta': '2023 年 - 2024 年 | 台灣',
         'exp1_overview_title': '經歷概述',
-        'exp1_overview_desc': '在聲捷醫學實習期間，我參與了超音波輔助溶栓導管的研發工作，專注於製程自動化、產品驗證與動物實驗。這段經驗讓我對醫療器材開發有了完整的認識，從設計、製造到臨床前驗證。',
+        'exp1_overview_desc': '在聲捷醫學實習期間，我參與了超音波輔助溶栓導管的研發工作，從製程自動化到臨床前驗證。',
         'exp1_photo1_caption': '實習工作現場',
         'exp1_photo2_caption': '血壓量測實驗',
         'exp1_responsibilities_title': '主要職責',
@@ -21,8 +21,7 @@ const translations = {
             <ul>
                 <li>開發自動化樹脂注射系統，提升導管製程的精確度與一致性</li>
                 <li>參與醫療器材原型設計、組裝與功能驗證</li>
-                <li>協助進行體外實驗與數據分析</li>
-                <li>撰寫技術文件與實驗報告</li>
+                <li>協助進行動物實驗與數據分析</li>
             </ul>`,
         'exp1_research_title': '動物實驗',
         'exp1_research_desc': '參與豬肺血栓溶解實驗，驗證超音波輔助溶栓導管的效能。',
@@ -32,19 +31,12 @@ const translations = {
                 <li>成功開發自動化注射系統，將製程時間縮短30%</li>
                 <li>提升產品良率，減少人為操作誤差</li>
                 <li>完成多次動物實驗，驗證產品可行性</li>
-                <li>獲得實習證書，肯定研發貢獻</li>
+                <li>實驗設計、執行與數據分析</li>
             </ul>`,
         'exp1_skills_title': '習得技能',
-        'exp1_skills_desc': `
-            <ul>
-                <li>醫療器材研發流程與法規知識</li>
-                <li>自動化系統設計與整合</li>
-                <li>實驗設計、執行與數據分析</li>
-                <li>跨部門協作與溝通能力</li>
-                <li>技術文件撰寫與報告製作</li>
-            </ul>`,
+        'exp1_skills_desc': ``,
         'exp1_certificate_title': '實習證書',
-        'exp1_certificate_desc': '以下為完整的實習證書文件。',
+        'exp1_certificate_desc': '',
         'warning_content': '血腥內容警告',
         'warning_click': '點擊查看',
         'warning_click_to_reveal': '點擊下方圖片以查看',
@@ -67,7 +59,7 @@ const translations = {
                 <li>招募新社員並培訓幹部團隊</li>
             </ul>`,
         'exp2_service_title': '義診服務',
-        'exp2_service_desc': '帶領社員前往偏鄉地區提供免費中醫諮詢與推拿服務，讓更多人認識中醫療法的價值。每次義診都經過精心策劃，從宣傳、場地聯繫到人力調度，確保服務品質與安全。',
+        'exp2_service_desc': '帶領社員前往偏鄉地區提供免費中醫諮詢與推拿服務，讓更多人認識中醫療法的價值。',
         'exp2_poster1_caption': '義診活動海報',
         'exp2_poster2_caption': '義診宣傳海報',
         'exp2_learning_title': '學習內容',
@@ -77,15 +69,11 @@ const translations = {
                 <li>推拿手法與實作練習</li>
                 <li>常見病症的中醫診斷與處理</li>
                 <li>中藥材認識與應用</li>
-                <li>與專業中醫師交流臨床經驗</li>
             </ul>`,
         'exp2_achievements_title': '主要成果',
         'exp2_achievements_desc': `
             <ul>
-                <li>成功舉辦5場偏鄉義診活動，服務超過200人次</li>
-                <li>社團人數成長50%，擴大中醫推廣影響力</li>
-                <li>建立與中醫診所的長期合作關係</li>
-                <li>培訓新一代社團幹部，確保傳承</li>
+                <li>成功舉辦5場偏鄉義診活動</li>
                 <li>獲得學校與社區的高度肯定</li>
             </ul>`,
         'exp2_skills_title': '習得能力',
@@ -93,10 +81,8 @@ const translations = {
             <ul>
                 <li>領導與團隊管理能力</li>
                 <li>活動企劃與執行經驗</li>
-                <li>跨部門溝通與協調技巧</li>
                 <li>公關與對外聯繫能力</li>
                 <li>預算規劃與資源分配</li>
-                <li>危機處理與問題解決能力</li>
             </ul>`,
         'exp2_reflection_title': '心得反思',
         'exp2_reflection_desc': '擔任中醫社社長的經歷讓我深刻體會到服務他人的意義，也培養了我的領導與組織能力。透過義診活動，我不僅學習到中醫知識，更學會如何與不同背景的人溝通，如何在資源有限的情況下完成目標。這段經歷對我日後從事生醫工程研發工作有很大的啟發，讓我更加重視技術應用的人文關懷面向。',
@@ -114,16 +100,15 @@ const translations = {
         'exp1_company': 'SoundJet Medical Inc.',
         'exp1_meta': '2023 - 2024 | Taiwan',
         'exp1_overview_title': 'Experience Overview',
-        'exp1_overview_desc': 'During my internship at SoundJet Medical, I participated in the R&D of ultrasound-assisted thrombolytic catheters, focusing on process automation, product validation, and animal experiments. This experience gave me a comprehensive understanding of medical device development, from design and manufacturing to preclinical validation.',
-        'exp1_photo1_caption': 'Internship Workplace',
+        'exp1_overview_desc': 'During my internship at SoundJet Medical, I participated in the R&D of ultrasound-assisted thrombolytic catheters, from process automation to preclinical validation.',
+        'exp1_photo1_caption': 'Porcine Experiment',
         'exp1_photo2_caption': 'Blood Pressure Measurement Experiment',
         'exp1_responsibilities_title': 'Key Responsibilities',
         'exp1_responsibilities_desc': `
             <ul>
                 <li>Developed an automated epoxy injection system to enhance precision and consistency in catheter manufacturing processes</li>
                 <li>Participated in medical device prototype design, assembly, and functional validation</li>
-                <li>Assisted in conducting in vitro experiments and data analysis</li>
-                <li>Prepared technical documentation and experimental reports</li>
+                <li>Assisted in conducting animal experiments and data analysis</li>
             </ul>`,
         'exp1_research_title': 'Animal Experiments',
         'exp1_research_desc': 'Participated in porcine pulmonary thrombolysis experiments to validate the efficacy of ultrasound-assisted thrombolytic catheters.',
@@ -133,19 +118,12 @@ const translations = {
                 <li>Successfully developed an automated injection system, reducing process time by 30%</li>
                 <li>Improved product yield and reduced human error</li>
                 <li>Completed multiple animal experiments, validating product feasibility</li>
-                <li>Received internship certificate recognizing R&D contributions</li>
+                <li>Experimental design, execution, and data analysis</li>
             </ul>`,
         'exp1_skills_title': 'Skills Acquired',
-        'exp1_skills_desc': `
-            <ul>
-                <li>Medical device R&D processes and regulatory knowledge</li>
-                <li>Automated system design and integration</li>
-                <li>Experimental design, execution, and data analysis</li>
-                <li>Cross-departmental collaboration and communication skills</li>
-                <li>Technical documentation and report preparation</li>
-            </ul>`,
+        'exp1_skills_desc': ``,
         'exp1_certificate_title': 'Internship Certificate',
-        'exp1_certificate_desc': 'The complete internship certificate document is displayed below.',
+        'exp1_certificate_desc': '',
         'warning_content': 'Graphic Content Warning',
         'warning_click': 'Click to View',
         'warning_click_to_reveal': 'Click images below to reveal',
@@ -168,7 +146,7 @@ const translations = {
                 <li>Recruited new members and trained the leadership team</li>
             </ul>`,
         'exp2_service_title': 'Medical Outreach Services',
-        'exp2_service_desc': 'Led club members to rural areas to provide free Chinese medicine consultations and massage therapy services, helping more people understand the value of traditional Chinese medicine. Each outreach was meticulously planned, from promotion and venue coordination to staffing, ensuring service quality and safety.',
+        'exp2_service_desc': 'Led club members to rural areas to provide free Chinese medicine consultations and massage therapy services, helping more people understand the value of traditional Chinese medicine.',
         'exp2_poster1_caption': 'Medical Outreach Activity Poster',
         'exp2_poster2_caption': 'Medical Outreach Promotion Poster',
         'exp2_learning_title': 'Learning Content',
@@ -178,15 +156,11 @@ const translations = {
                 <li>Massage techniques and practical exercises</li>
                 <li>TCM diagnosis and treatment of common ailments</li>
                 <li>Knowledge and application of Chinese herbal medicines</li>
-                <li>Exchange of clinical experiences with professional TCM practitioners</li>
             </ul>`,
         'exp2_achievements_title': 'Key Achievements',
         'exp2_achievements_desc': `
             <ul>
-                <li>Successfully organized 5 rural medical outreach activities, serving over 200 people</li>
-                <li>Increased club membership by 50%, expanding TCM promotion influence</li>
-                <li>Established long-term partnerships with Chinese medicine clinics</li>
-                <li>Trained next-generation club leaders to ensure continuity</li>
+                <li>Successfully organized 5 rural medical outreach activities</li>
                 <li>Received high recognition from the university and community</li>
             </ul>`,
         'exp2_skills_title': 'Skills Acquired',
@@ -194,10 +168,8 @@ const translations = {
             <ul>
                 <li>Leadership and team management abilities</li>
                 <li>Event planning and execution experience</li>
-                <li>Cross-departmental communication and coordination skills</li>
                 <li>Public relations and external liaison capabilities</li>
                 <li>Budget planning and resource allocation</li>
-                <li>Crisis management and problem-solving abilities</li>
             </ul>`,
         'exp2_reflection_title': 'Reflection',
         'exp2_reflection_desc': 'My experience as President of the Chinese Medicine Club gave me a deep appreciation for the meaning of serving others and cultivated my leadership and organizational skills. Through the outreach activities, I not only learned TCM knowledge but also learned how to communicate with people from different backgrounds and how to achieve goals with limited resources. This experience has greatly inspired my subsequent work in biomedical engineering R&D, making me more attentive to the humanistic care aspect of technology applications.',
@@ -277,36 +249,6 @@ function selectNewGameAndTarget() {
     if (gameImageElement) {
         gameImageElement.src = selectedGameImage;
     }
-    
-    // 設置對應的目標圖片
-    setTargetImage(selectedGameImage);
-}
-
-/**
- * 根據遊戲角色設置對應的目標圖片
- * @param {string} gameImagePath - 遊戲角色圖片的路徑
- */
-function setTargetImage(gameImagePath) {
-    // 角色名稱到目標圖片的映射表
-    const targetMapping = {
-        'hornet.png': 'hornet_target.png',
-        'Melinoë.png': 'Melinoë_target.png',
-        'steve.png': 'steve_target.png',
-        'miyabi.png': 'miyabi_target.png',
-        'miku.png': 'miku_target.png'
-    };
-    
-    // 從路徑中提取檔名
-    const fileName = gameImagePath.split('/').pop();
-    const targetFileName = targetMapping[fileName];
-    
-    if (targetFileName) {
-        const targetImagePath = `../files/images/game/target/${targetFileName}`;
-        const targetImageElement = document.getElementById('target-image');
-        if (targetImageElement) {
-            targetImageElement.src = targetImagePath;
-        }
-    }
 }
 
 /**
@@ -315,13 +257,8 @@ function setTargetImage(gameImagePath) {
  */
 function showImages() {
     const gameImageElement = document.getElementById('random-game-image');
-    const targetImageElement = document.getElementById('target-image');
     
     if (gameImageElement) {
         gameImageElement.classList.add('show');
-    }
-    
-    if (targetImageElement) {
-        targetImageElement.classList.add('show');
     }
 }

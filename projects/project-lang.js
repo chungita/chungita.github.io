@@ -9,7 +9,7 @@ const translations = {
         // Project 1
         'project1_title': '專案一：超聲波輔助溶栓導管',
         'project1_overview_title': '專案概述',
-        'project1_overview_desc': '本專案旨在開發結合超音波技術與藥物溶栓的創新導管系統，透過超音波的機械振動效應增強溶栓藥物的效果，同時降低對周圍健康組織的損傷。此導管整合了柔性電路板（FPC）技術，實現精密的超音波換能器控制與訊號傳輸。',
+        'project1_overview_desc': '本專案旨在開發結合超音波聲鉗技術與藥物溶栓的創新導管系統，透過超音波的機械振動與剪切效應增強溶栓藥物的效果，同時降低對周圍健康組織的損傷。此導管整合了柔性電路板（FPC）技術，實現精密的超音波換能器控制與訊號傳輸。',
         'project1_prototype_title': '導管原型展示',
         'project1_prototype_desc': '下方展示導管原型的動態演示影片以及柔性電路板（FPC）的設計細節。FPC作為導管的核心控制元件，提供了超音波換能器所需的電氣連接與訊號控制功能，其柔性特性使導管能夠適應人體血管的彎曲結構。',
         'project1_types_title': '導管類型比較',
@@ -30,25 +30,19 @@ const translations = {
             <ul>
                 <li><strong>超音波增強溶栓：</strong>利用超音波的空化效應與機械振動，顯著提升溶栓藥物的穿透力與作用效率</li>
                 <li><strong>柔性電路整合：</strong>採用FPC技術實現導管的柔性與可操控性，適應複雜的血管路徑</li>
-                <li><strong>多管配置方案：</strong>針對不同臨床場景開發多種導管外管配置，提供靈活的治療選擇</li>
-                <li><strong>精密製造工藝：</strong>運用微型焊接技術確保換能器的穩定性與可靠性</li>
                 <li><strong>生物相容性設計：</strong>所有材料均符合醫療級標準，確保患者安全</li>
             </ul>`,
         'project1_applications_title': '應用領域',
         'project1_applications_desc': `
             <ul>
-                <li><strong>急性缺血性中風：</strong>快速溶解腦血管栓塞，恢復腦部血流供應</li>
+                <li><strong>肺栓塞：</strong>溶解肺動脈栓塞，恢復肺部血流供應</li>
                 <li><strong>深層靜脈栓塞：</strong>治療下肢深層靜脈血栓，預防肺栓塞併發症</li>
-                <li><strong>急性心肌梗塞：</strong>輔助冠狀動脈血栓的快速清除</li>
                 <li><strong>周邊動脈疾病：</strong>改善周邊血管的血流通暢性</li>
             </ul>`,
         'project1_future_title': '未來展望',
         'project1_future_desc': `
             <ul>
-                <li>進行動物實驗驗證，評估臨床安全性與有效性</li>
                 <li>開發即時超音波影像導引系統，實現精準定位</li>
-                <li>優化超音波參數控制演算法，提升治療效率</li>
-                <li>申請醫療器材認證，推動臨床試驗與商業化應用</li>
                 <li>探索與其他治療技術（如光熱治療）的聯合應用可能性</li>
             </ul>`,
         
@@ -136,7 +130,9 @@ const translations = {
             </ul>`,
         
         // Project 3
-        'project3_title': '專案三：Drone object tracking using YOLOv12',
+        'project3_title': '專案 3：義肢設計與 3D 列印',
+        'project3_description_title': '專案說明',
+        'project3_desc': '在此放置專案詳細描述，說明設計流程、組件與成品應用。',
     },
     
     // 英文內容
@@ -149,7 +145,7 @@ const translations = {
         // Project 1
         'project1_title': 'Project 1: Ultrasound-assisted Thrombolytic Catheter',
         'project1_overview_title': 'Project Overview',
-        'project1_overview_desc': 'This project aims to develop an innovative catheter system combining ultrasound technology with thrombolytic drug delivery. By utilizing the mechanical vibration effects of ultrasound, we significantly enhance the effectiveness of thrombolytic drugs while minimizing damage to surrounding healthy tissue. The catheter integrates Flexible Printed Circuit (FPC) technology to achieve precise ultrasound transducer control and signal transmission.',
+        'project1_overview_desc': 'This project aims to develop an innovative catheter system combining ultrasound acoustic tweezer technology with thrombolytic drug delivery. By utilizing the mechanical vibration and shear effects of ultrasound, we significantly enhance the effectiveness of thrombolytic drugs while minimizing damage to surrounding healthy tissue. The catheter integrates Flexible Printed Circuit (FPC) technology to achieve precise ultrasound transducer control and signal transmission.',
         'project1_prototype_title': 'Catheter Prototype Demonstration',
         'project1_prototype_desc': 'Below are the dynamic demonstration video of the catheter prototype and the design details of the Flexible Printed Circuit (FPC). As the core control component of the catheter, the FPC provides the electrical connection and signal control functions required by the ultrasound transducer. Its flexible characteristics enable the catheter to adapt to the curved structure of human blood vessels.',
         'project1_types_title': 'Catheter Type Comparison',
@@ -170,25 +166,19 @@ const translations = {
             <ul>
                 <li><strong>Ultrasound-Enhanced Thrombolysis:</strong> Utilizing cavitation effects and mechanical vibrations of ultrasound to significantly improve penetration and effectiveness of thrombolytic drugs</li>
                 <li><strong>Flexible Circuit Integration:</strong> Employing FPC technology to achieve catheter flexibility and maneuverability, adapting to complex vascular pathways</li>
-                <li><strong>Multiple Tube Configurations:</strong> Developing various catheter outer tube configurations for different clinical scenarios, providing flexible treatment options</li>
-                <li><strong>Precision Manufacturing Process:</strong> Utilizing micro-welding technology to ensure transducer stability and reliability</li>
                 <li><strong>Biocompatible Design:</strong> All materials meet medical-grade standards, ensuring patient safety</li>
             </ul>`,
         'project1_applications_title': 'Application Areas',
         'project1_applications_desc': `
             <ul>
-                <li><strong>Acute Ischemic Stroke:</strong> Rapidly dissolve cerebrovascular embolism and restore cerebral blood flow</li>
-                <li><strong>Deep Vein Thrombosis:</strong> Treat lower extremity deep vein thrombosis and prevent pulmonary embolism complications</li>
-                <li><strong>Acute Myocardial Infarction:</strong> Assist in rapid clearance of coronary artery thrombosis</li>
+                <li><strong>Pulmonary Embolism:</strong> Dissolve pulmonary artery embolism and restore blood flow to the lungs</li>
+                <li><strong>Deep Vein Thrombosis:</strong> Treat deep vein thrombosis in lower limbs and prevent pulmonary embolism complications</li>
                 <li><strong>Peripheral Arterial Disease:</strong> Improve blood flow patency in peripheral vessels</li>
             </ul>`,
         'project1_future_title': 'Future Prospects',
         'project1_future_desc': `
             <ul>
-                <li>Conduct animal experimental validation to assess clinical safety and efficacy</li>
                 <li>Develop real-time ultrasound image guidance system for precise positioning</li>
-                <li>Optimize ultrasound parameter control algorithms to improve treatment efficiency</li>
-                <li>Apply for medical device certification and promote clinical trials and commercial applications</li>
                 <li>Explore possibilities of combined applications with other therapeutic technologies (such as photothermal therapy)</li>
             </ul>`,
         
@@ -276,7 +266,9 @@ const translations = {
             </ul>`,
         
         // Project 3
-        'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
+        'project3_title': 'Project 3: Prosthetic Design and 3D Printing',
+        'project3_description_title': 'Project Description',
+        'project3_desc': 'Detailed project description will be placed here, explaining the design process, components, and final application.',
     }
 };
 
