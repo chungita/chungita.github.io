@@ -641,6 +641,16 @@ footer {
     color: #777;
     margin-top: 20px;
 }
+
+.footer-crafting-table {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
 /* =================================
    14. 桌面版響應式樣式 (851px以上)
    ================================= */
@@ -866,7 +876,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     right: 0;      /* 右側對齊網頁右邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 100px; /* 統一設置高度為100px */
+    height: 50px;  /* 統一設置高度為50px */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -881,7 +891,7 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .random-game-image {
-        height: 180px; /* 手機版稍微縮小 */
+        height: 50px;  /* 手機版與桌面版保持一致 */
         bottom: 0;     /* 手機版也對齊底部 */
         right: 0;      /* 手機版也對齊右側 */
     }
@@ -912,6 +922,6 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .target-image {
-        height: 100px; /* 手機版與角色圖片保持一致的高度 */
+        height: 50px;  /* 手機版與角色圖片保持一致的高度 */
     }
 }

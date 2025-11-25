@@ -50,8 +50,8 @@ const translations = {
     },
     // 英文內容
     'en': {
-        'site_title': 'I-Ta Chung - Personal Website',
-        'my_name': 'I-TA Chung',
+        'site_title': 'I-TA CHUNG - Personal Website',
+        'my_name': 'I-TA CHUNG',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
         "nav_experiences": 'Experiences',

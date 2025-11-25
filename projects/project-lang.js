@@ -80,32 +80,20 @@ const translations = {
             <ul>
                 <li><strong>細胞操控：</strong>利用渦旋聲場的軌道角動量實現非接觸式細胞旋轉與定位</li>
                 <li><strong>藥物傳遞：</strong>透過聚焦的渦旋聲場增強局部藥物滲透效果</li>
-                <li><strong>醫學影像：</strong>結合超音波造影技術，提升組織結構的對比度與解析度</li>
-                <li><strong>微流體系統：</strong>整合於微流道中進行流體混合與粒子分選</li>
-                <li><strong>標靶治療：</strong>結合微泡造影劑進行精準的腫瘤標靶治療</li>
             </ul>`,
         'project2_methods_title': '研究方法',
         'project2_methods_desc': `
             <ol>
                 <li><strong>探頭設計與製作：</strong>
                     <ul>
-                        <li>使用COMSOL Multiphysics進行有限元素分析與最佳化設計</li>
-                        <li>選用高性能壓電陶瓷材料（PZT-5H）</li>
+                        <li>使用PZT-4壓電陶瓷材料</li>
                         <li>精密切割與電極沉積技術製作微型陣列結構</li>
-                    </ul>
-                </li>
-                <li><strong>訊號控制系統：</strong>
-                    <ul>
-                        <li>開發多通道獨立相位調控電路</li>
-                        <li>實現即時相位與振幅調整功能</li>
-                        <li>整合數位訊號處理器（DSP）進行波形生成</li>
                     </ul>
                 </li>
                 <li><strong>聲場量測與視覺化：</strong>
                     <ul>
                         <li>使用水聽器（Hydrophone）進行三維聲場掃描</li>
-                        <li>結合MATLAB進行數據處理與3D重建</li>
-                        <li>與數值模擬結果進行比對驗證</li>
+                        <li>結合MATLAB進行數據處理視覺重建</li>
                     </ul>
                 </li>
             </ol>`,
@@ -114,19 +102,8 @@ const translations = {
             <ul>
                 <li>成功開發可產生穩定渦旋聲場的4通道微型超音波探頭</li>
                 <li>實現了XZ與XY平面上的渦旋聲場視覺化與量測</li>
-                <li>驗證了數值模擬與實驗結果的高度一致性（誤差小於5%）</li>
-                <li>探頭尺寸小於10mm，適合整合於微型化醫療器械中</li>
                 <li>完成渦旋場與同相位場的對比實驗，驗證相位調控的有效性</li>
                 <li>為後續的生醫應用研究奠定了堅實的技術基礎</li>
-            </ul>`,
-        'project2_future_title': '未來展望',
-        'project2_future_desc': `
-            <ul>
-                <li>增加陣列通道數量，實現更複雜的聲場調控模式</li>
-                <li>開發即時影像回饋系統，實現閉迴路控制</li>
-                <li>結合微泡造影劑，探索腫瘤標靶治療的可能性</li>
-                <li>與臨床醫師合作，進行體外與活體實驗驗證</li>
-                <li>申請相關技術專利，推動技術商業化應用</li>
             </ul>`,
         
         // Project 3
@@ -216,32 +193,20 @@ const translations = {
             <ul>
                 <li><strong>Cell Manipulation:</strong> Utilize orbital angular momentum of vortex acoustic fields to achieve non-contact cell rotation and positioning</li>
                 <li><strong>Drug Delivery:</strong> Enhance local drug penetration through focused vortex acoustic fields</li>
-                <li><strong>Medical Imaging:</strong> Integrate with ultrasound contrast imaging technology to improve tissue structure contrast and resolution</li>
-                <li><strong>Microfluidic Systems:</strong> Integrate into microchannels for fluid mixing and particle sorting</li>
-                <li><strong>Targeted Therapy:</strong> Combine with microbubble contrast agents for precise tumor-targeted therapy</li>
             </ul>`,
         'project2_methods_title': 'Research Methods',
         'project2_methods_desc': `
             <ol>
                 <li><strong>Transducer Design and Fabrication:</strong>
                     <ul>
-                        <li>Finite element analysis and optimization design using COMSOL Multiphysics</li>
-                        <li>Selection of high-performance piezoelectric ceramic materials (PZT-5H)</li>
+                        <li>Using PZT-4 piezoelectric ceramic material</li>
                         <li>Precision cutting and electrode deposition techniques for micro-array structure fabrication</li>
-                    </ul>
-                </li>
-                <li><strong>Signal Control System:</strong>
-                    <ul>
-                        <li>Development of multi-channel independent phase control circuits</li>
-                        <li>Implementation of real-time phase and amplitude adjustment functions</li>
-                        <li>Integration of Digital Signal Processor (DSP) for waveform generation</li>
                     </ul>
                 </li>
                 <li><strong>Acoustic Field Measurement and Visualization:</strong>
                     <ul>
                         <li>3D acoustic field scanning using hydrophone</li>
                         <li>Data processing and 3D reconstruction using MATLAB</li>
-                        <li>Comparison and validation with numerical simulation results</li>
                     </ul>
                 </li>
             </ol>`,
@@ -250,19 +215,8 @@ const translations = {
             <ul>
                 <li>Successfully developed a 4-channel micro ultrasound transducer capable of generating stable vortex acoustic fields</li>
                 <li>Achieved visualization and measurement of vortex acoustic fields on XZ and XY planes</li>
-                <li>Validated high consistency between numerical simulation and experimental results (error less than 5%)</li>
-                <li>Transducer size less than 10mm, suitable for integration into miniaturized medical devices</li>
                 <li>Completed comparative experiments between vortex and in-phase fields, validating the effectiveness of phase control</li>
                 <li>Established a solid technical foundation for subsequent biomedical application research</li>
-            </ul>`,
-        'project2_future_title': 'Future Prospects',
-        'project2_future_desc': `
-            <ul>
-                <li>Increase the number of array channels to achieve more complex acoustic field control modes</li>
-                <li>Develop real-time image feedback systems for closed-loop control</li>
-                <li>Combine with microbubble contrast agents to explore possibilities for tumor-targeted therapy</li>
-                <li>Collaborate with clinicians for in vitro and in vivo experimental validation</li>
-                <li>Apply for relevant technical patents to promote technology commercialization</li>
             </ul>`,
         
         // Project 3

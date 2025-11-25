@@ -391,6 +391,16 @@ footer {
     margin-top: 40px;
 }
 
+.footer-crafting-table {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
 /* =================================
    9. 響應式設計 - 手機版
    ================================= */

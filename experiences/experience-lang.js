@@ -73,7 +73,7 @@ const translations = {
         'exp2_achievements_title': '主要成果',
         'exp2_achievements_desc': `
             <ul>
-                <li>成功舉辦5場偏鄉義診活動</li>
+                <li>成功舉辦2場偏鄉義診活動</li>
                 <li>獲得學校與社區的高度肯定</li>
             </ul>`,
         'exp2_skills_title': '習得能力',
@@ -128,13 +128,13 @@ const translations = {
         'warning_click': 'Click to View',
         'warning_click_to_reveal': 'Click images below to reveal',
         
-        // Experience 2: President of Chinese Medicine Club
-        'exp2_title': 'President of Chinese Medicine Club',
+        // Experience 2: President of Traditional Chinese Medicine Club
+        'exp2_title': 'President of Traditional Chinese Medicine Club',
         'exp2_company': 'National Tsing Hua University (NTHU)',
         'exp2_meta': '2021 - 2023 | Taiwan',
         'exp2_overview_title': 'Position Overview',
-        'exp2_overview_desc': 'As President of the Chinese Medicine Club at National Tsing Hua University, I was responsible for club operations, activity planning, and medical outreach services in rural areas, promoting traditional Chinese medicine knowledge and serving the community. Through leading the club, I learned how to combine traditional wisdom with modern management to bring health and care to more people.',
-        'exp2_photo1_caption': 'Chinese Medicine Club Activity Photo',
+        'exp2_overview_desc': 'As President of the Traditional Chinese Medicine Club at National Tsing Hua University, I was responsible for club operations, activity planning, and medical outreach services in rural areas, promoting traditional Chinese medicine knowledge and serving the community. Through leading the club, I learned how to combine traditional wisdom with modern management to bring health and care to more people.',
+        'exp2_photo1_caption': 'Traditional Chinese Medicine Club Activity Photo',
         'exp2_photo2_caption': 'Club Activity Gallery',
         'exp2_responsibilities_title': 'Key Responsibilities',
         'exp2_responsibilities_desc': `
@@ -160,7 +160,7 @@ const translations = {
         'exp2_achievements_title': 'Key Achievements',
         'exp2_achievements_desc': `
             <ul>
-                <li>Successfully organized 5 rural medical outreach activities</li>
+                <li>Successfully organized 2 rural medical outreach activities</li>
                 <li>Received high recognition from the university and community</li>
             </ul>`,
         'exp2_skills_title': 'Skills Acquired',
@@ -172,7 +172,7 @@ const translations = {
                 <li>Budget planning and resource allocation</li>
             </ul>`,
         'exp2_reflection_title': 'Reflection',
-        'exp2_reflection_desc': 'My experience as President of the Chinese Medicine Club gave me a deep appreciation for the meaning of serving others and cultivated my leadership and organizational skills. Through the outreach activities, I not only learned TCM knowledge but also learned how to communicate with people from different backgrounds and how to achieve goals with limited resources. This experience has greatly inspired my subsequent work in biomedical engineering R&D, making me more attentive to the humanistic care aspect of technology applications.',
+        'exp2_reflection_desc': 'My experience as President of the Traditional Chinese Medicine Club gave me a deep appreciation for the meaning of serving others and cultivated my leadership and organizational skills. Through the outreach activities, I not only learned TCM knowledge but also learned how to communicate with people from different backgrounds and how to achieve goals with limited resources. This experience has greatly inspired my subsequent work in biomedical engineering R&D, making me more attentive to the humanistic care aspect of technology applications.',
     }
 };
 
