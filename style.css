@@ -123,6 +123,7 @@ nav a:hover {
 
 /* 桌面版和手機版語言切換按鈕共同樣式 */
 #lang-toggle-desktop,
+#lang-toggle,
 .lang-toggle-mobile {
     background: none;
     border: none;
@@ -136,6 +137,7 @@ nav a:hover {
 }
 
 #lang-toggle-desktop:hover,
+#lang-toggle:hover,
 .lang-toggle-mobile:hover {
     color: #00a896;
 }
@@ -462,7 +464,6 @@ section h2 {
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     border: 1px solid #222;
     background: #f4f7f6;
-    padding: 0; /* 移除所有 padding */
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
@@ -636,6 +637,7 @@ section h2 {
    ================================= */
 
 footer {
+    position: relative; /* 設置為相對定位容器 */
     text-align: center;
     padding: 20px;
     color: #777;
@@ -843,16 +845,11 @@ footer {
         height: auto !important;
     }
     
-    /* 手機版 censored-image-container 特殊處理 */
-    .censored-image-container {
-        max-height: none !important;
-        height: auto !important;
-    }
-    
-    /* 手機版 censored-image 特殊處理 */
+    /* 手機版 censored-image 相關樣式 */
+    .censored-image-container,
     .censored-image {
-        max-height: none !important;
-        height: auto !important;
+        max-height: none;
+        height: auto;
     }
     
     /* Project 2 手機版覆蓋樣式 - 修正手機版堆疊問題 */
@@ -876,7 +873,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     right: 0;      /* 右側對齊網頁右邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 50px;  /* 統一設置高度為50px */
+    height: 150px;  /* 統一設置高度為150px */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -891,7 +888,7 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .random-game-image {
-        height: 50px;  /* 手機版與桌面版保持一致 */
+        height: 150px;  /* 手機版與桌面版保持一致 */
         bottom: 0;     /* 手機版也對齊底部 */
         right: 0;      /* 手機版也對齊右側 */
     }
@@ -907,7 +904,7 @@ footer {
     bottom: 0;     /* 底端對齊網頁下方 */
     left: 0;       /* 左側對齊網頁左邊 */
     width: auto;   /* 寬度自動調整以保持比例 */
-    height: 50px; /* 目標圖片設定較小的高度 */
+    height: 100px; /* 目標圖片設定較小的高度 */
     opacity: 0;    /* 初始完全透明 */
     z-index: -1;   /* 確保在所有內容後面 */
     pointer-events: none; /* 不影響頁面互動 */
@@ -922,6 +919,38 @@ footer {
 /* 響應式調整 */
 @media (max-width: 768px) {
     .target-image {
-        height: 50px;  /* 手機版與角色圖片保持一致的高度 */
+        height: 100px;  /* 手機版與角色圖片保持一致的高度 */
+    }
+}
+
+/* =================================
+   23. Item 圖片樣式
+   ================================= */
+
+/* Item 圖片 - 疊在 crafting table 上方往下 25px 處 */
+.item-image {
+    position: absolute; /* 絕對定位 */
+    top: 0;
+    left: 50%;      /* 水平居中 */
+    transform: translateX(-50%); /* 修正居中偏移 */
+    height: 50px;   /* Item 圖片高度 */
+    width: auto;    /* 寬度自動調整以保持比例 */
+    opacity: 0;     /* 初始完全透明 */
+    transition: opacity 0.5s ease;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    z-index: 10;    /* 確保在 crafting table 上方 */
+}
+
+/* 當滾動到 experiences 區域時顯示圖片 */
+.item-image.show {
+    opacity: 1; /* 顯示時完全不透明 */
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .item-image {
+        height: 50px;  /* 手機版保持一致的高度 */
     }
 }

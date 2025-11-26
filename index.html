@@ -131,6 +131,7 @@
     </main>
 
     <footer>
+        <img id="item-image" class="item-image" src="" alt="Item">
         <img src="files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table">
         <p data-key="footer_text"></p>
     </footer>
@@ -163,29 +164,11 @@
                 });
             }
         });
-
-        // 點擊語言切換按鈕時的處理
-        const langToggleDesktop = document.getElementById('lang-toggle-desktop');
-        const langToggleMobile = document.getElementById('lang-toggle');
-        
-        if (langToggleDesktop) {
-            langToggleDesktop.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
-        
-        if (langToggleMobile) {
-            langToggleMobile.addEventListener('click', (e) => {
-                e.stopPropagation();
-            });
-        }
     </script>
 
-    <!-- 隨機遊戲圖片，位於右下角且被body遮住 -->
-    <img id="random-game-image" class="random-game-image" src="files/images/game/character/miku.png" alt="Random Game Character">
+    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character">
 
-    <!-- 目標圖片，位於左下角 -->
-    <img id="target-image" class="target-image" src="files/images/game/target/miku_target.png" alt="Target">
+    <img id="target-image" class="target-image" src="" alt="Target">
 
 </body>
 </html>

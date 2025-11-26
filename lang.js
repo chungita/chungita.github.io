@@ -170,9 +170,41 @@ document.addEventListener('DOMContentLoaded', () => {
 let currentProfileIndex = -1;
 let isProfileImageVisible = false;
 let isFirstLoad = true; // 追蹤是否為首次加載
-let currentGameIndex = -1;
-let currentSelectedGameImage = null;
-let isGameImageVisible = false;
+let isSteveInitialized = false; // 追蹤 Steve 是否已初始化
+let isTargetVisible = false; // 追蹤 Target 是否可見
+let currentTargetIndex = -1;
+
+// Target 和 Item 的配對關係
+const targetItemPairs = [
+    {
+        target: 'files/images/game/targets/Coal_Ore.png',
+        item: 'files/images/game/items/Coal.png'
+    },
+    {
+        target: 'files/images/game/targets/Diamond_Ore.png',
+        item: 'files/images/game/items/Diamond.png'
+    },
+    {
+        target: 'files/images/game/targets/Emerald_Ore.png',
+        item: 'files/images/game/items/Emerald.png'
+    },
+    {
+        target: 'files/images/game/targets/Gold_Ore.png',
+        item: 'files/images/game/items/Gold.png'
+    },
+    {
+        target: 'files/images/game/targets/Iron_Ore.png',
+        item: 'files/images/game/items/Iron.png'
+    },
+    {
+        target: 'files/images/game/targets/Lapis_Lazuli_Ore.png',
+        item: 'files/images/game/items/Lapis_Lazuli.png'
+    },
+    {
+        target: 'files/images/game/targets/Redstone_Ore.png',
+        item: 'files/images/game/items/Redstone.png'
+    }
+];
 
 function setRandomProfilePicture() {
     const profileImages = [
@@ -199,6 +231,7 @@ function setRandomProfilePicture() {
     currentProfileIndex = newIndex;
     const profilePic = document.getElementById('profile-pic');
     if (profilePic) {
+        // 直接更換圖片
         profilePic.src = profileImages[currentProfileIndex];
     }
 }
@@ -218,76 +251,80 @@ function handleScrollForProfileImage() {
             isProfileImageVisible = true;
         }
     } else {
+        // 當離開 about 區域時，立即更換圖片（不需要動畫）
+        if (isProfileImageVisible) {
+            const profileImages = [
+                'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
+                'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg',
+                'files/images/headshot/chungita_nthu_2024_graduation_photo3.jpg',
+                'files/images/headshot/chungita_nthu_2024_graduation_photo4.jpg',
+                'files/images/headshot/chungita_nthu_2024_graduation_photo5.jpg'
+            ];
+            
+            let newIndex;
+            do {
+                newIndex = Math.floor(Math.random() * profileImages.length);
+            } while (newIndex === currentProfileIndex && profileImages.length > 1);
+            
+            currentProfileIndex = newIndex;
+            const profilePic = document.getElementById('profile-pic');
+            if (profilePic) {
+                profilePic.src = profileImages[currentProfileIndex];
+            }
+        }
         isProfileImageVisible = false;
     }
 }
 
-function selectNewGameAndTarget() {
-    const gameImages = [
-        'files/images/game/character/hornet.png',
-        'files/images/game/character/Melinoë.png', 
-        'files/images/game/character/steve.png',
-        'files/images/game/character/miyabi.png',
-        'files/images/game/character/miku.png'
-    ];
-    
+
+
+function selectRandomTargetAndItem() {
     let newIndex;
     do {
-        newIndex = Math.floor(Math.random() * gameImages.length);
-    } while (newIndex === currentGameIndex && gameImages.length > 1);
+        newIndex = Math.floor(Math.random() * targetItemPairs.length);
+    } while (newIndex === currentTargetIndex && targetItemPairs.length > 1);
     
-    currentGameIndex = newIndex;
-    currentSelectedGameImage = gameImages[currentGameIndex];
-    setTargetImage(currentSelectedGameImage);
-}
-
-function setTargetImage(gameImagePath) {
-    const targetMapping = {
-        'hornet.png': 'hornet_target.png',
-        'Melinoë.png': 'Melinoë_target.png',
-        'steve.png': 'steve_target.png',
-        'miyabi.png': 'miyabi_target.png',
-        'miku.png': 'miku_target.png'
-    };
-    
-    const fileName = gameImagePath.split('/').pop();
-    const targetFileName = targetMapping[fileName];
-    
-    if (targetFileName) {
-        const targetImagePath = `files/images/game/target/${targetFileName}`;
-        const targetImageElement = document.getElementById('target-image');
-        if (targetImageElement) {
-            targetImageElement.src = targetImagePath;
-        }
-    } else {
-        console.error('找不到對應的目標圖片:', fileName);
-    }
+    currentTargetIndex = newIndex;
+    return targetItemPairs[currentTargetIndex];
 }
 
 function handleScrollForGameImages() {
     const experiencesSection = document.getElementById('experiences');
     const gameImageElement = document.getElementById('random-game-image');
     const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
     
-    if (!experiencesSection || !gameImageElement || !targetImageElement) return;
+    if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
     
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
     const sectionTop = experiencesSection.offsetTop;
     const viewportBottom = scrollTop + windowHeight;
     
+    // 初始化 Steve 圖片（僅執行一次）
+    if (!isSteveInitialized) {
+        gameImageElement.src = 'files/images/game/steve.png';
+        isSteveInitialized = true;
+    }
+    
+    // Steve 永遠顯示
+    gameImageElement.classList.add('show');
+    
+    // Target 和 Item 只在滾動到 experiences 區域時顯示
     if (viewportBottom >= sectionTop) {
-        if (!isGameImageVisible) {
-            selectNewGameAndTarget();
-            gameImageElement.src = currentSelectedGameImage;
-            isGameImageVisible = true;
+        // 當 target 從不可見變為可見時，選擇新的配對
+        if (!isTargetVisible) {
+            const pair = selectRandomTargetAndItem();
+            targetImageElement.src = pair.target;
+            itemImageElement.src = pair.item;
+            isTargetVisible = true;
         }
-        gameImageElement.classList.add('show');
         targetImageElement.classList.add('show');
+        itemImageElement.classList.add('show');
     } else {
-        gameImageElement.classList.remove('show');
         targetImageElement.classList.remove('show');
-        isGameImageVisible = false;
+        itemImageElement.classList.remove('show');
+        isTargetVisible = false; // 離開區域後重置狀態
     }
 }
 
