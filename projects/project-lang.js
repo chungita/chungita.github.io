@@ -255,4 +255,106 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langToggle) {
         langToggle.addEventListener('click', switchLanguage);
     }
+
+    // 初始化遊戲圖片功能
+    initializeGameImages();
+    
+    // 添加滾動事件監聽器
+    window.addEventListener('scroll', handleScrollForGameImages);
+    
+    // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
+    handleScrollForGameImages();
 });
+
+// 遊戲相關變數
+let isSteveInitialized = false;
+let isTargetVisible = false;
+let currentTreeIndex = -1;
+
+// 樹木與物品的配對關係
+const treeItemPairs = [
+    {
+        target: '../files/images/game/targets/Mushroom_tree.png',
+        item: '../files/images/game/items/Mushroom.png'
+    },
+    {
+        target: '../files/images/game/targets/Oak_tree.png',
+        item: '../files/images/game/items/Oak_log.png'
+    },
+    {
+        target: '../files/images/game/targets/Birch_tree.png',
+        item: '../files/images/game/items/Birch_log.png'
+    },
+    {
+        target: '../files/images/game/targets/Jungle_tree.png',
+        item: '../files/images/game/items/Jungle_log.png'
+    }
+];
+
+// 初始化遊戲圖片
+function initializeGameImages() {
+    const gameImageElement = document.getElementById('random-game-image');
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
+    
+    if (!gameImageElement || !targetImageElement || !itemImageElement) return;
+    
+    // 設置 Steve 圖片（僅執行一次）
+    if (!isSteveInitialized) {
+        gameImageElement.src = '../files/images/game/Steve_axe.png';
+        isSteveInitialized = true;
+    }
+    
+    // 隨機選擇一個樹木配對
+    selectRandomTree();
+}
+
+// 隨機選擇樹木和對應物品
+function selectRandomTree() {
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
+    
+    if (!targetImageElement || !itemImageElement) return;
+    
+    let newIndex;
+    do {
+        newIndex = Math.floor(Math.random() * treeItemPairs.length);
+    } while (newIndex === currentTreeIndex && treeItemPairs.length > 1);
+    
+    currentTreeIndex = newIndex;
+    const pair = treeItemPairs[currentTreeIndex];
+    
+    targetImageElement.src = pair.target;
+    itemImageElement.src = pair.item;
+}
+
+// 處理滾動以顯示遊戲圖片
+function handleScrollForGameImages() {
+    const gameImageElement = document.getElementById('random-game-image');
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
+    const footerElement = document.querySelector('footer');
+    
+    if (!gameImageElement || !targetImageElement || !itemImageElement || !footerElement) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const footerTop = footerElement.offsetTop;
+    const triggerPoint = footerTop - 300; // footer 上方 300px 處
+    const viewportBottom = scrollTop + windowHeight;
+    
+    // Steve 永遠顯示
+    gameImageElement.classList.add('show');
+    
+    // Item 永遠顯示
+    itemImageElement.classList.add('show');
+    
+    // Target 只在滾動到 footer 上方 300px 時顯示
+    if (viewportBottom >= triggerPoint) {
+        targetImageElement.classList.add('show');
+        isTargetVisible = true;
+    } else {
+        targetImageElement.classList.remove('show');
+        isTargetVisible = false;
+    }
+}

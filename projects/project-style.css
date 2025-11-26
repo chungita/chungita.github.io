@@ -338,6 +338,7 @@ footer {
     padding: 20px;
     color: #777;
     margin-top: 40px;
+    position: relative;
 }
 
 .footer-crafting-table {
@@ -348,6 +349,81 @@ footer {
     image-rendering: pixelated;
     image-rendering: -moz-crisp-edges;
     image-rendering: crisp-edges;
+}
+
+/* =================================
+   遊戲圖片樣式
+   ================================= */
+
+/* 隨機遊戲圖片 - Steve 位於右下角 */
+.random-game-image {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 100px;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.random-game-image.show {
+    opacity: 0.3;
+}
+
+/* 目標圖片 - 蘑菇樹位於左下角 */
+.target-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: 100px;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.target-image.show {
+    opacity: 0.4;
+}
+
+/* Item 圖片 - 蘑菇疊在 crafting table 上方 */
+.item-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    z-index: 10;
+}
+
+.item-image.show {
+    opacity: 1;
+}
+
+/* 響應式調整 */
+@media (max-width: 768px) {
+    .random-game-image {
+        height: 100px;
+        bottom: 0;
+        right: 0;
+    }
+    
+    .target-image {
+        height: 100px;
+    }
+    
+    .item-image {
+        height: 50px;
+    }
 }
 
 @media (min-width: 851px) {

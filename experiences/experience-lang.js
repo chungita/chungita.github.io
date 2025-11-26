@@ -218,47 +218,105 @@ document.addEventListener('DOMContentLoaded', () => {
         langToggle.addEventListener('click', switchLanguage);
     }
 
-    // 初始化遊戲圖片和目標圖片
-    selectNewGameAndTarget();
-    showImages();
+    // 初始化遊戲圖片功能
+    initializeGameImages();
+    
+    // 添加滾動事件監聽器
+    window.addEventListener('scroll', handleScrollForGameImages);
+    
+    // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
+    handleScrollForGameImages();
 });
 
-// =================================
-//   圖片管理相關變數和函數
-// =================================
+// 遊戲相關變數
+let isSteveInitialized = false;
+let isTargetVisible = false;
+let currentMonsterIndex = -1;
 
-/**
- * 選擇新的遊戲角色和對應的目標圖片
- * 功能：隨機選擇一個遊戲角色，並自動設置對應的目標圖片
- */
-function selectNewGameAndTarget() {
-    const gameImages = [
-        '../files/images/game/hornet.png',
-        '../files/images/game/Melinoë.png', 
-        '../files/images/game/steve.png',
-        '../files/images/game/miyabi.png',
-        '../files/images/game/miku.png'
-    ];
-    
-    // 隨機選擇一個角色
-    const randomIndex = Math.floor(Math.random() * gameImages.length);
-    const selectedGameImage = gameImages[randomIndex];
-    
-    // 設置遊戲角色圖片
-    const gameImageElement = document.getElementById('random-game-image');
-    if (gameImageElement) {
-        gameImageElement.src = selectedGameImage;
+// 怪物與物品的配對關係
+const monsterItemPairs = [
+    {
+        target: '../files/images/game/targets/Zombie.png',
+        item: '../files/images/game/items/Rotten_Flesh.png'
+    },
+    {
+        target: '../files/images/game/targets/Skeleton.png',
+        item: '../files/images/game/items/Bone.png'
+    },
+    {
+        target: '../files/images/game/targets/Creeper.png',
+        item: '../files/images/game/items/Gunpowder.png'
+    },
+    {
+        target: '../files/images/game/targets/Blaze.png',
+        item: '../files/images/game/items/Blaze_Rod.png'
     }
+];
+
+// 初始化遊戲圖片
+function initializeGameImages() {
+    const gameImageElement = document.getElementById('random-game-image');
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
+    
+    if (!gameImageElement || !targetImageElement || !itemImageElement) return;
+    
+    // 設置 Steve 圖片（僅執行一次）
+    if (!isSteveInitialized) {
+        gameImageElement.src = '../files/images/game/Steve_sword.png';
+        isSteveInitialized = true;
+    }
+    
+    // 隨機選擇一個怪物配對
+    selectRandomMonster();
 }
 
-/**
- * 顯示遊戲角色和目標圖片
- * 頁面載入時立即顯示圖片
- */
-function showImages() {
-    const gameImageElement = document.getElementById('random-game-image');
+// 隨機選擇怪物和對應物品
+function selectRandomMonster() {
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
     
-    if (gameImageElement) {
-        gameImageElement.classList.add('show');
+    if (!targetImageElement || !itemImageElement) return;
+    
+    let newIndex;
+    do {
+        newIndex = Math.floor(Math.random() * monsterItemPairs.length);
+    } while (newIndex === currentMonsterIndex && monsterItemPairs.length > 1);
+    
+    currentMonsterIndex = newIndex;
+    const pair = monsterItemPairs[currentMonsterIndex];
+    
+    targetImageElement.src = pair.target;
+    itemImageElement.src = pair.item;
+}
+
+// 處理滾動以顯示遊戲圖片
+function handleScrollForGameImages() {
+    const gameImageElement = document.getElementById('random-game-image');
+    const targetImageElement = document.getElementById('target-image');
+    const itemImageElement = document.getElementById('item-image');
+    const footerElement = document.querySelector('footer');
+    
+    if (!gameImageElement || !targetImageElement || !itemImageElement || !footerElement) return;
+    
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const windowHeight = window.innerHeight;
+    const footerTop = footerElement.offsetTop;
+    const triggerPoint = footerTop - 300; // footer 上方 300px 處
+    const viewportBottom = scrollTop + windowHeight;
+    
+    // Steve 永遠顯示
+    gameImageElement.classList.add('show');
+    
+    // Item 永遠顯示
+    itemImageElement.classList.add('show');
+    
+    // Target 只在滾動到 footer 上方 300px 時顯示
+    if (viewportBottom >= triggerPoint) {
+        targetImageElement.classList.add('show');
+        isTargetVisible = true;
+    } else {
+        targetImageElement.classList.remove('show');
+        isTargetVisible = false;
     }
 }

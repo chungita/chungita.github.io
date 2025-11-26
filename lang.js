@@ -170,7 +170,6 @@ document.addEventListener('DOMContentLoaded', () => {
 let currentProfileIndex = -1;
 let isProfileImageVisible = false;
 let isFirstLoad = true; // 追蹤是否為首次加載
-let isSteveInitialized = false; // 追蹤 Steve 是否已初始化
 let isTargetVisible = false; // 追蹤 Target 是否可見
 let currentTargetIndex = -1;
 
@@ -301,13 +300,8 @@ function handleScrollForGameImages() {
     const sectionTop = experiencesSection.offsetTop;
     const viewportBottom = scrollTop + windowHeight;
     
-    // 初始化 Steve 圖片（僅執行一次）
-    if (!isSteveInitialized) {
-        gameImageElement.src = 'files/images/game/steve.png';
-        isSteveInitialized = true;
-    }
-    
     // Steve 永遠顯示
+    gameImageElement.src = 'files/images/game/Steve_pickaxe.png';
     gameImageElement.classList.add('show');
     
     // Target 和 Item 只在滾動到 experiences 區域時顯示
