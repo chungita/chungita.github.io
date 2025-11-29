@@ -152,24 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
         langToggleDesktop.addEventListener('click', switchLanguage);
     }
 
-    // 初始化圖片功能
-    setRandomProfilePicture();
-    
     // 添加滾動事件監聽器
     window.addEventListener('scroll', function() {
-        handleScrollForProfileImage();
         handleScrollForGameImages();
     });
     
     // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
-    handleScrollForProfileImage();
     handleScrollForGameImages();
 
 });
 
-let currentProfileIndex = -1;
-let isProfileImageVisible = false;
-let isFirstLoad = true; // 追蹤是否為首次加載
 let isTargetVisible = false; // 追蹤 Target 是否可見
 let currentTargetIndex = -1;
 
@@ -204,78 +196,6 @@ const targetItemPairs = [
         item: 'files/images/game/items/Redstone.png'
     }
 ];
-
-function setRandomProfilePicture() {
-    const profileImages = [
-        'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
-        'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg',
-        'files/images/headshot/chungita_nthu_2024_graduation_photo3.jpg',
-        'files/images/headshot/chungita_nthu_2024_graduation_photo4.jpg',
-        'files/images/headshot/chungita_nthu_2024_graduation_photo5.jpg'
-    ];
-    
-    let newIndex;
-    
-    // 如果是首次加載，總是顯示第一張圖片（索引0）
-    if (isFirstLoad) {
-        newIndex = 0;
-        isFirstLoad = false;
-    } else {
-        // 之後則隨機選擇不同的圖片
-        do {
-            newIndex = Math.floor(Math.random() * profileImages.length);
-        } while (newIndex === currentProfileIndex && profileImages.length > 1);
-    }
-    
-    currentProfileIndex = newIndex;
-    const profilePic = document.getElementById('profile-pic');
-    if (profilePic) {
-        // 直接更換圖片
-        profilePic.src = profileImages[currentProfileIndex];
-    }
-}
-
-function handleScrollForProfileImage() {
-    const aboutSection = document.getElementById('about');
-    if (!aboutSection) return;
-    
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    const sectionTop = aboutSection.offsetTop;
-    const sectionBottom = sectionTop + aboutSection.offsetHeight;
-    
-    if (scrollTop + windowHeight >= sectionTop && scrollTop <= sectionBottom) {
-        if (!isProfileImageVisible) {
-            setRandomProfilePicture();
-            isProfileImageVisible = true;
-        }
-    } else {
-        // 當離開 about 區域時，立即更換圖片（不需要動畫）
-        if (isProfileImageVisible) {
-            const profileImages = [
-                'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
-                'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg',
-                'files/images/headshot/chungita_nthu_2024_graduation_photo3.jpg',
-                'files/images/headshot/chungita_nthu_2024_graduation_photo4.jpg',
-                'files/images/headshot/chungita_nthu_2024_graduation_photo5.jpg'
-            ];
-            
-            let newIndex;
-            do {
-                newIndex = Math.floor(Math.random() * profileImages.length);
-            } while (newIndex === currentProfileIndex && profileImages.length > 1);
-            
-            currentProfileIndex = newIndex;
-            const profilePic = document.getElementById('profile-pic');
-            if (profilePic) {
-                profilePic.src = profileImages[currentProfileIndex];
-            }
-        }
-        isProfileImageVisible = false;
-    }
-}
-
-
 
 function selectRandomTargetAndItem() {
     let newIndex;
