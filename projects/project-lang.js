@@ -16,7 +16,7 @@ const translations = {
         'project1_types_desc': '在研發過程中，我們測試了多種導管配置方案，包括搭配Dynaflex管、Zuss管以及無外管設計。每種設計都針對不同的臨床需求與操作場景進行了優化，以下展示各類型導管的實際外觀與結構特性。',
         'project1_dynaflex_caption': 'Dynaflex管配置',
         'project1_zuss_caption': 'Zuss管配置',
-        'project1_notube_caption': '無外管配置',
+        'project1_notube_caption': '裝配外管前的狀態',
         'project1_welding_title': '製程技術：精密焊接',
         'project1_welding_desc': '導管製作的關鍵步驟之一是超音波換能器的精密焊接。透過嚴格的焊接工藝控制，確保換能器與FPC之間的電氣連接穩定可靠，同時維持導管的微型化設計。以下展示焊接製程的各個階段，從初始焊接到最終成品的完整過程。',
         'project1_welding1_caption': '焊接製程 - 步驟一',
@@ -165,6 +165,13 @@ const translations = {
                 <li><strong>搜救任務：</strong>在搜救任務中追蹤多個無人機協同作業</li>
                 <li><strong>競技比賽：</strong>應用於無人機競技比賽中的目標追蹤與定位</li>
             </ul>`,
+        'project3_challenges_title': '技術挑戰 (Technical Challenges)',
+        'project3_challenges_desc': `
+            <ul>
+                <li><strong>即時處理限制：</strong>目前系統尚無法達到完全的即時處理 (Real-time)，主要受限於深度估計與多目標追蹤演算法的計算複雜度</li>
+                <li><strong>計算資源需求：</strong>YOLOv12 模型與立體視覺深度計算需要較高的運算資源，在邊緣設備上的部署仍需進一步優化</li>
+                <li><strong>模擬到真實的遷移：</strong>雖然 AIRSIM 提供高品質的合成資料，但從模擬環境到真實世界的遷移仍存在領域適應（Domain Adaptation）的挑戰</li>
+            </ul>`,
     },
     
     // 英文內容
@@ -184,7 +191,7 @@ const translations = {
         'project1_types_desc': 'During the development process, we tested multiple catheter configuration solutions, including designs with Dynaflex tube, Zuss tube, and no outer tube. Each design has been optimized for different clinical needs and operational scenarios. Below are the actual appearances and structural characteristics of each catheter type.',
         'project1_dynaflex_caption': 'Dynaflex Tube Configuration',
         'project1_zuss_caption': 'Zuss Tube Configuration',
-        'project1_notube_caption': 'No Outer Tube Configuration',
+        'project1_notube_caption': 'Before Installing Outer Tube',
         'project1_welding_title': 'Manufacturing Technology: Precision Welding',
         'project1_welding_desc': 'One of the key steps in catheter fabrication is the precision welding of the ultrasound transducer. Through strict welding process control, we ensure stable and reliable electrical connections between the transducer and FPC while maintaining the miniaturized design of the catheter. The following shows the various stages of the welding process, from initial welding to the complete final product.',
         'project1_welding1_caption': 'Welding Process - Step 1',
@@ -332,6 +339,13 @@ const translations = {
                 <li><strong>Autonomous Navigation:</strong> Providing target localization and tracking capabilities for drone autonomous navigation systems</li>
                 <li><strong>Search and Rescue:</strong> Tracking multiple drones for coordinated operations in search and rescue missions</li>
                 <li><strong>Competitive Events:</strong> Applications in drone racing competitions for target tracking and localization</li>
+            </ul>`,
+        'project3_challenges_title': 'Technical Challenges',
+        'project3_challenges_desc': `
+            <ul>
+                <li><strong>Real-time Processing Limitations:</strong> The current system cannot yet achieve fully real-time processing, primarily limited by the computational complexity of depth estimation and multi-object tracking algorithms</li>
+                <li><strong>Computational Resource Requirements:</strong> The YOLOv12 model and stereo vision depth computation require substantial computing resources, and deployment on edge devices requires further optimization</li>
+                <li><strong>Sim-to-Real Transfer:</strong> Although AIRSIM provides high-quality synthetic data, the transfer from simulation to real-world environments still faces domain adaptation challenges</li>
             </ul>`,
     }
 };
