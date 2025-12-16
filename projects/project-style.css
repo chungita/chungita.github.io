@@ -199,11 +199,33 @@ section li li {
     object-fit: contain;
 }
 
+.catheter-types-container {
+    margin: 25px 0;
+}
+
+.catheter-before-tubing {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.catheter-before-tubing .catheter-type-item {
+    max-width: 400px;
+    width: 100%;
+}
+
+.catheter-arrow {
+    text-align: center;
+    font-size: 3rem;
+    color: #007a6e;
+    margin: 20px 0;
+    font-weight: bold;
+}
+
 .catheter-types-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 25px;
-    margin: 25px 0;
 }
 
 .catheter-type-item {
@@ -618,6 +640,15 @@ footer {
         gap: 20px;
     }
     
+    .catheter-before-tubing .catheter-type-item {
+        max-width: 100%;
+    }
+    
+    .catheter-arrow {
+        font-size: 2.5rem;
+        margin: 15px 0;
+    }
+    
     .acoustic-field-grid,
     .comparison-images,
     .stereo-vision-grid,
@@ -662,6 +693,10 @@ footer {
         grid-template-columns: repeat(2, 1fr);
     }
     
+    .catheter-before-tubing .catheter-type-item {
+        max-width: 500px;
+    }
+    
     .acoustic-field-grid,
     .comparison-images,
     .stereo-vision-grid,
@@ -672,7 +707,11 @@ footer {
 
 @media (min-width: 851px) {
     .catheter-types-grid {
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .catheter-before-tubing .catheter-type-item {
+        max-width: 500px;
     }
     
     .welding-grid {
