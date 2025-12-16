@@ -333,6 +333,76 @@ section li li {
     color: #333;
 }
 
+/* Project 3 專用樣式 */
+.stereo-vision-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.stereo-vision-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.stereo-vision-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+.tracking-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin: 25px 0;
+}
+
+.tracking-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tracking-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.github-link {
+    display: inline-block;
+    color: #007a6e;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #007a6e;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.github-link:hover {
+    background-color: #007a6e;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
 footer {
     text-align: center;
     padding: 20px;
@@ -512,7 +582,9 @@ footer {
     }
     
     .acoustic-field-grid,
-    .comparison-images {
+    .comparison-images,
+    .stereo-vision-grid,
+    .tracking-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
@@ -541,7 +613,9 @@ footer {
     }
     
     .acoustic-field-grid,
-    .comparison-images {
+    .comparison-images,
+    .stereo-vision-grid,
+    .tracking-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -555,11 +629,13 @@ footer {
         grid-template-columns: repeat(3, 1fr);
     }
     
-    .acoustic-field-grid {
+    .acoustic-field-grid,
+    .stereo-vision-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     
-    .comparison-images {
+    .comparison-images,
+    .tracking-grid {
         grid-template-columns: repeat(2, 1fr);
     }
     

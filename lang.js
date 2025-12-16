@@ -20,7 +20,7 @@ const translations = {
         'project2_title': '專案二：超音波微型陣列探頭，生成超音波Vortex',
         'project2_desc': '用於視覺化超音波聲場傳遞。',
         'project3_title': '專案三：Drone object tracking using YOLOv12',
-        'project3_desc': '訓練 YOLOv12 模型以即時偵測並追蹤無人機攝影機畫面中的特定物體。',
+        'project3_desc': '利用AIRSIM 製作雙目立體視覺模擬資料訓練 YOLOv12 + RaftStereo模型以偵測並追蹤無人機在空間中的位置。',
         "experiences_title": "經歷", // 注意拼字修正
         // 經歷 1: SoundJet
         'exp1_title': '研發實習生',
@@ -68,7 +68,7 @@ const translations = {
         'project2_title': 'Project 2: Micro-array Ultrasound Transducer with Ultrasound Vortex Generation',
         'project2_desc': 'Used to visualize ultrasound acoustic field propagation.',
         'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
-        'project3_desc': 'Trained a YOLOv12 model to detect and track specific objects in drone camera footage in real-time.',
+        'project3_desc': 'Utilized AIRSIM to create stereo vision simulation training data and trained a YOLOv12 + RaftStereo model to detect and track drone positions in 3D space.',
         "experiences_title": "Experiences", // 注意拼字修正
         // Experience 1: SoundJet
         'exp1_title': 'R&D Intern',

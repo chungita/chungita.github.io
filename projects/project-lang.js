@@ -107,9 +107,64 @@ const translations = {
             </ul>`,
         
         // Project 3
-        'project3_title': '專案 3：義肢設計與 3D 列印',
-        'project3_description_title': '專案說明',
-        'project3_desc': '在此放置專案詳細描述，說明設計流程、組件與成品應用。',
+        'project3_title': '專案三：Drone object tracking using YOLOv12',
+        'project3_overview_title': '專案概述',
+        'project3_overview_desc': '本專案旨在開發一個基於深度學習的無人機追蹤系統，利用 AIRSIM 模擬器生成雙目立體視覺訓練資料，並訓練 YOLOv12 模型以實現即時偵測與追蹤無人機在 3D 空間中的位置。此系統結合了立體視覺深度估計與多目標追蹤（MOT）技術，能夠準確定位並追蹤多個無人機目標。',
+        'project3_technology_title': '技術特色',
+        'project3_technology_desc': `
+            <ul>
+                <li><strong>AIRSIM 模擬環境：</strong>使用 Microsoft AIRSIM 建立逼真的無人機飛行場景，生成大量高品質的雙目立體視覺訓練資料</li>
+                <li><strong>雙目立體視覺：</strong>透過左右相機同步拍攝，生成深度圖並建立 3D 空間資訊</li>
+                <li><strong>YOLOv12 目標偵測：</strong>採用最新的 YOLOv12 架構進行即時目標偵測，具備高精度與快速推理能力</li>
+                <li><strong>多目標追蹤（MOT）：</strong>整合追蹤演算法，實現多個無人機目標的持續追蹤與 ID 維持</li>
+                <li><strong>3D 位置估計：</strong>結合深度資訊與 2D 偵測結果，計算目標在 3D 空間中的精確位置</li>
+            </ul>`,
+        'project3_airsim_title': 'AIRSIM 資料生成',
+        'project3_airsim_desc': '使用 AIRSIM 模擬器生成雙目立體視覺訓練資料。系統配置左右兩個相機，同步拍攝無人機飛行場景，並自動生成對應的深度圖。這些合成資料提供了豐富且多樣化的訓練樣本，包含不同光照條件、背景環境與飛行姿態。',
+        'project3_left_camera_caption': '左相機視角',
+        'project3_right_camera_caption': '右相機視角',
+        'project3_depth_caption': '深度圖視覺化',
+        'project3_tracking_title': '追蹤結果展示',
+        'project3_tracking_desc': '訓練完成的 YOLOv12 模型能夠即時偵測並追蹤多個無人機目標。系統結合多目標追蹤演算法，為每個偵測到的目標分配唯一 ID，並在後續幀中維持追蹤一致性。同時，利用立體視覺深度資訊，系統能夠計算目標在 3D 空間中的位置座標。',
+        'project3_mot_caption': '多目標追蹤（MOT）結果',
+        'project3_3d_track_caption': '3D 空間追蹤視覺化',
+        'project3_results_title': '研究成果',
+        'project3_results_desc': '本專案成功實現了基於 AIRSIM 合成資料訓練的無人機追蹤系統。系統能夠在複雜場景中準確偵測多個無人機目標，並維持穩定的追蹤性能。3D 位置估計功能為後續的導航與控制應用奠定了基礎。',
+        'project3_3d_visualization_caption': '3D 追蹤軌跡視覺化 - 展示無人機在 XY 平面上的運動軌跡',
+        'project3_github_title': 'GitHub 專案連結',
+        'project3_methods_title': '研究方法',
+        'project3_methods_desc': `
+            <ol>
+                <li><strong>資料生成階段：</strong>
+                    <ul>
+                        <li>使用 AIRSIM 模擬器建立無人機飛行場景</li>
+                        <li>配置雙目相機系統，同步拍攝左右視角影像</li>
+                        <li>自動生成深度圖與對應的標註資料</li>
+                        <li>資料增強與預處理，提升模型泛化能力</li>
+                    </ul>
+                </li>
+                <li><strong>模型訓練階段：</strong>
+                    <ul>
+                        <li>使用 YOLOv12 架構進行目標偵測模型訓練</li>
+                        <li>整合立體視覺深度資訊進行 3D 位置估計</li>
+                        <li>實作多目標追蹤演算法，維持追蹤一致性</li>
+                    </ul>
+                </li>
+                <li><strong>評估與優化：</strong>
+                    <ul>
+                        <li>使用多種評估指標（mAP、MOTA、IDF1）評估模型性能</li>
+                        <li>針對不同場景進行測試與優化</li>
+                    </ul>
+                </li>
+            </ol>`,
+        'project3_applications_title': '應用領域',
+        'project3_applications_desc': `
+            <ul>
+                <li><strong>無人機監控：</strong>用於機場、重要設施等場所的無人機監控與追蹤</li>
+                <li><strong>自主導航：</strong>為無人機自主導航系統提供目標定位與追蹤功能</li>
+                <li><strong>搜救任務：</strong>在搜救任務中追蹤多個無人機協同作業</li>
+                <li><strong>競技比賽：</strong>應用於無人機競技比賽中的目標追蹤與定位</li>
+            </ul>`,
     },
     
     // 英文內容
@@ -220,9 +275,64 @@ const translations = {
             </ul>`,
         
         // Project 3
-        'project3_title': 'Project 3: Prosthetic Design and 3D Printing',
-        'project3_description_title': 'Project Description',
-        'project3_desc': 'Detailed project description will be placed here, explaining the design process, components, and final application.',
+        'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
+        'project3_overview_title': 'Project Overview',
+        'project3_overview_desc': 'This project aims to develop a deep learning-based drone tracking system using AIRSIM simulator to generate stereo vision training data and training a YOLOv12 model for real-time detection and tracking of drones in 3D space. The system combines stereo vision depth estimation with multi-object tracking (MOT) technology to accurately locate and track multiple drone targets.',
+        'project3_technology_title': 'Technical Features',
+        'project3_technology_desc': `
+            <ul>
+                <li><strong>AIRSIM Simulation Environment:</strong> Using Microsoft AIRSIM to create realistic drone flight scenarios and generate large amounts of high-quality stereo vision training data</li>
+                <li><strong>Stereo Vision:</strong> Synchronized left and right camera capture to generate depth maps and establish 3D spatial information</li>
+                <li><strong>YOLOv12 Object Detection:</strong> Employing the latest YOLOv12 architecture for real-time object detection with high accuracy and fast inference capabilities</li>
+                <li><strong>Multi-Object Tracking (MOT):</strong> Integrating tracking algorithms to achieve continuous tracking and ID maintenance for multiple drone targets</li>
+                <li><strong>3D Position Estimation:</strong> Combining depth information with 2D detection results to calculate precise target positions in 3D space</li>
+            </ul>`,
+        'project3_airsim_title': 'AIRSIM Data Generation',
+        'project3_airsim_desc': 'Using AIRSIM simulator to generate stereo vision training data. The system configures left and right cameras to synchronously capture drone flight scenes and automatically generates corresponding depth maps. These synthetic data provide rich and diverse training samples, including different lighting conditions, background environments, and flight poses.',
+        'project3_left_camera_caption': 'Left Camera View',
+        'project3_right_camera_caption': 'Right Camera View',
+        'project3_depth_caption': 'Depth Map Visualization',
+        'project3_tracking_title': 'Tracking Results',
+        'project3_tracking_desc': 'The trained YOLOv12 model can detect and track multiple drone targets in real-time. The system combines multi-object tracking algorithms to assign unique IDs to each detected target and maintains tracking consistency across subsequent frames. Simultaneously, utilizing stereo vision depth information, the system can calculate target positions in 3D space.',
+        'project3_mot_caption': 'Multi-Object Tracking (MOT) Results',
+        'project3_3d_track_caption': '3D Space Tracking Visualization',
+        'project3_results_title': 'Research Achievements',
+        'project3_results_desc': 'This project successfully implemented a drone tracking system trained on AIRSIM synthetic data. The system can accurately detect multiple drone targets in complex scenes and maintain stable tracking performance. The 3D position estimation functionality provides a foundation for subsequent navigation and control applications.',
+        'project3_3d_visualization_caption': '3D Tracking Trajectory Visualization - Showing drone movement trajectory on XY plane',
+        'project3_github_title': 'GitHub Project Links',
+        'project3_methods_title': 'Research Methods',
+        'project3_methods_desc': `
+            <ol>
+                <li><strong>Data Generation Phase:</strong>
+                    <ul>
+                        <li>Using AIRSIM simulator to create drone flight scenarios</li>
+                        <li>Configuring stereo camera system for synchronized left and right view capture</li>
+                        <li>Automatically generating depth maps and corresponding annotation data</li>
+                        <li>Data augmentation and preprocessing to improve model generalization</li>
+                    </ul>
+                </li>
+                <li><strong>Model Training Phase:</strong>
+                    <ul>
+                        <li>Training object detection model using YOLOv12 architecture</li>
+                        <li>Integrating stereo vision depth information for 3D position estimation</li>
+                        <li>Implementing multi-object tracking algorithms to maintain tracking consistency</li>
+                    </ul>
+                </li>
+                <li><strong>Evaluation and Optimization:</strong>
+                    <ul>
+                        <li>Using various evaluation metrics (mAP, MOTA, IDF1) to assess model performance</li>
+                        <li>Testing and optimization for different scenarios</li>
+                    </ul>
+                </li>
+            </ol>`,
+        'project3_applications_title': 'Application Areas',
+        'project3_applications_desc': `
+            <ul>
+                <li><strong>Drone Surveillance:</strong> For drone monitoring and tracking at airports, critical facilities, and other locations</li>
+                <li><strong>Autonomous Navigation:</strong> Providing target localization and tracking capabilities for drone autonomous navigation systems</li>
+                <li><strong>Search and Rescue:</strong> Tracking multiple drones for coordinated operations in search and rescue missions</li>
+                <li><strong>Competitive Events:</strong> Applications in drone racing competitions for target tracking and localization</li>
+            </ul>`,
     }
 };
 

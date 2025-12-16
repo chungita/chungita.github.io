@@ -291,6 +291,39 @@ section h2 {
     transform: translateY(-2px);
 }
 
+/* GitHub 链接样式 */
+.project-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.github-label {
+    font-weight: bold;
+    color: #333;
+    font-size: 0.95rem;
+    margin-bottom: 5px;
+}
+
+.github-link {
+    display: inline-block;
+    color: #007a6e;
+    text-decoration: none;
+    padding: 8px 15px;
+    border: 1px solid #007a6e;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.github-link:hover {
+    background-color: #007a6e;
+    color: #fff;
+    transform: translateY(-2px);
+}
+
 /* =================================
    9. 作品集 (Projects) 區域
    ================================= */
@@ -318,7 +351,7 @@ section h2 {
    ================================= */
 
 /* Project 1: 圖片和影片容器 */
-.project-card > div:not(.video-row) {
+.project-card > div:not(.video-row):not(.project3-images) {
     display: flex;
     flex-direction: column; /* 手機版預設為上下堆疊 */
     gap: 12px;
@@ -331,8 +364,8 @@ section h2 {
 }
 
 /* 通用圖片和影片樣式 */
-.project-card > div > img,
-.project-card > div > video {
+.project-card > div:not(.project3-images) > img,
+.project-card > div:not(.project3-images) > video {
     width: 100%;
     height: auto;
     min-height: 250px;
@@ -356,6 +389,50 @@ section h2 {
     height: auto;
     border-radius: 6px;
     border: 1px solid #222;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+}
+
+/* Project 3 及其他直接放置的圖片樣式 */
+.project-card > img {
+    display: block;
+    margin: 12px auto;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid #222;
+    box-sizing: border-box;
+    background: #f4f7f6;
+    padding: 8px;
+    object-fit: contain;
+}
+
+/* Project 3: 圖片容器 - 手機版預設為堆疊 */
+.project3-images {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 12px;
+    max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Project 3: 圖片樣式 */
+.project3-images img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 6px;
+    border: 1px solid #222;
+    display: block;
+    margin: 0;
     box-sizing: border-box;
     background: #f4f7f6;
     padding: 8px;
@@ -668,20 +745,37 @@ footer {
     }
 
     /* Project 1: 電腦版橫向排列 */
-    .project-card > div:not(.video-row) {
+    .project-card > div:not(.video-row):not(.project3-images) {
         flex-direction: row; /* 電腦版改為左右並排 */
         align-items: center;
         gap: 20px;
         overflow: hidden; /* 防止內容溢出 */
     }
     
-    .project-card > div:not(.video-row) > img,
-    .project-card > div:not(.video-row) > video {
+    .project-card > div:not(.video-row):not(.project3-images) > img,
+    .project-card > div:not(.video-row):not(.project3-images) > video {
         flex: 1 1 calc(50% - 10px); /* 精確計算寬度，減去gap的一半 */
         width: calc(50% - 10px);
         max-width: calc(50% - 10px);
         height: 300px; /* 固定高度確保一致性 */
         object-fit: contain; /* 確保內容適合容器 */
+    }
+
+    /* Project 3: 電腦版橫向排列 */
+    .project3-images {
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+    }
+    
+    .project3-images img {
+        flex: 1 1 calc(50% - 10px);
+        width: calc(50% - 10px);
+        max-width: calc(50% - 10px);
+        height: auto;
+        max-height: 400px;
+        object-fit: contain;
     }
 }
 /* =================================
