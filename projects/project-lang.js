@@ -49,21 +49,21 @@ const translations = {
         // Project 2
         'project2_title': '專案二：超音波微型陣列探頭，生成超音波Vortex',
         'project2_overview_title': '專案概述',
-        'project2_overview_desc': '此專案旨在開發一款創新的超音波微型陣列探頭，能夠生成具有特殊空間結構的超音波渦旋（Ultrasound Vortex）。透過精密的多通道控制系統，實現對超音波聲場的精確調控與視覺化。',
+        'project2_overview_desc': '此專案旨在開發一款創新的超音波微型陣列探頭，能夠生成具有特殊空間結構的超音波渦旋（Ultrasound Vortex）。透過精密的多通道控制系統，實現對超音波聲場的精確調控。',
         'project2_technology_title': '技術特色',
         'project2_technology_desc': `
             <ul>
                 <li><strong>4通道微型陣列設計：</strong>採用四通道獨立控制的壓電陣列結構，每個通道可獨立調整相位與振幅</li>
                 <li><strong>渦旋聲場生成：</strong>透過精確的相位控制演算法，生成具有螺旋相位分佈的超音波渦旋場</li>
                 <li><strong>高頻操作：</strong>工作頻率可達數MHz，適用於生醫檢測與微操控應用</li>
-                <li><strong>聲場視覺化：</strong>結合數值模擬與實驗量測，完整呈現三維空間中的聲場分佈特性</li>
+                <li><strong>聲場視覺化：</strong>結合數值模擬與實驗量測，使用 MATLAB 進行數據處理與三維視覺化，完整呈現三維空間中的聲場分佈特性</li>
             </ul>`,
         'project2_vortex_title': '超音波渦旋場演示',
-        'project2_vortex_desc': '下方影片展示了不同平面（XZ平面與XY平面）上的超音波渦旋聲場分佈。渦旋結構在空間中呈現螺旋形的相位變化，這種獨特的聲場結構具有軌道角動量，可應用於粒子操控、藥物傳遞等先進生醫技術。',
+        'project2_vortex_desc': '下方影片展示了不同平面（XZ平面與XY平面）上的超音波渦旋聲場分佈，使用 MATLAB 進行數據處理與動態可視化。渦旋結構在空間中呈現螺旋形的相位變化，這種獨特的聲場結構具有軌道角動量，可應用於粒子操控、藥物傳遞等先進生醫技術。',
         'project2_video1_caption': 'XZ平面渦旋聲場分佈',
         'project2_video2_caption': 'XY平面渦旋聲場分佈',
         'project2_vortex_static_title': '渦旋場靜態分析',
-        'project2_vortex_static_desc': '以下展示渦旋聲場在XZ平面與XY平面的靜態聲壓分布圖。這些可視化結果清楚呈現了渦旋場的核心特徵：中央區域的低聲壓「零點」以及圍繞中心的螺旋狀相位分布，這正是渦旋聲場具有軌道角動量的關鍵證據。',
+        'project2_vortex_static_desc': '以下展示渦旋聲場在XZ平面與XY平面的靜態聲壓分布圖，使用 MATLAB 進行數據處理與可視化。這些可視化結果清楚呈現了渦旋場的核心特徵：中央區域的低聲壓「零點」以及圍繞中心的螺旋狀相位分布，這正是渦旋聲場具有軌道角動量的關鍵證據。',
         'project2_vortex_xz_caption': '渦旋場 - XZ平面靜態分布',
         'project2_vortex_xy_caption': '渦旋場 - XY平面靜態分布',
         'project2_comparison_title': '聲場模式比較：渦旋場 vs 同相位場',
@@ -93,7 +93,7 @@ const translations = {
                 <li><strong>聲場量測與視覺化：</strong>
                     <ul>
                         <li>使用水聽器（Hydrophone）進行三維聲場掃描</li>
-                        <li>結合MATLAB進行數據處理視覺重建</li>
+                        <li>使用 MATLAB 進行數據處理與三維視覺化重建</li>
                     </ul>
                 </li>
             </ol>`,
@@ -224,21 +224,21 @@ const translations = {
         // Project 2
         'project2_title': 'Project 2: Micro-array Ultrasound Transducer with Ultrasound Vortex Generation',
         'project2_overview_title': 'Project Overview',
-        'project2_overview_desc': 'This project aims to develop an innovative micro-array ultrasound transducer capable of generating ultrasound vortex fields with special spatial structures. Through a precision multi-channel control system, we achieve accurate manipulation and visualization of ultrasound acoustic fields.',
+        'project2_overview_desc': 'This project aims to develop an innovative micro-array ultrasound transducer capable of generating ultrasound vortex with special spatial structure. Through a precision multi-channel control system, it achieves accurate modulation of the ultrasound acoustic field.',
         'project2_technology_title': 'Technical Features',
         'project2_technology_desc': `
             <ul>
                 <li><strong>4-Channel Micro-Array Design:</strong> Employs a four-channel independently controlled piezoelectric array structure, with each channel capable of independent phase and amplitude adjustment</li>
                 <li><strong>Vortex Field Generation:</strong> Generates ultrasound vortex fields with spiral phase distribution through precise phase control algorithms</li>
                 <li><strong>High-Frequency Operation:</strong> Operating frequency up to several MHz, suitable for biomedical detection and micro-manipulation applications</li>
-                <li><strong>Acoustic Field Visualization:</strong> Combines numerical simulation and experimental measurement to fully present acoustic field distribution characteristics in 3D space</li>
+                <li><strong>Acoustic Field Visualization:</strong> Combines numerical simulation and experimental measurement, using MATLAB for data processing and 3D visualization to fully present acoustic field distribution characteristics in 3D space</li>
             </ul>`,
         'project2_vortex_title': 'Ultrasound Vortex Field Demonstration',
-        'project2_vortex_desc': 'The videos below demonstrate the ultrasound vortex acoustic field distribution on different planes (XZ plane and XY plane). The vortex structure exhibits spiral phase variations in space. This unique acoustic field structure possesses orbital angular momentum and can be applied to advanced biomedical technologies such as particle manipulation and drug delivery.',
+        'project2_vortex_desc': 'The videos below demonstrate the ultrasound vortex acoustic field distribution on different planes (XZ plane and XY plane), processed and dynamically visualized using MATLAB. The vortex structure exhibits spiral phase variations in space. This unique acoustic field structure possesses orbital angular momentum and can be applied to advanced biomedical technologies such as particle manipulation and drug delivery.',
         'project2_video1_caption': 'XZ Plane Vortex Acoustic Field Distribution',
         'project2_video2_caption': 'XY Plane Vortex Acoustic Field Distribution',
         'project2_vortex_static_title': 'Vortex Field Static Analysis',
-        'project2_vortex_static_desc': 'The following shows the static acoustic pressure distribution of the vortex acoustic field on XZ and XY planes. These visualization results clearly present the core characteristics of the vortex field: the low acoustic pressure "null point" in the central region and the spiral phase distribution around the center, which is the key evidence that the vortex acoustic field possesses orbital angular momentum.',
+        'project2_vortex_static_desc': 'The following shows the static acoustic pressure distribution of the vortex acoustic field on XZ and XY planes, processed and visualized using MATLAB. These visualization results clearly present the core characteristics of the vortex field: the low acoustic pressure "null point" in the central region and the spiral phase distribution around the center, which is the key evidence that the vortex acoustic field possesses orbital angular momentum.',
         'project2_vortex_xz_caption': 'Vortex Field - XZ Plane Static Distribution',
         'project2_vortex_xy_caption': 'Vortex Field - XY Plane Static Distribution',
         'project2_comparison_title': 'Acoustic Field Mode Comparison: Vortex Field vs In-Phase Field',
@@ -268,7 +268,7 @@ const translations = {
                 <li><strong>Acoustic Field Measurement and Visualization:</strong>
                     <ul>
                         <li>3D acoustic field scanning using hydrophone</li>
-                        <li>Data processing and 3D reconstruction using MATLAB</li>
+                        <li>Data processing and 3D visualization reconstruction using MATLAB</li>
                     </ul>
                 </li>
             </ol>`,

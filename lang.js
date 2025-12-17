@@ -18,7 +18,7 @@ const translations = {
         'project1_title': '專案一：超聲波輔助溶栓導管',
         'project1_desc': '開發與驗證結合超音波導引與藥物溶栓的導管原型，以提升血栓溶解效率並降低對周圍組織的損傷。',
         'project2_title': '專案二：超音波微型陣列探頭，生成超音波Vortex',
-        'project2_desc': '用於視覺化超音波聲場傳遞。',
+        'project2_desc': '此專案旨在開發一款創新的超音波微型陣列探頭，能夠生成具有特殊空間結構的超音波渦旋（Ultrasound Vortex）。透過精密的多通道控制系統，實現對超音波聲場的精確調控。',
         'project3_title': '專案三：Drone object tracking using YOLOv12',
         'project3_desc': '利用AIRSIM 製作雙目立體視覺模擬資料訓練 YOLOv12 + RaftStereo模型以偵測並追蹤無人機在空間中的位置。',
         "experiences_title": "經歷", // 注意拼字修正
@@ -66,7 +66,7 @@ const translations = {
         'project1_title': 'Project 1: Ultrasound-assisted Thrombolytic Catheter',
         'project1_desc': 'Developed and validated a prototype catheter combining ultrasound with thrombolytic medicine delivery to improve clot dissolution efficiency while minimizing collateral tissue damage.',
         'project2_title': 'Project 2: Micro-array Ultrasound Transducer with Ultrasound Vortex Generation',
-        'project2_desc': 'Used to visualize ultrasound acoustic field propagation.',
+        'project2_desc': 'This project aims to develop an innovative micro-array ultrasound transducer capable of generating ultrasound vortex with special spatial structure. Through a precision multi-channel control system, it achieves accurate modulation of the ultrasound acoustic field.',
         'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
         'project3_desc': 'Utilized AIRSIM to create stereo vision simulation training data and trained a YOLOv12 + RaftStereo model to detect and track drone positions in 3D space.',
         "experiences_title": "Experiences", // 注意拼字修正
