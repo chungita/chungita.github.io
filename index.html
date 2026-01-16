@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title data-key="site_title"></title>
+    
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//github.com">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="chungita.optimized.js" as="script">
+    <link rel="preload" href="files/images/badge/KSHS_emblem.webp" as="image" type="image/webp">
+    <link rel="preload" href="files/images/badge/nthu_emblem.webp" as="image" type="image/webp">
+    <link rel="preload" href="files/images/badge/ROC_millitary_private_emblem.webp" as="image" type="image/webp">
+    
+    <!-- Preload system fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
     <!-- Critical CSS inlined to prevent render blocking -->
     <style>
     /* Critical CSS - Above the fold styles */
@@ -22,15 +35,15 @@
                 <div class="badge-showcase">
                     <picture>
   <source type="image/webp" srcset="files/images/badge/KSHS_emblem.webp">
-  <img src="files/images/badge/KSHS_emblem.png" alt="badge 1" width="35" height="35" loading="lazy">
+  <img src="files/images/badge/KSHS_emblem.png" alt="badge 1" width="35" height="35" loading="eager" fetchpriority="high">
 </picture>
                     <picture>
   <source type="image/webp" srcset="files/images/badge/nthu_emblem.webp">
-  <img src="files/images/badge/nthu_emblem.png" alt="badge 2" width="35" height="35" loading="lazy">
+  <img src="files/images/badge/nthu_emblem.png" alt="badge 2" width="35" height="35" loading="eager" fetchpriority="high">
 </picture>
                     <picture>
   <source type="image/webp" srcset="files/images/badge/ROC_millitary_private_emblem.webp">
-  <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3" width="35" height="35" loading="lazy">
+  <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3" width="35" height="35" loading="eager" fetchpriority="high">
 </picture>
                 </div>
             </div>
@@ -66,9 +79,9 @@
                 <div class="project-media">
                     <picture>
                         <source type="image/webp" srcset="files/projects/project_1/ultrasound_assisted_thrombosis_catheter-400w.webp 400w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter-600w.webp 600w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter-800w.webp 800w">
-                        <img src="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1" width="585" height="420" loading="lazy">
+                        <img src="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1" width="585" height="420" loading="lazy" decoding="async">
                     </picture>
-                    <img src="files/projects/project_1/catheter.gif" alt="Catheter GIF Preview" loading="lazy">
+                    <img src="files/projects/project_1/catheter.gif" alt="Catheter GIF Preview" loading="lazy" decoding="async">
                 </div>
 
                 <p data-key="project1_desc"></p>
@@ -172,32 +185,37 @@
         <p data-key="footer_text"></p>
     </footer>
 
-    <script src="chungita.web.js?v=2.0.1" defer></script>
-    
-    <!-- Development scripts removed for production -->
-    <script defer>
-        // 漢堡選單功能
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
+    <!-- Inline critical JavaScript -->
+    <script>
+        // 漢堡選單功能 - 內聯關鍵腳本以避免阻塞
+        document.addEventListener('DOMContentLoaded', () => {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('nav-menu');
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', () => {
+                    hamburger.classList.toggle('active');
+                    navMenu.classList.toggle('active');
+                });
 
-        // 點擊選單連結時關閉選單
-        navMenu.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
+                // 點擊選單連結時關閉選單
+                navMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        hamburger.classList.remove('active');
+                        navMenu.classList.remove('active');
+                    });
+                });
+            }
         });
     </script>
+    
+    <script src="chungita.optimized.js" async></script>
 
     <!-- Service Worker Registration for Enhanced Caching -->
     <script>
+        // 使用 requestIdleCallback 优化 Service Worker 注册时机
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
+            const registerSW = () => {
                 navigator.serviceWorker.register('/sw.js')
                 .then(registration => {
                     console.log('SW registered: ', registration);
@@ -205,7 +223,13 @@
                 .catch(registrationError => {
                     console.log('SW registration failed: ', registrationError);
                 });
-            });
+            };
+            
+            if ('requestIdleCallback' in window) {
+                requestIdleCallback(registerSW);
+            } else {
+                setTimeout(registerSW, 1000);
+            }
         }
     </script>
 
