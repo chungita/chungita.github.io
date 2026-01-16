@@ -2,9 +2,9 @@
 const CACHE_NAME = 'chungita-portfolio-v2.0.1';
 const urlsToCache = [
   '/',
-  '/index.html',
+  '/chungita.web.html',
   '/style.min.css?v=2.0.1',
-  '/lang.js?v=2.0.1',
+  '/chungita.web.js?v=2.0.1',
   '/projects/project-style.css?v=2.0.1',
   '/projects/project-lang.js?v=2.0.1', 
   '/experiences/experience-style.css?v=2.0.1',

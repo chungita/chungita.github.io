@@ -1,61 +1,55 @@
 /* =================================
-   1. 基礎設置與重置樣式
+   開發版 CSS - 基於壓縮版本重新格式化
+   用途：開發時查看和修改樣式
    ================================= */
 
-/* HTML 基礎設置 */
+/* 基礎元素 */
 html {
     margin: 0;
     padding: 0;
-    scroll-behavior: smooth; /* 確保平滑滾動套用在實際進行滾動的元素上 */
+    scroll-behavior: smooth;
 }
 
-/* 全域字體和基礎樣式 */
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     line-height: 1.6;
-    background-color: #f4f7f6; /* 柔和的背景灰 */
+    background-color: #f4f7f6;
     color: #333;
     margin: 0;
     padding: 0;
 }
 
-/* =================================
-   2. 導航欄 (Header & Navbar)
-   ================================= */
-
-/* 主要導航欄樣式 */
+/* 導航欄 */
 header {
     background-color: #fff;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     padding: 1rem 5%;
-    position: sticky; /* 保持在頂部 */
+    position: sticky;
     top: 0;
     z-index: 10;
-    width: 90%; /* 修正寬度以配合 padding */
+    width: 90%;
 }
 
 nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1200px; /* 限制導航欄內容寬度 */
+    max-width: 1200px;
     margin: 0 auto;
 }
 
-/* Logo 樣式 */
 nav .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    color: #005f73; /* 生醫領域常用的藍綠色 */
-    white-space: nowrap; /* 防止文字換行 */
-    flex-shrink: 0; /* 防止在flex容器中被壓縮 */
+    color: #005f73;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
-/* 導航連結樣式 */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 25px; /* 增加連結間距 */
+    gap: 25px;
     margin: 0;
     padding: 0;
 }
@@ -66,62 +60,48 @@ nav a {
     font-weight: 500;
     transition: color 0.3s;
     font-size: 1rem;
-    white-space: nowrap; /* 防止文字換行 */
+    white-space: nowrap;
 }
 
 nav a:hover {
     color: #00a896;
 }
 
-/* =================================
-   3. 導航欄左側功能區域
-   ================================= */
-
-/* nav-left 容器：包含 logo、徽章展示櫃與語言切換 */
+/* 導航左側功能區 */
 .nav-left {
     display: flex;
-    align-items: center; /* 垂直居中對齊 */
-    gap: 15px; /* 元件之間的間距 */
-    flex: 1; /* 佔據剩餘空間 */
+    align-items: center;
+    gap: 15px;
+    flex: 1;
 }
 
-/* =================================
-   4. 徽章展示櫃樣式
-   ================================= */
-
-/* 徽章展示櫃容器 */
+/* 徽章展示櫃 */
 .badge-showcase {
     display: flex;
     align-items: center;
-    gap: 8px; /* 徽章之間的間距 */
+    gap: 8px;
 }
 
-/* 徽章圖片基礎樣式 */
 .badge-showcase img {
     width: 24px;
     height: 24px;
-    object-fit: cover; /* 確保圖片不被拉伸 */
-    border-radius: 50%; /* 圓形徽章 */
-    background-color: #f4f7f6; /* 讓透明背景的徽章更好看 */
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #f4f7f6;
     padding: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease; /* 懸停動畫 */
+    transition: transform 0.3s ease;
 }
 
-/* 徽章懸停效果 */
 .badge-showcase img:hover {
-    transform: scale(3); /* 懸停時放大 */
-    border-color: #007bff; /* 懸停時邊框變色 */
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3); /* 增加陰影使其更像「浮」起來 */
-    border-radius: 8px; /* 放大後變為方形/圓角 */
-    z-index: 100; /* 確保它在最上層 */
+    transform: scale(3);
+    border-color: #007bff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    z-index: 100;
 }
 
-/* =================================
-   5. 語言切換功能
-   ================================= */
-
-/* 桌面版和手機版語言切換按鈕共同樣式 */
+/* 語言切換 */
 #lang-toggle-desktop,
 #lang-toggle,
 .lang-toggle-mobile {
@@ -142,11 +122,7 @@ nav a:hover {
     color: #00a896;
 }
 
-/* =================================
-   6. 漢堡選單按鈕
-   ================================= */
-
-/* 漢堡選單按鈕基礎樣式 */
+/* 漢堡選單 */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -157,7 +133,6 @@ nav a:hover {
     gap: 5px;
 }
 
-/* 漢堡選單線條 */
 .hamburger span {
     width: 25px;
     height: 3px;
@@ -166,7 +141,6 @@ nav a:hover {
     transition: all 0.3s ease;
 }
 
-/* 漢堡選單激活狀態動畫 */
 .hamburger.active span:nth-child(1) {
     transform: rotate(45deg) translate(8px, 8px);
 }
@@ -179,7 +153,6 @@ nav a:hover {
     transform: rotate(-45deg) translate(8px, -8px);
 }
 
-/* 導航選單 */
 .nav-menu {
     list-style: none;
     display: flex;
@@ -188,54 +161,43 @@ nav a:hover {
     padding: 0;
 }
 
-/* =================================
-   7. 主要內容區域
-   ================================= */
-
-/* 主容器樣式 */
+/* 主要內容區域 */
 main {
     max-width: 1200px;
-    margin: 20px auto; /* 頂部也增加 margin */
+    margin: 20px auto;
     padding: 20px;
 }
 
-/* 通用區塊樣式 */
 section {
     background-color: #ffffff;
     margin-bottom: 25px;
     padding: 30px;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* 通用標題樣式 */
 section h2 {
     font-size: 2rem;
     color: #005f73;
     border-bottom: 2px solid #e0e0e0;
     padding-bottom: 10px;
-    margin-top: 0; /* 移除 h2 預設的上邊距 */
+    margin-top: 0;
 }
 
-/* =================================
-   8. 關於我 (About Me) 區域
-   ================================= */
-
+/* 關於我區域 */
 #about {
     text-align: center;
 }
 
-/* 個人頭像樣式 */
 .profile-pic {
     width: 150px;
     height: 150px;
     border-radius: 50%;
-    object-fit: cover; /* 確保圖片不變形 */
+    object-fit: cover;
     border: 4px solid #005f73;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-/* 主標題和副標題樣式 */
 #about h1 {
     margin-top: 15px;
     margin-bottom: 5px;
@@ -248,13 +210,12 @@ section h2 {
     margin-top: 0;
 }
 
-/* 關於我段落樣式 */
 #about p {
-    max-width: 700px; /* 讓段落易於閱讀 */
-    margin: 15px auto; /* 置中 */
+    max-width: 700px;
+    margin: 15px auto;
 }
 
-/* 行動按鈕樣式 */
+/* 按鈕樣式 */
 .cta-button {
     display: inline-block;
     background-color: #00a896;
@@ -269,10 +230,9 @@ section h2 {
 
 .cta-button:hover {
     background-color: #007a6e;
-    transform: translateY(-2px); /* 輕微上浮效果 */
+    transform: translateY(-2px);
 }
 
-/* 更多細節按鈕樣式 */
 .detail-button {
     display: inline-block;
     background-color: #4a90e2;
@@ -291,7 +251,7 @@ section h2 {
     transform: translateY(-2px);
 }
 
-/* GitHub 链接样式 */
+/* GitHub 連結 */
 .project-links {
     display: flex;
     flex-direction: column;
@@ -324,18 +284,13 @@ section h2 {
     transform: translateY(-2px);
 }
 
-/* =================================
-   9. 作品集 (Projects) 區域
-   ================================= */
-
-/* 專案卡片基礎樣式 */
+/* 專案卡片 */
 .project-card {
     margin-bottom: 30px;
     border-bottom: 1px solid #eee;
     padding-bottom: 20px;
 }
 
-/* 最後一個卡片不要底線 */
 .project-card:last-child {
     border-bottom: none;
     margin-bottom: 0;
@@ -346,130 +301,258 @@ section h2 {
     font-size: 1.5rem;
 }
 
-/* =================================
-   10. 專案媒體展示樣式
-   ================================= */
-
-/* Project 1: 圖片和影片容器 */
-.project-card > div:not(.video-row):not(.project3-images) {
-    display: flex;
-    flex-direction: column; /* 手機版預設為上下堆疊 */
-    gap: 12px;
-    align-items: stretch;
-    margin-top: 12px;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-/* 通用圖片和影片樣式 */
-.project-card > div:not(.project3-images) > img,
-.project-card > div:not(.project3-images) > video,
-.project-card > div:not(.project3-images) > img.preview-gif {
-    width: 100%;
-    height: auto;
-    min-height: 250px;
-    object-fit: contain;
-    border-radius: 6px;
-    border: 1px solid #222;
-    display: block;
-    margin: 0;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
-    overflow: hidden; /* 防止內容溢出 */
-}
-
-/* Project 2: 主要圖片樣式 */
-.project-image {
-    display: block;
-    margin: 12px 0;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    border: 1px solid #222;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
-}
-
-/* Project 3 及其他直接放置的圖片樣式 */
-.project-card > img {
-    display: block;
-    margin: 12px auto;
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 6px;
-    border: 1px solid #222;
-    box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
-    object-fit: contain;
-}
-
-/* Project 3: 圖片容器 - 手機版預設為堆疊 */
-.project3-images {
+/* 專案媒體展示 - 重新設計 */
+/* 通用容器樣式 */
+.project-card .project-media,
+.project-card > div:not(.video-row):not(.project-links) {
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 12px;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
+    gap: 15px;
+    margin: 15px 0;
 }
 
-/* Project 3: 圖片樣式 */
-.project3-images img {
+/* 所有圖片基礎樣式 */
+.project-card img {
     width: 100%;
-    max-width: 100%;
     height: auto;
-    max-height: 500px;
+    min-height: 200px;
     object-fit: contain;
-    border-radius: 6px;
-    border: 1px solid #222;
-    display: block;
-    margin: 0;
+    border-radius: 8px;
+    border: 2px solid #ddd;
     box-sizing: border-box;
-    background: #f4f7f6;
-    padding: 8px;
+    background: #f9f9f9;
+    padding: 10px;
+    display: block;
 }
 
-/* Project 2: 影片列樣式 (電腦版預設：並排) */
+/* Picture 元素內的圖片 */
+.project-card picture {
+    display: block;
+    width: 100%;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.project-card picture img {
+    border: none;
+    padding: 0;
+    border-radius: 4px;
+    background: transparent;
+    min-height: 200px;
+}
+
+/* 視頻樣式 */
+.project-card video {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+/* Project Image 特殊樣式 */
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    padding: 10px;
+    box-sizing: border-box;
+    margin: 15px 0;
+}
+
+/* Video Row 樣式 */
 .video-row {
     display: flex;
-    flex-direction: row; /* 橫向 */
-    gap: 12px;
-    align-items: stretch;
-    justify-content: center;
-    margin-top: 12px;
-    max-width: 100%;
-    width: 100%;
-    box-sizing: border-box;
-    overflow: visible;
-    padding: 0;
+    flex-direction: column;
+    gap: 15px;
+    margin: 15px 0;
 }
 
-/* Project 2: 列中的影片樣式 (電腦版寬度計算) */
-.video-row > video,
-.video-row > img.preview-gif,
-.project-card > div > img.preview-gif {
-    /* (100% - 12px gap) / 2 = 50% - 6px */
-    flex: 1 1 calc(50% - 6px); 
-    max-width: calc(50% - 6px);
+.video-row video {
+    width: 100%;
     height: auto;
-    max-height: 400px;
-    object-fit: contain;
-    border-radius: 6px;
-    border: 1px solid #222;
+    min-height: 200px;
+    border-radius: 8px;
+    border: 2px solid #ddd;
+    background: #f9f9f9;
+    padding: 10px;
     box-sizing: border-box;
-    background: #f4f7f6;
-    display: block;
-    padding: 8px;
+}
+
+/* 桌面版響應式 (851px以上) */
+@media (min-width: 851px) {
+    .lang-toggle-mobile {
+        display: none;
+    }
+    
+    .desktop-lang {
+        display: block;
+    }
+    
+    /* 桌面版圖片並排 */
+    .project-card .project-media {
+        flex-direction: row;
+        gap: 20px;
+    }
+    
+    .project-card .project-media > * {
+        flex: 1;
+        max-width: calc(50% - 10px);
+    }
+    
+    .video-row {
+        flex-direction: row;
+    }
+    
+    .video-row video {
+        flex: 1;
+        max-width: calc(50% - 10px);
+    }
+    }
+
+
+/* 手機版響應式 (850px以下) */
+@media (max-width: 850px) {
+    nav {
+        position: relative;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 15px;
+    }
+    
+    .hamburger {
+        display: flex;
+        order: 3;
+    }
+    
+    .nav-menu {
+        position: absolute;
+        top: calc(140%);
+        left: 0;
+        right: 0;
+        background-color: #fff;
+        flex-direction: column;
+        gap: 0;
+        padding: 15px 20px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        display: none;
+        width: 100%;
+        box-sizing: border-box;
+        border-top: 2px solid #e0e0e0;
+    }
+    
+    .nav-menu.active {
+        display: flex;
+    }
+    
+    .nav-left {
+        display: flex;
+        align-items: center;
+        flex: 1;
+        gap: 8px;
+        order: 1;
+    }
+    
+    .lang-toggle-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+        border-radius: 4px;
+        transition: background-color 0.3s, transform 0.2s;
+        order: 2;
+    }
+    
+    .badge-showcase img {
+        width: 20px;
+        height: 20px;
+        padding: 4px;
+    }
+    
+    main {
+        padding: 10px;
+        max-width: 100%;
+    }
+    
+    section {
+        padding: 20px;
+    }
+    
+    .profile-pic {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .video-row {
+        flex-direction: column;
+    }
+    
+    .video-row > video {
+        max-width: 100%;
+        flex: 1 1 auto;
+    }
+}
+
+/* 遊戲元素樣式 */
+.random-game-image {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    height: 150px;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.random-game-image.show {
+    opacity: 0.3;
+}
+
+.target-image {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: auto;
+    height: 100px;
+    opacity: 0;
+    z-index: -1;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.target-image.show {
+    opacity: 0.4;
+}
+
+.item-image {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 50px;
+    width: auto;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    z-index: 10;
+}
+
+.item-image.show {
+    opacity: 1;
 }
 
 /* =================================
@@ -549,11 +632,13 @@ section h2 {
     overflow: hidden;
 }
 
-.censored-image {
+.censored-image,
+.censored-image-container picture img {
     width: 100%;
     height: 100%; /* 填滿容器 */
     max-height: 400px; /* 與容器保持一致 */
     object-fit: contain;
+    filter: blur(8px);
     transition: filter 0.3s ease;
     border: none !important;
     box-shadow: none !important;
@@ -563,7 +648,8 @@ section h2 {
 }
 
 /* 黑白網格覆蓋層 */
-.censored-image::before {
+.censored-image::before,
+.censored-image-container picture img::before {
     content: '';
     position: absolute;
     top: 0;
@@ -614,8 +700,14 @@ section h2 {
 }
 
 /* 點擊後顯示原圖 */
-.censored-image-container.revealed .censored-image::before {
+.censored-image-container.revealed .censored-image::before,
+.censored-image-container.revealed picture img::before {
     opacity: 0;
+}
+
+.censored-image-container.revealed .censored-image,
+.censored-image-container.revealed picture img {
+    filter: blur(0);
 }
 
 .censored-image-container.revealed .warning-overlay {
@@ -689,6 +781,50 @@ section h2 {
 }
 
 /* =================================
+   Contact 區域
+   ================================= */
+#contact ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#contact li {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+}
+
+#contact a {
+    text-decoration: none;
+    color: #007a6e;
+    font-weight: 500;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+/* =================================
+   Footer
+   ================================= */
+footer {
+    position: relative;
+    text-align: center;
+    padding: 20px;
+    color: #777;
+    margin-top: 20px;
+}
+
+.footer-crafting-table {
+    height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto 15px auto;
+    image-rendering: pixelated;
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+}
+
+/* =================================
    12. 聯絡方式 (Contact) 區域
    ================================= */
 
@@ -748,37 +884,20 @@ footer {
     }
 
     /* Project 1: 電腦版橫向排列 */
-    .project-card > div:not(.video-row):not(.project3-images) {
+    .project-card > div:not(.video-row) {
         flex-direction: row; /* 電腦版改為左右並排 */
         align-items: center;
         gap: 20px;
         overflow: hidden; /* 防止內容溢出 */
     }
     
-    .project-card > div:not(.video-row):not(.project3-images) > img,
-    .project-card > div:not(.video-row):not(.project3-images) > video {
+    .project-card > div:not(.video-row) > img,
+    .project-card > div:not(.video-row) > video {
         flex: 1 1 calc(50% - 10px); /* 精確計算寬度，減去gap的一半 */
         width: calc(50% - 10px);
         max-width: calc(50% - 10px);
         height: 300px; /* 固定高度確保一致性 */
         object-fit: contain; /* 確保內容適合容器 */
-    }
-
-    /* Project 3: 電腦版橫向排列 */
-    .project3-images {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .project3-images img {
-        flex: 1 1 calc(50% - 10px);
-        width: calc(50% - 10px);
-        max-width: calc(50% - 10px);
-        height: auto;
-        max-height: 400px;
-        object-fit: contain;
     }
 }
 /* =================================

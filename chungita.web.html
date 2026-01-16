@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title data-key="site_title"></title>
+    <!-- Critical CSS inlined to prevent render blocking -->
+    <style>
+    /* Critical CSS - Above the fold styles */
+    html{margin:0;padding:0;scroll-behavior:smooth}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif;line-height:1.6;background-color:#f4f7f6;color:#333;margin:0;padding:0}header{background-color:#fff;box-shadow:0 2px 5px rgba(0,0,0,0.1);padding:1rem 5%;position:sticky;top:0;z-index:10;width:90%}nav{display:flex;justify-content:space-between;align-items:center;max-width:1200px;margin:0 auto}nav .logo{font-size:1.5rem;font-weight:bold;color:#005f73;white-space:nowrap}.nav-left{display:flex;align-items:center;gap:1rem}.badge-showcase{display:flex;gap:0.5rem;margin-left:1rem}.badge-showcase img{width:35px;height:35px;border-radius:50%;object-fit:cover}main{max-width:1200px;margin:0 auto;padding:2rem 5%}section{margin-bottom:3rem}h1{font-size:2.5rem;color:#005f73;margin-bottom:0.5rem}h2{color:#0a9396;margin-bottom:1rem}.subtitle{font-size:1.2rem;color:#666;margin-bottom:1.5rem}.cta-button{display:inline-block;background-color:#ee9b00;color:#fff;padding:0.75rem 2rem;text-decoration:none;border-radius:5px;font-weight:bold;transition:background-color 0.3s;margin-top:1rem}.cta-button:hover{background-color:#ca8500}.hamburger{display:none;flex-direction:column;cursor:pointer;background:none;border:none;padding:0.5rem}.hamburger span{width:25px;height:3px;background-color:#005f73;margin:3px 0;transition:0.3s}.nav-menu{display:flex;list-style:none;margin:0;padding:0;align-items:center;gap:2rem}.nav-menu a{color:#005f73;text-decoration:none;font-weight:500;padding:0.5rem 1rem;border-radius:5px;transition:all 0.3s}.nav-menu a:hover{background-color:#f0f8f8;color:#0a9396}#lang-toggle-desktop{background:none;border:2px solid #005f73;color:#005f73;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;font-weight:500;transition:all 0.3s}#lang-toggle-desktop:hover{background-color:#005f73;color:#fff}.lang-toggle-mobile{display:none;background:none;border:2px solid #005f73;color:#005f73;padding:0.5rem 1rem;border-radius:5px;cursor:pointer;font-weight:500;transition:all 0.3s}.lang-toggle-mobile:hover{background-color:#005f73;color:#fff}.project-card .project-media{display:flex;flex-direction:column;gap:15px}@media (min-width: 851px){.project-card .project-media{flex-direction:row!important;gap:20px}.project-card .project-media>*,.project-card .project-media>picture,.project-card .project-media>video{flex:1;max-width:calc(50% - 10px)}.project-card .project-media>picture img,.project-card .project-media>video{object-fit:contain}}@media (max-width: 768px){.hamburger{display:flex}.nav-menu{position:fixed;left:-100%;top:70px;flex-direction:column;background-color:#fff;width:100%;text-align:center;transition:0.3s;box-shadow:0 10px 27px rgba(0,0,0,0.05);padding:2rem 0}.nav-menu.active{left:0}.nav-menu li{margin:1rem 0}.desktop-lang{display:none}.lang-toggle-mobile{display:block}nav .logo{font-size:1.2rem}.badge-showcase{gap:0.3rem;margin-left:0.5rem}.badge-showcase img{width:25px;height:25px}}
+    </style>
+    <!-- Load non-critical CSS asynchronously -->
+    <link rel="preload" href="style.min.css?v=2.0.1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.min.css?v=2.0.1"></noscript>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="nav-left">
+                <div class="logo" data-key="my_name"></div>
+                <div class="badge-showcase">
+                    <picture>
+  <source type="image/webp" srcset="files/images/badge/KSHS_emblem.webp">
+  <img src="files/images/badge/KSHS_emblem.png" alt="badge 1" width="35" height="35" loading="lazy">
+</picture>
+                    <picture>
+  <source type="image/webp" srcset="files/images/badge/nthu_emblem.webp">
+  <img src="files/images/badge/nthu_emblem.png" alt="badge 2" width="35" height="35" loading="lazy">
+</picture>
+                    <picture>
+  <source type="image/webp" srcset="files/images/badge/ROC_millitary_private_emblem.webp">
+  <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3" width="35" height="35" loading="lazy">
+</picture>
+                </div>
+            </div>
+            <button id="lang-toggle" class="lang-toggle-mobile" data-key="lang_toggle_mobile"></button>
+            <button id="hamburger" class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul id="nav-menu" class="nav-menu">
+                <li><a href="#about" data-key="nav_about"></a></li>
+                <li><a href="#projects" data-key="nav_projects"></a></li>
+                <li><a href="#experiences" data-key="nav_experiences"></a></li>
+                <li><a href="#contact" data-key="nav_contact"></a></li>
+                <li class="desktop-lang"><button id="lang-toggle-desktop" data-key="lang_toggle"></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="about">
+            <h1 data-key="about_title"></h1>
+            <p class="subtitle" data-key="about_subtitle"></p>
+            <p data-key="about_desc"></p>
+            <a href="files/PDF/I-Ta Chung_CV.pdf" class="cta-button" target="_blank" data-key="cv_button"></a>
+        </section>
+
+        <section id="projects">
+            <h2 data-key="projects_title"></h2>
+
+            <div class="project-card">
+                <h3 data-key="project1_title"></h3>
+                <div class="project-media">
+                    <picture>
+  <source type="image/webp" srcset="files/projects/project_1/ultrasound_assisted_thrombosis_catheter-400w.webp 400w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter-600w.webp 600w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter-800w.webp 800w">
+  <source srcset="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png 400w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png 600w, files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png 800w">
+  <img src="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1" width="585" height="420" loading="lazy">
+</picture>
+                    <video class="preview-gif" autoplay loop muted playsinline>
+    <source src="files/projects/project_1/catheter.webm" type="video/webm">
+    <source src="files/projects/project_1/catheter.mp4" type="video/mp4">
+    <img src="files/projects/project_1/catheter.gif" alt="Catheter GIF Preview">
+</video>
+                </div>
+
+                <p data-key="project1_desc"></p>
+                <a class="detail-button" href="projects/project1.html" data-key="more_details"></a>
+            </div>
+
+            <div class="project-card">
+                <h3 data-key="project2_title"></h3>
+                <picture>
+  <source type="image/webp" srcset="files/projects/project_2/4ch_transducer-400w.webp 400w, files/projects/project_2/4ch_transducer-600w.webp 600w, files/projects/project_2/4ch_transducer-800w.webp 800w">
+  <source srcset="files/projects/project_2/4ch_transducer.png 400w, files/projects/project_2/4ch_transducer.png 600w, files/projects/project_2/4ch_transducer.png 800w">
+  <img src="files/projects/project_2/4ch_transducer.png" alt="4 Channel Transducer" class="project-image" width="585" height="143" loading="lazy">
+</picture>
+                <div class="video-row">
+                    <video class="preview-gif" autoplay loop muted playsinline>
+    <source src="files/projects/project_2/votexxz-acoustic-field.webm" type="video/webm">
+    <source src="files/projects/project_2/votexxz-acoustic-field.mp4" type="video/mp4">
+    <img src="files/projects/project_2/votexxz-acoustic-field.gif" alt="Vortex XZ GIF">
+</video>
+                    <video class="preview-gif" autoplay loop muted playsinline>
+    <source src="files/projects/project_2/votexxy-acoustic-field.webm" type="video/webm">
+    <source src="files/projects/project_2/votexxy-acoustic-field.mp4" type="video/mp4">
+    <img src="files/projects/project_2/votexxy-acoustic-field.gif" alt="Vortex XY GIF">
+</video>
+                </div>
+                <p data-key="project2_desc"></p>
+                <a class="detail-button" href="projects/project2.html" data-key="more_details"></a>
+            </div>
+
+            <div class="project-card">
+                <h3 data-key="project3_title"></h3>
+                <div class="project-media">
+                    <img src="files/projects/project_3/MOT_example.gif" alt="MOT Example" loading="lazy">
+                    <picture>
+  <source type="image/webp" srcset="files/projects/project_3/3D_track_example-400w.webp 400w, files/projects/project_3/3D_track_example-600w.webp 600w, files/projects/project_3/3D_track_example-800w.webp 800w">
+  <source srcset="files/projects/project_3/3D_track_example.png 400w, files/projects/project_3/3D_track_example.png 600w, files/projects/project_3/3D_track_example.png 800w">
+  <img src="files/projects/project_3/3D_track_example.png" alt="3D Tracking Example" width="585" height="549" loading="lazy">
+</picture>
+                </div>
+                <p data-key="project3_desc"></p>
+                <div class="project-links">
+                    <span class="github-label">GitHub:</span>
+                    <a href="https://github.com/chungita/AIRSIM_DeepLearning_Binocular_DepthData_Generator.git" target="_blank" class="github-link">AIRSIM DeepLearning Binocular DepthData Generator</a>
+                    <a href="https://github.com/chungita/YOLO-StereoVision_GUI_Trainer.git" target="_blank" class="github-link">YOLO-StereoVision GUI Trainer</a>
+                </div>
+                <a class="detail-button" href="projects/project3.html" data-key="more_details"></a>
+            </div>
+
+        </section>
+
+        <section id="experiences">
+            <h2 data-key="experiences_title"></h2>
+
+            <div class="experience-card">
+                <h3 data-key="exp1_title"></h3>
+                <div class="experience-media">
+                    <picture>
+  <source type="image/webp" srcset="files/experiences/exp_1/soundjet_internship-400w.webp 400w, files/experiences/exp_1/soundjet_internship-600w.webp 600w, files/experiences/exp_1/soundjet_internship-800w.webp 800w">
+  <source srcset="files/experiences/exp_1/soundjet_internship.jpg 400w, files/experiences/exp_1/soundjet_internship.jpg 600w, files/experiences/exp_1/soundjet_internship.jpg 800w">
+  <img src="files/experiences/exp_1/soundjet_internship.jpg" alt="Experience 1 Photo" width="518" height="524" loading="lazy">
+</picture>
+                    <div class="censored-image-container">
+                        <img src="files/experiences/exp_1/porcine_pulmonary_experiment.jpg" alt="Porcine Pulmonary Photo" class="censored-image" width="518" height="691" loading="lazy">
+                        <div class="warning-overlay">
+                            <div class="warning-text">
+                                <span class="warning-icon">⚠️</span>
+                                <p data-key="warning_content"></p>
+                                <p data-key="warning_click"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p class="experience-company" data-key="exp1_company"></p>
+                <p class="experience-meta" data-key="exp1_meta"></p>
+                <p class="experience-desc" data-key="exp1_desc"></p>
+                <a class="detail-button" href="experiences/experience1.html" data-key="more_details"></a>
+            </div>
+
+            <div class="experience-card">
+                <h3 data-key="exp2_title"></h3>
+                <div class="experience-media">
+                    <picture>
+  <source type="image/webp" srcset="files/experiences/exp_2/cmc_photo-400w.webp 400w, files/experiences/exp_2/cmc_photo-600w.webp 600w, files/experiences/exp_2/cmc_photo-800w.webp 800w">
+  <source srcset="files/experiences/exp_2/cmc_photo.jpg 400w, files/experiences/exp_2/cmc_photo.jpg 600w, files/experiences/exp_2/cmc_photo.jpg 800w">
+  <img src="files/experiences/exp_2/cmc_photo.jpg" alt="Experience 2 Photo" width="518" height="332" loading="lazy">
+</picture>
+                </div>
+                <p class="experience-company" data-key="exp2_company"></p>
+                <p class="experience-meta" data-key="exp2_meta"></p>
+                <p class="experience-desc" data-key="exp2_desc"></p>
+                <a class="detail-button" href="experiences/experience2.html" data-key="more_details"></a>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2 data-key="contact_title"></h2>
+            <p data-key="contact_desc"></p>
+            <ul>
+                <li><a href="mailto:joe.chungita@gmail.com" data-key="contact_email"></a></li>
+                <li><a href="https://github.com/chungita" target="_blank">GitHub</a></li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <img id="item-image" class="item-image" src="" alt="Item">
+        <picture>
+  <source type="image/webp" srcset="files/images/game/crafting_table.webp">
+  <img src="files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table" width="175" height="175">
+</picture>
+        <p data-key="footer_text"></p>
+    </footer>
+
+    <script src="chungita.web.js?v=2.0.1" defer></script>
+    
+    <!-- Cache Performance Monitor (Development Only) -->
+    <script src="cache-monitor.js?v=2.0.1" defer></script>
+    <script defer>
+        // 漢堡選單功能
+        const hamburger = document.getElementById('hamburger');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // 點擊選單連結時關閉選單
+        navMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+
+    <!-- Service Worker Registration for Enhanced Caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
+    </script>
+
+    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character" width="211" height="263">
+
+    <img id="target-image" class="target-image" src="" alt="Target" width="100" height="100">
+
+</body>
+</html>
