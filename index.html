@@ -116,11 +116,14 @@
             <div class="project-card">
                 <h3 data-key="project3_title">Project 3: Drone Object Tracking using YOLOv12</h3>
                 <div class="project-media">
-                    <img src="files/projects/project_3/MOT_example.gif" alt="MOT Example" width="585" height="440" loading="lazy">
+                    <video autoplay loop muted playsinline width="585" height="440" loading="lazy">
+                        <source src="files/projects/project_3/MOT_example.webm" type="video/webm">
+                        <source src="files/projects/project_3/MOT_example.mp4" type="video/mp4">
+                    </video>
                     <picture>
-  <source type="image/webp" srcset="files/projects/project_3/3D_track_example-400w.webp 400w, files/projects/project_3/3D_track_example-600w.webp 600w, files/projects/project_3/3D_track_example-800w.webp 800w">
-  <img src="files/projects/project_3/3D_track_example.png" alt="3D Tracking Example" width="585" height="549" loading="lazy">
-</picture>
+                        <source type="image/webp" srcset="files/projects/project_3/3D_track_example-400w.webp 400w, files/projects/project_3/3D_track_example-600w.webp 600w, files/projects/project_3/3D_track_example-800w.webp 800w">
+                        <img src="files/projects/project_3/3D_track_example.png" alt="3D Tracking Example" width="585" height="549" loading="lazy">
+                    </picture>
                 </div>
                 <p data-key="project3_desc">Utilized AIRSIM to create stereo vision simulation training data and trained a YOLOv12 + RaftStereo model to detect and track drone positions in 3D space.</p>
                 <div class="project-links">
