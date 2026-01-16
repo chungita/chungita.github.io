@@ -1,12 +1,12 @@
 // Service Worker for improved caching strategy - Optimized Version
-const CACHE_NAME = 'chungita-portfolio-v2.0.2';
-const CRITICAL_CACHE = 'critical-v2.0.2';
+const CACHE_NAME = 'chungita-portfolio-v2.0.3';
+const CRITICAL_CACHE = 'critical-v2.0.3';
 
 const urlsToCache = [
   '/',
   '/index.html',
   '/style.min.css?v=2.0.1',
-  '/chungita.optimized.js',
+  '/chungita.web.js',
   '/projects/project-style.css?v=2.0.1',
   '/projects/project-lang.js?v=2.0.1', 
   '/experiences/experience-style.css?v=2.0.1',
