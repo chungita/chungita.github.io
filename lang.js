@@ -207,7 +207,16 @@ function selectRandomTargetAndItem() {
     return targetItemPairs[currentTargetIndex];
 }
 
+// Cache DOM elements and properties to avoid forced reflow
+let cachedSectionTop = null;
+let lastScrollCheck = 0;
+const SCROLL_THROTTLE = 100; // ms
+
 function handleScrollForGameImages() {
+    const now = Date.now();
+    if (now - lastScrollCheck < SCROLL_THROTTLE) return;
+    lastScrollCheck = now;
+    
     const experiencesSection = document.getElementById('experiences');
     const gameImageElement = document.getElementById('random-game-image');
     const targetImageElement = document.getElementById('target-image');
@@ -215,9 +224,13 @@ function handleScrollForGameImages() {
     
     if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
     
+    // Cache section position to avoid repeated offsetTop queries
+    if (cachedSectionTop === null) {
+        cachedSectionTop = experiencesSection.offsetTop;
+    }
+    
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
     const windowHeight = window.innerHeight;
-    const sectionTop = experiencesSection.offsetTop;
     const viewportBottom = scrollTop + windowHeight;
     
     // Steve 永遠顯示
@@ -225,7 +238,7 @@ function handleScrollForGameImages() {
     gameImageElement.classList.add('show');
     
     // Target 和 Item 只在滾動到 experiences 區域時顯示
-    if (viewportBottom >= sectionTop) {
+    if (viewportBottom >= cachedSectionTop) {
         // 當 target 從不可見變為可見時，選擇新的配對
         if (!isTargetVisible) {
             const pair = selectRandomTargetAndItem();
