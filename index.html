@@ -192,6 +192,9 @@
     </footer>
 
     <script src="lang.js?v=2.0.1" defer></script>
+    
+    <!-- Cache Performance Monitor (Development Only) -->
+    <script src="cache-monitor.js?v=2.0.1" defer></script>
     <script defer>
         // 漢堡?�單?��?
         const hamburger = document.getElementById('hamburger');
@@ -241,6 +244,21 @@
 
             videoElements.forEach(video => videoObserver.observe(video));
         });
+    </script>
+
+    <!-- Service Worker Registration for Enhanced Caching -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                .then(registration => {
+                    console.log('SW registered: ', registration);
+                })
+                .catch(registrationError => {
+                    console.log('SW registration failed: ', registrationError);
+                });
+            });
+        }
     </script>
 
     <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character" width="211" height="263">

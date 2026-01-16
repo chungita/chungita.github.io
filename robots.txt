@@ -1,0 +1,9 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://chungita.com/sitemap.xml
+
+# Cache policy information
+# Static assets are cached for extended periods
+# HTML content has shorter cache times for freshness
