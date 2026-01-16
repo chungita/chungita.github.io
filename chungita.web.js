@@ -321,10 +321,6 @@ class PortfolioApp {
 
     // 設置單個圖片的加載監控
     setupImageLoadListener(container, img) {
-        const isLoaded = () => {
-            return img.complete && img.naturalHeight !== 0;
-        };
-
         const handleLoad = () => {
             // 移除加載狀態
             container.classList.remove('loading');
@@ -337,37 +333,47 @@ class PortfolioApp {
             img.classList.remove('loading');
         };
 
-        // 如果圖片已經加載過
-        if (isLoaded()) {
-            handleLoad();
-        } else {
-            // 添加加載狀態
-            container.classList.add('loading');
-            img.classList.add('loading');
-            
+        // 總是先添加加載狀態
+        container.classList.add('loading');
+        img.classList.add('loading');
+
+        // 檢查圖片是否已完全加載（包含圖片內容有效）
+        const checkIfLoaded = () => {
+            // 只有當圖片完全加載且有有效的尺寸時才認為加載完成
+            if (img.complete && img.naturalHeight > 0) {
+                handleLoad();
+                return true;
+            }
+            return false;
+        };
+
+        // 立即檢查一次（可能已經緩存）
+        if (!checkIfLoaded()) {
             // 監聽加載事件
             img.addEventListener('load', handleLoad, { once: true });
             img.addEventListener('error', handleError, { once: true });
-        }
 
-        // 處理 srcset 變化的情況（Intersection Observer）
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 圖片進入視口時，檢查加載狀態
-                        if (!isLoaded()) {
-                            container.classList.add('loading');
-                            img.classList.add('loading');
-                        } else {
-                            container.classList.remove('loading');
-                            img.classList.remove('loading');
+            // 處理 srcset 變化的情況（Intersection Observer）
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            // 圖片進入視口時，再次檢查加載狀態
+                            // 用於lazy loading的圖片
+                            if (!checkIfLoaded()) {
+                                // 重新監聽加載事件
+                                if (!img.hasLoadListener) {
+                                    img.addEventListener('load', handleLoad, { once: true });
+                                    img.addEventListener('error', handleError, { once: true });
+                                    img.hasLoadListener = true;
+                                }
+                            }
                         }
-                    }
-                });
-            }, { rootMargin: '50px' });
-            
-            observer.observe(img);
+                    });
+                }, { rootMargin: '50px' });
+
+                observer.observe(img);
+            }
         }
     }
 }
