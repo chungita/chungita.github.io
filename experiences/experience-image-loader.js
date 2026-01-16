@@ -1,5 +1,13 @@
 // Experiences 頁面圖片加載初始化
 
+// 預加載 loading.gif
+const preloadLoadingGif = () => {
+    const img = new Image();
+    img.src = '../files/images/loading.gif';
+};
+
+preloadLoadingGif();
+
 class ExperienceImageLoader {
     constructor() {
         this.init();
@@ -49,43 +57,54 @@ class ExperienceImageLoader {
             targetContainer.classList.add('image-loader');
         }
 
-        // 總是先添加加載狀態
-        targetContainer.classList.add('loading');
-        if (img) img.classList.add('loading');
+        // 關鍵修復：立即添加加載狀態
+        const startLoadingMonitor = () => {
+            targetContainer.classList.add('loading');
+            if (img) img.classList.add('loading');
 
-        // 檢查圖片是否已完全加載
-        const checkIfLoaded = () => {
-            if (img.complete && img.naturalHeight > 0) {
+            const onLoadComplete = () => {
                 handleLoad();
-                return true;
-            }
-            return false;
-        };
+                img.removeEventListener('load', onLoadComplete);
+                img.removeEventListener('error', handleError);
+                observer?.disconnect();
+            };
 
-        // 立即檢查一次
-        if (!checkIfLoaded()) {
-            // 監聽加載事件
-            img.addEventListener('load', handleLoad, { once: true });
+            img.addEventListener('load', onLoadComplete, { once: true });
             img.addEventListener('error', handleError, { once: true });
 
-            // Intersection Observer 用於 lazy loading 圖片
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            if (!checkIfLoaded()) {
-                                if (!img.hasLoadListener) {
-                                    img.addEventListener('load', handleLoad, { once: true });
-                                    img.addEventListener('error', handleError, { once: true });
-                                    img.hasLoadListener = true;
-                                }
-                            }
-                        }
-                    });
-                }, { rootMargin: '50px' });
+            // 監聽 src 屬性變化
+            if ('MutationObserver' in window) {
+                const observer = new MutationObserver(() => {
+                    if (!img.complete) {
+                        targetContainer.classList.add('loading');
+                        if (img) img.classList.add('loading');
+                    }
+                });
 
-                observer.observe(img);
+                observer.observe(img, {
+                    attributes: true,
+                    attributeFilter: ['src', 'srcset']
+                });
             }
+        };
+
+        startLoadingMonitor();
+
+        // Intersection Observer 用於 lazy loading 圖片
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        if (!img.hasLoadListener) {
+                            img.addEventListener('load', handleLoad, { once: true });
+                            img.addEventListener('error', handleError, { once: true });
+                            img.hasLoadListener = true;
+                        }
+                    }
+                });
+            }, { rootMargin: '100px' });
+
+            observer.observe(img);
         }
     }
 }

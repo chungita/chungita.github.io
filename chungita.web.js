@@ -1,6 +1,15 @@
-// 优化版 JavaScript - 提高性能和加载速度
+// 優化版 JavaScript - 提高性能和加載速度
 
-// 1. 使用常量存储翻译内容，减少内存占用
+// 預加載 loading.gif
+const preloadLoadingGif = () => {
+    const img = new Image();
+    img.src = 'files/images/loading.gif';
+};
+
+// 在腳本載入時立即預加載
+preloadLoadingGif();
+
+// 1. 使用常量存儲翻譯內容，減少內存占用
 const translations = Object.freeze({
     // 中文内容
     'zh': Object.freeze({
@@ -324,56 +333,80 @@ class PortfolioApp {
         const handleLoad = () => {
             // 移除加載狀態
             container.classList.remove('loading');
-            img.classList.remove('loading');
+            if (img) img.classList.remove('loading');
         };
 
         const handleError = () => {
             // 即使出錯也移除加載狀態
             container.classList.remove('loading');
-            img.classList.remove('loading');
+            if (img) img.classList.remove('loading');
         };
 
-        // 總是先添加加載狀態
-        container.classList.add('loading');
-        img.classList.add('loading');
+        // 添加 image-loader 類
+        if (!container.classList.contains('image-loader')) {
+            container.classList.add('image-loader');
+        }
 
-        // 檢查圖片是否已完全加載（包含圖片內容有效）
+        // 關鍵修復：檢查圖片加載狀態的準確方式
         const checkIfLoaded = () => {
-            // 只有當圖片完全加載且有有效的尺寸時才認為加載完成
-            if (img.complete && img.naturalHeight > 0) {
-                handleLoad();
-                return true;
-            }
-            return false;
+            // 必須同時滿足：complete 為 true 且有有效尺寸
+            return img.complete && img.naturalHeight > 0 && img.naturalWidth > 0;
         };
 
-        // 立即檢查一次（可能已經緩存）
-        if (!checkIfLoaded()) {
-            // 監聽加載事件
-            img.addEventListener('load', handleLoad, { once: true });
+        // 關鍵修復：監聽 img 的 src/srcset 變化
+        const startLoadingMonitor = () => {
+            // 立即移除加載狀態（暫時性質，用於觀察）
+            container.classList.add('loading');
+            if (img) img.classList.add('loading');
+
+            // 設置加載監聽
+            const onLoadComplete = () => {
+                handleLoad();
+                // 移除所有監聽器
+                img.removeEventListener('load', onLoadComplete);
+                img.removeEventListener('error', handleError);
+                observer?.disconnect();
+            };
+
+            img.addEventListener('load', onLoadComplete, { once: true });
             img.addEventListener('error', handleError, { once: true });
 
-            // 處理 srcset 變化的情況（Intersection Observer）
-            if ('IntersectionObserver' in window) {
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            // 圖片進入視口時，再次檢查加載狀態
-                            // 用於lazy loading的圖片
-                            if (!checkIfLoaded()) {
-                                // 重新監聽加載事件
-                                if (!img.hasLoadListener) {
-                                    img.addEventListener('load', handleLoad, { once: true });
-                                    img.addEventListener('error', handleError, { once: true });
-                                    img.hasLoadListener = true;
-                                }
-                            }
-                        }
-                    });
-                }, { rootMargin: '50px' });
+            // 使用 Mutation Observer 監聽 src 屬性變化
+            if ('MutationObserver' in window) {
+                const observer = new MutationObserver(() => {
+                    // 如果 src 變化，重新開始監聽
+                    if (!img.complete) {
+                        container.classList.add('loading');
+                        if (img) img.classList.add('loading');
+                    }
+                });
 
-                observer.observe(img);
+                observer.observe(img, {
+                    attributes: true,
+                    attributeFilter: ['src', 'srcset']
+                });
             }
+        };
+
+        // 關鍵修復：立即開始監控，不等待 complete
+        startLoadingMonitor();
+
+        // 備用方案：使用 Intersection Observer 監控進入視口的圖片
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 確保監聽已設置
+                        if (!img.hasLoadListener) {
+                            img.addEventListener('load', handleLoad, { once: true });
+                            img.addEventListener('error', handleError, { once: true });
+                            img.hasLoadListener = true;
+                        }
+                    }
+                });
+            }, { rootMargin: '100px' });
+
+            observer.observe(img);
         }
     }
 }
