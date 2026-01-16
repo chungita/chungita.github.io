@@ -18,7 +18,7 @@
             <h1 data-key="project2_title"></h1>
             
             <div class="image-row">
-                <img src="../files/projects/project_2/4ch_transducer.png" alt="4-channel ultrasound transducer">
+                <img src="../files/projects/project_2/4ch_transducer.png" alt="4-channel ultrasound transducer" loading="lazy">
             </div>
 
             <section>
@@ -37,13 +37,13 @@
                 
                 <div class="video-row">
                     <div class="video-container">
-                        <video autoplay loop muted playsinline controls>
+                        <video playsinline controls autoplay muted poster="../files/projects/project_2/votexxz.jpg" data-lazy-enabled="true">
                             <source src="../files/projects/project_2/votexxz-acoustic-field.mp4" type="video/mp4">
                         </video>
                         <p class="video-caption" data-key="project2_video1_caption"></p>
                     </div>
                     <div class="video-container">
-                        <video autoplay loop muted playsinline controls>
+                        <video playsinline controls autoplay muted poster="../files/projects/project_2/votexxy.jpg" data-lazy-enabled="true">
                             <source src="../files/projects/project_2/votexxy-acoustic-field.mp4" type="video/mp4">
                         </video>
                         <p class="video-caption" data-key="project2_video2_caption"></p>
@@ -57,11 +57,11 @@
                 
                 <div class="acoustic-field-grid">
                     <div class="acoustic-field-item">
-                        <img src="../files/projects/project_2/votexxz.jpg" alt="Vortex XZ plane static">
+                        <img src="../files/projects/project_2/votexxz.jpg" alt="Vortex XZ plane static" loading="lazy">
                         <p class="image-caption" data-key="project2_vortex_xz_caption"></p>
                     </div>
                     <div class="acoustic-field-item">
-                        <img src="../files/projects/project_2/votexxy.jpg" alt="Vortex XY plane static">
+                        <img src="../files/projects/project_2/votexxy.jpg" alt="Vortex XY plane static" loading="lazy">
                         <p class="image-caption" data-key="project2_vortex_xy_caption"></p>
                     </div>
                 </div>
@@ -76,11 +76,11 @@
                         <h3 data-key="project2_vortex_mode_title"></h3>
                         <div class="comparison-images">
                             <div class="comparison-item">
-                                <img src="../files/projects/project_2/votexxz.jpg" alt="Vortex XZ">
+                                <img src="../files/projects/project_2/votexxz.jpg" alt="Vortex XZ" loading="lazy">
                                 <p class="image-caption" data-key="project2_vortex_xz_label"></p>
                             </div>
                             <div class="comparison-item">
-                                <img src="../files/projects/project_2/votexxy.jpg" alt="Vortex XY">
+                                <img src="../files/projects/project_2/votexxy.jpg" alt="Vortex XY" loading="lazy">
                                 <p class="image-caption" data-key="project2_vortex_xy_label"></p>
                             </div>
                         </div>
@@ -90,11 +90,11 @@
                         <h3 data-key="project2_inphase_mode_title"></h3>
                         <div class="comparison-images">
                             <div class="comparison-item">
-                                <img src="../files/projects/project_2/ipxz_acoustic_field.jpg" alt="In-Phase XZ">
+                                <img src="../files/projects/project_2/ipxz_acoustic_field.jpg" alt="In-Phase XZ" loading="lazy">
                                 <p class="image-caption" data-key="project2_inphase_xz_label"></p>
                             </div>
                             <div class="comparison-item">
-                                <img src="../files/projects/project_2/ipxy_acoustic_field.jpg" alt="In-Phase XY">
+                                <img src="../files/projects/project_2/ipxy_acoustic_field.jpg" alt="In-Phase XY" loading="lazy">
                                 <p class="image-caption" data-key="project2_inphase_xy_label"></p>
                             </div>
                         </div>
@@ -129,12 +129,47 @@
         </article>
     </main>
     <footer>
-        <img id="item-image" class="item-image" src="" alt="Item">
-        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table">
+        <img id="item-image" class="item-image" src="" alt="Item" loading="lazy">
+        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table" loading="lazy">
         <p data-key="footer_text"></p>
     </footer>
-    <script src="project-lang.js"></script>
-    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character">
+    <script src="project-lang.js" defer></script>
+    <script defer>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 桌面自动播放，移动设备懒加载
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const videos = document.querySelectorAll('video[data-lazy-enabled="true"]');
+            
+            if (isMobile) {
+                // 移动设备：移除自动播放
+                videos.forEach(video => {
+                    video.removeAttribute('autoplay');
+                    video.preload = 'none';
+                });
+                
+                // 使用 Intersection Observer 实现懒加载
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const video = entry.target;
+                            const sources = video.querySelectorAll('source');
+                            sources.forEach(source => {
+                                if (!source.src) {
+                                    source.src = source.dataset.src || source.parentElement.dataset.src;
+                                }
+                            });
+                            video.load();
+                            observer.unobserve(video);
+                        }
+                    });
+                }, { rootMargin: '50px' });
+                
+                videos.forEach(video => observer.observe(video));
+            }
+            // 桌面：自动播放已由 HTML 属性处理
+        });
+    </script>
+    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character" loading="lazy">
     <img id="target-image" class="target-image" src="" alt="Target">
 </body>
 </html>

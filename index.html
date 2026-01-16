@@ -13,9 +13,9 @@
             <div class="nav-left">
                 <div class="logo" data-key="my_name"></div>
                 <div class="badge-showcase">
-                    <img src="files/images/badge/KSHS_emblem.png" alt="badge 1">
-                    <img src="files/images/badge/nthu_emblem.png" alt="badge 2">
-                    <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3">
+                    <img src="files/images/badge/KSHS_emblem.png" alt="badge 1" loading="lazy">
+                    <img src="files/images/badge/nthu_emblem.png" alt="badge 2" loading="lazy">
+                    <img src="files/images/badge/ROC_millitary_private_emblem.png" alt="badge 3" loading="lazy">
                 </div>
             </div>
             <button id="lang-toggle" class="lang-toggle-mobile" data-key="lang_toggle_mobile"></button>
@@ -48,10 +48,8 @@
             <div class="project-card">
                 <h3 data-key="project1_title"></h3>
                 <div>
-                    <img src="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1">
-                    <video id="catheter-video-main" autoplay loop muted playsinline controls>
-                        <source src="files/projects/project_1/catheter.mp4" type="video/mp4">
-                    </video>
+                    <img src="files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png" alt="Catheter photo 1" loading="lazy">
+                    <img src="files/projects/project_1/catheter.gif" alt="Catheter GIF Preview" class="preview-gif">
                 </div>
 
                 <p data-key="project1_desc"></p>
@@ -60,14 +58,10 @@
 
             <div class="project-card">
                 <h3 data-key="project2_title"></h3>
-                <img src="files/projects/project_2/4ch_transducer.png" class="project-image">
+                <img src="files/projects/project_2/4ch_transducer.png" class="project-image" loading="lazy">
                 <div class="video-row">
-                    <video autoplay loop muted playsinline controls>
-                        <source src="files/projects/project_2/votexxz-acoustic-field.mp4" type="video/mp4">
-                    </video>
-                    <video autoplay loop muted playsinline controls>
-                        <source src="files/projects/project_2/votexxy-acoustic-field.mp4" type="video/mp4">
-                    </video>
+                    <img src="files/projects/project_2/votexxz-acoustic-field.gif" alt="Vortex XZ GIF" class="preview-gif">
+                    <img src="files/projects/project_2/votexxy-acoustic-field.gif" alt="Vortex XY GIF" class="preview-gif">
                 </div>
                 <p data-key="project2_desc"></p>
                 <a class="detail-button" href="projects/project2.html" data-key="more_details"></a>
@@ -76,8 +70,8 @@
             <div class="project-card">
                 <h3 data-key="project3_title"></h3>
                 <div class="project3-images">
-                    <img src="files/projects/project_3/MOT_example.gif" alt="MOT Example">
-                    <img src="files/projects/project_3/3D_track_example.png" alt="3D Tracking Example">
+                    <img src="files/projects/project_3/MOT_example.gif" alt="MOT Example" loading="lazy">
+                    <img src="files/projects/project_3/3D_track_example.png" alt="3D Tracking Example" loading="lazy">
                 </div>
                 <p data-key="project3_desc"></p>
                 <div class="project-links">
@@ -96,9 +90,9 @@
             <div class="experience-card">
                 <h3 data-key="exp1_title"></h3>
                 <div class="experience-media">
-                    <img src="files/experiences/exp_1/soundjet_internship.jpg" alt="Experience 1 Photo">
+                    <img src="files/experiences/exp_1/soundjet_internship.jpg" alt="Experience 1 Photo" loading="lazy">
                     <div class="censored-image-container">
-                        <img src="files/experiences/exp_1/porcine_pulmonary_experiment.jpg" alt="Porcine Pulmonary Photo" class="censored-image">
+                        <img src="files/experiences/exp_1/porcine_pulmonary_experiment.jpg" alt="Porcine Pulmonary Photo" class="censored-image" loading="lazy">
                         <div class="warning-overlay">
                             <div class="warning-text">
                                 <span class="warning-icon">⚠️</span>
@@ -117,7 +111,7 @@
             <div class="experience-card">
                 <h3 data-key="exp2_title"></h3>
                 <div class="experience-media">
-                    <img src="files/experiences/exp_2/cmc_photo.jpg" alt="Experience 2 Photo">
+                    <img src="files/experiences/exp_2/cmc_photo.jpg" alt="Experience 2 Photo" loading="lazy">
                 </div>
                 <p class="experience-company" data-key="exp2_company"></p>
                 <p class="experience-meta" data-key="exp2_meta"></p>
@@ -142,8 +136,8 @@
         <p data-key="footer_text"></p>
     </footer>
 
-    <script src="lang.js"></script>
-    <script>
+    <script src="lang.js" defer></script>
+    <script defer>
         // 漢堡菜單切換
         const hamburger = document.getElementById('hamburger');
         const navMenu = document.getElementById('nav-menu');
@@ -169,6 +163,28 @@
                     censoredContainer.classList.toggle('revealed');
                 });
             }
+
+            // 視頻懶加載
+            const videoElements = document.querySelectorAll('video[data-lazy]');
+            const videoObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const video = entry.target;
+                        const src = video.getAttribute('data-lazy');
+                        if (src) {
+                            const sourceTag = video.querySelector('source');
+                            if (sourceTag) {
+                                sourceTag.src = src;
+                                video.load();
+                            }
+                            video.removeAttribute('data-lazy');
+                            videoObserver.unobserve(video);
+                        }
+                    }
+                });
+            }, { rootMargin: '50px' });
+
+            videoElements.forEach(video => videoObserver.observe(video));
         });
     </script>
 

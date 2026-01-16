@@ -365,7 +365,8 @@ section h2 {
 
 /* 通用圖片和影片樣式 */
 .project-card > div:not(.project3-images) > img,
-.project-card > div:not(.project3-images) > video {
+.project-card > div:not(.project3-images) > video,
+.project-card > div:not(.project3-images) > img.preview-gif {
     width: 100%;
     height: auto;
     min-height: 250px;
@@ -454,7 +455,9 @@ section h2 {
 }
 
 /* Project 2: 列中的影片樣式 (電腦版寬度計算) */
-.video-row > video {
+.video-row > video,
+.video-row > img.preview-gif,
+.project-card > div > img.preview-gif {
     /* (100% - 12px gap) / 2 = 50% - 6px */
     flex: 1 1 calc(50% - 6px); 
     max-width: calc(50% - 6px);

@@ -25,11 +25,11 @@
                 
                 <div class="internship-photos">
                     <div class="photo-item">
-                        <img src="../files/experiences/exp_1/soundjet_internship.jpg" alt="SoundJet Internship">
+                        <img src="../files/experiences/exp_1/soundjet_internship.jpg" alt="SoundJet Internship" loading="lazy">
                         <p class="image-caption" data-key="exp1_photo1_caption"></p>
                     </div>
                     <div class="photo-item">
-                        <img src="../files/experiences/exp_1/blood_pressure.jpg" alt="Blood Pressure Measurement">
+                        <img src="../files/experiences/exp_1/blood_pressure.jpg" alt="Blood Pressure Measurement" loading="lazy">
                         <p class="image-caption" data-key="exp1_photo2_caption"></p>
                     </div>
                 </div>
@@ -55,7 +55,7 @@
 
                 <div class="censored-images">
                     <div class="censored-image-container">
-                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment.jpg" alt="Porcine Experiment 1" class="censored-image">
+                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment.jpg" alt="Porcine Experiment 1" class="censored-image" loading="lazy">
                         <div class="warning-overlay">
                             <div class="warning-text">
                                 <span class="warning-icon">⚠️</span>
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="censored-image-container">
-                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment2.jpg" alt="Porcine Experiment 2" class="censored-image">
+                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment2.jpg" alt="Porcine Experiment 2" class="censored-image" loading="lazy">
                         <div class="warning-overlay">
                             <div class="warning-text">
                                 <span class="warning-icon">⚠️</span>
@@ -77,7 +77,7 @@
                     </div>
 
                     <div class="censored-image-container">
-                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment_clot_before.jpg" alt="Blood Clot Before" class="censored-image">
+                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment_clot_before.jpg" alt="Blood Clot Before" class="censored-image" loading="lazy">
                         <div class="warning-overlay">
                             <div class="warning-text">
                                 <span class="warning-icon">⚠️</span>
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="censored-image-container">
-                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment_clot_after.jpg" alt="Blood Clot After" class="censored-image">
+                        <img src="../files/experiences/exp_1/porcine_pulmonary_experiment_clot_after.jpg" alt="Blood Clot After" class="censored-image" loading="lazy">
                         <div class="warning-overlay">
                             <div class="warning-text">
                                 <span class="warning-icon">⚠️</span>
@@ -118,12 +118,12 @@
         </article>
     </main>
     <footer>
-        <img id="item-image" class="item-image" src="" alt="Item">
-        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table">
+        <img id="item-image" class="item-image" src="" alt="Item" loading="lazy">
+        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table" loading="lazy">
         <p data-key="footer_text"></p>
     </footer>
-    <script src="experience-lang.js"></script>
-    <script>
+    <script src="experience-lang.js" defer></script>
+    <script defer>
         // 處理血腥圖片的點擊事件
         document.addEventListener('DOMContentLoaded', () => {
             const censoredContainers = document.querySelectorAll('.censored-image-container');
@@ -135,7 +135,7 @@
         });
     </script>
 
-    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character">
+    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character" loading="lazy">
     <img id="target-image" class="target-image" src="" alt="Target">
 
 </body>
