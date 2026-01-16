@@ -1,15 +1,17 @@
-// 1. 儲存所有語言的文字內容
-const translations = {
-    // 中文內容
-    'zh': {
+// 优化版 JavaScript - 提高性能和加载速度
+
+// 1. 使用常量存储翻译内容，减少内存占用
+const translations = Object.freeze({
+    // 中文内容
+    'zh': Object.freeze({
         'site_title': '鍾易達 - 個人網站',
         'my_name': '鍾易達',
         'nav_about': '關於我',
         'nav_projects': '作品集',
         "nav_experiences": '經歷',
         'nav_contact': '聯絡我',
-        'lang_toggle': 'English', // 桌面版按鈕文字
-        'lang_toggle_mobile': '🌐', // 手機版emoji
+        'lang_toggle': 'English',
+        'lang_toggle_mobile': '🌐',
         'about_title': '鍾易達',
         'about_subtitle': '生醫工程學士畢業生|專精於微小探頭and導管設計',
         'about_desc': '<strong><em>「今日的科學是明日的技術。」</em><br>- Edward Teller -</strong>',
@@ -21,8 +23,7 @@ const translations = {
         'project2_desc': '此專案旨在開發一款創新的超音波微型陣列探頭，能夠生成具有特殊空間結構的超音波渦旋（Ultrasound Vortex）。透過精密的多通道控制系統，實現對超音波聲場的精確調控。',
         'project3_title': '專案三：Drone object tracking using YOLOv12',
         'project3_desc': '利用AIRSIM 製作雙目立體視覺模擬資料訓練 YOLOv12 + RaftStereo模型以偵測並追蹤無人機在空間中的位置。',
-        "experiences_title": "經歷", // 注意拼字修正
-        // 經歷 1: SoundJet
+        "experiences_title": "經歷",
         'exp1_title': '研發實習生',
         'exp1_company': '聲捷醫學 (SoundJet Medical Inc.)',
         'exp1_meta': '2023 年 - 2024 年 | 台灣',
@@ -31,8 +32,6 @@ const translations = {
                 <li>針對導管製程開發自動化樹脂注射系統，提升生產精確度。</li>
                 <li>參與醫療器材原型設計與驗證流程。</li>
             </ul>`,
-            
-        // 經歷 2: 中醫社社長
         'exp2_title': '清華大學中醫社社長',
         'exp2_company': '國立清華大學 (NTHU)',
         'exp2_meta': '2021 - 2023 | 台灣',
@@ -47,17 +46,18 @@ const translations = {
         'more_details': '更多細節',
         'warning_content': '血腥內容警告',
         'warning_click': '點擊查看',
-    },
-    // 英文內容
-    'en': {
+    }),
+    
+    // 英文内容
+    'en': Object.freeze({
         'site_title': 'I-TA CHUNG - Personal Website',
         'my_name': 'I-TA CHUNG',
         'nav_about': 'About Me',
         'nav_projects': 'Projects',
         "nav_experiences": 'Experiences',
         'nav_contact': 'Contact',
-        'lang_toggle': '中文', // 桌面版按鈕文字
-        'lang_toggle_mobile': '🌐', // 手機版emoji
+        'lang_toggle': '中文',
+        'lang_toggle_mobile': '🌐',
         'about_title': 'I-Ta Chung',
         'about_subtitle': 'Biomedical Engineering (B.S.)<br>Specialized in Micro Transducer and Catheter Design',
         'about_desc': '<strong><em>"The science of today is the technology of tomorrow."</em><br>- Edward Teller -</strong>',
@@ -69,8 +69,7 @@ const translations = {
         'project2_desc': 'This project aims to develop an innovative micro-array ultrasound transducer capable of generating ultrasound vortex with special spatial structure. Through a precision multi-channel control system, it achieves accurate modulation of the ultrasound acoustic field.',
         'project3_title': 'Project 3: Drone Object Tracking using YOLOv12',
         'project3_desc': 'Utilized AIRSIM to create stereo vision simulation training data and trained a YOLOv12 + RaftStereo model to detect and track drone positions in 3D space.',
-        "experiences_title": "Experiences", // 注意拼字修正
-        // Experience 1: SoundJet
+        "experiences_title": "Experiences",
         'exp1_title': 'R&D Intern',
         'exp1_company': 'SoundJet Medical Inc.',
         'exp1_meta': '2023 - 2024 | Taiwan',
@@ -79,8 +78,6 @@ const translations = {
                 <li>Developed an automated needle epoxy injection system for catheter manufacturing, improving production precision.</li>
                 <li>Participated in medical device prototype design and validation processes.</li>
             </ul>`,
-
-        // Experience 2: 中醫社社長
         'exp2_title': 'President of Traditional Chinese Medicine Club',
         'exp2_company': 'National Tsing Hua University (NTHU)',
         'exp2_meta': '2021 - 2023 | Taiwan',
@@ -88,7 +85,6 @@ const translations = {
             <ul>
                 <li>Organized multiple medical outreach programs in rural areas and learned clinical knowledge of traditional Chinese medicine.</li>
             </ul>`,
-
         'contact_title': 'Contact Me',
         'contact_desc': 'Feel free to reach out for collaborations or any inquiries!',
         'contact_email': 'Email: joe.chungita@gmail.com',
@@ -96,174 +92,181 @@ const translations = {
         'more_details': 'More Details',
         'warning_content': 'Graphic Content Warning',
         'warning_click': 'Click to View',
-    }
-};
-
-// 2. DOM 載入完成後執行
-document.addEventListener('DOMContentLoaded', () => {
-    const langToggleMobile = document.getElementById('lang-toggle');
-    const langToggleDesktop = document.getElementById('lang-toggle-desktop');
-
-    // 翻譯頁面的函數
-    const translatePage = (lang) => {
-        // 更新 <html> 的 lang 屬性
-        document.documentElement.lang = lang;
-        
-        // 抓取所有帶有 data-key 的元素
-        document.querySelectorAll('[data-key]').forEach(element => {
-            const key = element.getAttribute('data-key');
-            // 檢查 translations 物件和對應的 lang 是否有這個 key
-            if (translations[lang] && translations[lang][key]) {
-                element.innerHTML = translations[lang][key]; // 使用 innerHTML 才能正確顯示 &copy; 等符號
-            }
-        });
-        
-        // 特別處理手機版語言切換按鈕
-        if (langToggleMobile && translations[lang]['lang_toggle_mobile']) {
-            langToggleMobile.innerHTML = translations[lang]['lang_toggle_mobile'];
-        }
-    };
-
-    // 語言切換函數
-    const switchLanguage = () => {
-        // 切換語言
-        currentLang = (currentLang === 'zh') ? 'en' : 'zh';
-        
-        // 儲存新的語言選擇到 localStorage
-        localStorage.setItem('lang', currentLang);
-        
-        // 重新翻譯頁面
-        translatePage(currentLang);
-    };
-
-    // 獲取儲存的語言，若無則預設為 'en'
-    let currentLang = localStorage.getItem('lang') || 'en';
-    
-    // 立即翻譯頁面
-    translatePage(currentLang);
-
-    // 監聽手機版切換按鈕點擊事件
-    if (langToggleMobile) {
-        langToggleMobile.addEventListener('click', switchLanguage);
-    }
-    
-    // 監聽桌面版切換按鈕點擊事件
-    if (langToggleDesktop) {
-        langToggleDesktop.addEventListener('click', switchLanguage);
-    }
-
-    // 添加遮罩點擊事件處理
-    const censoredContainers = document.querySelectorAll('.censored-image-container');
-    console.log('Found censored containers:', censoredContainers.length);
-    censoredContainers.forEach((container, index) => {
-        console.log('Adding click listener to container', index);
-        container.addEventListener('click', () => {
-            console.log('Container clicked, toggling revealed class');
-            container.classList.toggle('revealed');
-        });
-    });
-
-    // 添加滾動事件監聽器
-    window.addEventListener('scroll', function() {
-        handleScrollForGameImages();
-    });
-    
-    // 初始檢查一次（防止頁面載入時已經滾動到相關部分）
-    handleScrollForGameImages();
-
+    })
 });
 
-let isTargetVisible = false; // 追蹤 Target 是否可見
-let currentTargetIndex = -1;
-
-// Target 和 Item 的配對關係
-const targetItemPairs = [
-    {
-        target: 'files/images/game/targets/Coal_Ore.png',
-        item: 'files/images/game/items/Coal.png'
-    },
-    {
-        target: 'files/images/game/targets/Diamond_Ore.png',
-        item: 'files/images/game/items/Diamond.png'
-    },
-    {
-        target: 'files/images/game/targets/Emerald_Ore.png',
-        item: 'files/images/game/items/Emerald.png'
-    },
-    {
-        target: 'files/images/game/targets/Gold_Ore.png',
-        item: 'files/images/game/items/Gold.png'
-    },
-    {
-        target: 'files/images/game/targets/Iron_Ore.png',
-        item: 'files/images/game/items/Iron.png'
-    },
-    {
-        target: 'files/images/game/targets/Lapis_Lazuli_Ore.png',
-        item: 'files/images/game/items/Lapis_Lazuli.png'
-    },
-    {
-        target: 'files/images/game/targets/Redstone_Ore.png',
-        item: 'files/images/game/items/Redstone.png'
+// 2. 优化的DOM操作和事件处理
+class PortfolioApp {
+    constructor() {
+        this.currentLang = localStorage.getItem('lang') || 'en';
+        this.isTargetVisible = false;
+        this.currentTargetIndex = -1;
+        this.cachedSectionTop = null;
+        this.lastScrollCheck = 0;
+        this.SCROLL_THROTTLE = 100; // ms
+        
+        // 缓存DOM元素
+        this.elements = {};
+        
+        // Target 和 Item 的配对关系
+        this.targetItemPairs = Object.freeze([
+            { target: 'files/images/game/targets/Coal_Ore.png', item: 'files/images/game/items/Coal.png' },
+            { target: 'files/images/game/targets/Diamond_Ore.png', item: 'files/images/game/items/Diamond.png' },
+            { target: 'files/images/game/targets/Emerald_Ore.png', item: 'files/images/game/items/Emerald.png' },
+            { target: 'files/images/game/targets/Gold_Ore.png', item: 'files/images/game/items/Gold.png' },
+            { target: 'files/images/game/targets/Iron_Ore.png', item: 'files/images/game/items/Iron.png' },
+            { target: 'files/images/game/targets/Lapis_Lazuli_Ore.png', item: 'files/images/game/items/Lapis_Lazuli.png' },
+            { target: 'files/images/game/targets/Redstone_Ore.png', item: 'files/images/game/items/Redstone.png' }
+        ]);
     }
-];
 
-function selectRandomTargetAndItem() {
-    let newIndex;
-    do {
-        newIndex = Math.floor(Math.random() * targetItemPairs.length);
-    } while (newIndex === currentTargetIndex && targetItemPairs.length > 1);
-    
-    currentTargetIndex = newIndex;
-    return targetItemPairs[currentTargetIndex];
+    // 初始化应用
+    init() {
+        this.cacheElements();
+        this.bindEvents();
+        this.translatePage(this.currentLang);
+        this.handleScrollForGameImages();
+    }
+
+    // 缓存DOM元素以提高性能
+    cacheElements() {
+        this.elements = {
+            langToggleMobile: document.getElementById('lang-toggle'),
+            langToggleDesktop: document.getElementById('lang-toggle-desktop'),
+            experiencesSection: document.getElementById('experiences'),
+            gameImageElement: document.getElementById('random-game-image'),
+            targetImageElement: document.getElementById('target-image'),
+            itemImageElement: document.getElementById('item-image'),
+            censoredContainers: document.querySelectorAll('.censored-image-container')
+        };
+    }
+
+    // 绑定事件监听器
+    bindEvents() {
+        // 语言切换事件
+        if (this.elements.langToggleMobile) {
+            this.elements.langToggleMobile.addEventListener('click', () => this.switchLanguage());
+        }
+        
+        if (this.elements.langToggleDesktop) {
+            this.elements.langToggleDesktop.addEventListener('click', () => this.switchLanguage());
+        }
+
+        // 图像遮罩点击事件
+        this.elements.censoredContainers.forEach((container) => {
+            container.addEventListener('click', () => {
+                container.classList.toggle('revealed');
+            });
+        });
+
+        // 优化的滚动事件监听器 - 使用被动监听器
+        window.addEventListener('scroll', () => this.handleScrollForGameImages(), { passive: true });
+    }
+
+    // 翻译页面的函数
+    translatePage(lang) {
+        // 更新 <html> 的 lang 属性
+        document.documentElement.lang = lang;
+        
+        // 使用文档片段减少重绘
+        const elements = document.querySelectorAll('[data-key]');
+        const langData = translations[lang];
+        
+        if (!langData) return;
+
+        // 批量更新以减少重绘次数
+        requestAnimationFrame(() => {
+            elements.forEach(element => {
+                const key = element.getAttribute('data-key');
+                if (langData[key]) {
+                    element.innerHTML = langData[key];
+                }
+            });
+        });
+        
+        // 特别处理手机版语言切换按钮
+        if (this.elements.langToggleMobile && langData['lang_toggle_mobile']) {
+            this.elements.langToggleMobile.innerHTML = langData['lang_toggle_mobile'];
+        }
+    }
+
+    // 语言切换函数
+    switchLanguage() {
+        // 切换语言
+        this.currentLang = (this.currentLang === 'zh') ? 'en' : 'zh';
+        
+        // 储存新的语言选择到 localStorage
+        localStorage.setItem('lang', this.currentLang);
+        
+        // 重新翻译页面
+        this.translatePage(this.currentLang);
+    }
+
+    // 选择随机目标和物品
+    selectRandomTargetAndItem() {
+        let newIndex;
+        do {
+            newIndex = Math.floor(Math.random() * this.targetItemPairs.length);
+        } while (newIndex === this.currentTargetIndex && this.targetItemPairs.length > 1);
+        
+        this.currentTargetIndex = newIndex;
+        return this.targetItemPairs[this.currentTargetIndex];
+    }
+
+    // 优化的滚动处理函数
+    handleScrollForGameImages() {
+        const now = Date.now();
+        if (now - this.lastScrollCheck < this.SCROLL_THROTTLE) return;
+        this.lastScrollCheck = now;
+        
+        const { experiencesSection, gameImageElement, targetImageElement, itemImageElement } = this.elements;
+        
+        if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
+        
+        // 缓存section位置以避免重复的offsetTop查询
+        if (this.cachedSectionTop === null) {
+            this.cachedSectionTop = experiencesSection.offsetTop;
+        }
+        
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const windowHeight = window.innerHeight;
+        const viewportBottom = scrollTop + windowHeight;
+        
+        // Steve 永远显示
+        if (!gameImageElement.src.includes('Steve_pickaxe.png')) {
+            gameImageElement.src = 'files/images/game/Steve_pickaxe.png';
+            gameImageElement.classList.add('show');
+        }
+        
+        // Target 和 Item 只在滚动到 experiences 区域时显示
+        if (viewportBottom >= this.cachedSectionTop) {
+            // 当 target 从不可见变为可见时，选择新的配对
+            if (!this.isTargetVisible) {
+                const pair = this.selectRandomTargetAndItem();
+                targetImageElement.src = pair.target;
+                itemImageElement.src = pair.item;
+                this.isTargetVisible = true;
+            }
+            targetImageElement.classList.add('show');
+            itemImageElement.classList.add('show');
+        } else {
+            targetImageElement.classList.remove('show');
+            itemImageElement.classList.remove('show');
+            this.isTargetVisible = false; // 离开区域后重置状态
+        }
+    }
 }
 
-// Cache DOM elements and properties to avoid forced reflow
-let cachedSectionTop = null;
-let lastScrollCheck = 0;
-const SCROLL_THROTTLE = 100; // ms
-
-function handleScrollForGameImages() {
-    const now = Date.now();
-    if (now - lastScrollCheck < SCROLL_THROTTLE) return;
-    lastScrollCheck = now;
-    
-    const experiencesSection = document.getElementById('experiences');
-    const gameImageElement = document.getElementById('random-game-image');
-    const targetImageElement = document.getElementById('target-image');
-    const itemImageElement = document.getElementById('item-image');
-    
-    if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
-    
-    // Cache section position to avoid repeated offsetTop queries
-    if (cachedSectionTop === null) {
-        cachedSectionTop = experiencesSection.offsetTop;
-    }
-    
-    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-    const windowHeight = window.innerHeight;
-    const viewportBottom = scrollTop + windowHeight;
-    
-    // Steve 永遠顯示
-    gameImageElement.src = 'files/images/game/Steve_pickaxe.png';
-    gameImageElement.classList.add('show');
-    
-    // Target 和 Item 只在滾動到 experiences 區域時顯示
-    if (viewportBottom >= cachedSectionTop) {
-        // 當 target 從不可見變為可見時，選擇新的配對
-        if (!isTargetVisible) {
-            const pair = selectRandomTargetAndItem();
-            targetImageElement.src = pair.target;
-            itemImageElement.src = pair.item;
-            isTargetVisible = true;
-        }
-        targetImageElement.classList.add('show');
-        itemImageElement.classList.add('show');
-    } else {
-        targetImageElement.classList.remove('show');
-        itemImageElement.classList.remove('show');
-        isTargetVisible = false; // 離開區域後重置狀態
-    }
+// 使用 DOMContentLoaded 事件优化初始化时机
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => {
+        const app = new PortfolioApp();
+        app.init();
+    });
+} else {
+    // DOM已经加载完成
+    const app = new PortfolioApp();
+    app.init();
 }
 
 
