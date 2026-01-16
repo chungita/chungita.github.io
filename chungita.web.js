@@ -44,8 +44,6 @@ const translations = Object.freeze({
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         'more_details': '更多細節',
-        'warning_content': '血腥內容警告',
-        'warning_click': '點擊查看',
     }),
     
     // 英文内容
@@ -90,8 +88,6 @@ const translations = Object.freeze({
         'contact_email': 'Email: joe.chungita@gmail.com',
         'footer_text': '&copy; 2025 I-TA CHUNG. All Rights Reserved.',
         'more_details': 'More Details',
-        'warning_content': 'Graphic Content Warning',
-        'warning_click': 'Click to View',
     })
 });
 
@@ -167,8 +163,7 @@ class PortfolioApp {
             experiencesSection: document.getElementById('experiences'),
             gameImageElement: document.getElementById('random-game-image'),
             targetImageElement: document.getElementById('target-image'),
-            itemImageElement: document.getElementById('item-image'),
-            censoredContainers: document.querySelectorAll('.censored-image-container')
+            itemImageElement: document.getElementById('item-image')
         };
     }
 
@@ -182,13 +177,6 @@ class PortfolioApp {
         if (this.elements.langToggleDesktop) {
             this.elements.langToggleDesktop.addEventListener('click', () => this.switchLanguage());
         }
-
-        // 图像遮罩点击事件
-        this.elements.censoredContainers.forEach((container) => {
-            container.addEventListener('click', () => {
-                container.classList.toggle('revealed');
-            });
-        });
 
         // 优化的滚动事件监听器 - 使用被动监听器
         window.addEventListener('scroll', () => this.handleScrollForGameImages(), { passive: true });
