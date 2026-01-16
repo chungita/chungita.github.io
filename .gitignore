@@ -46,9 +46,6 @@ yarn-error.log
 *.temp
 .cache/
 
-# 轉換腳本（工具，不需要上傳）
-convert_to_gif.py
-
 # 開發版 CSS（只推送壓縮版）
 style.css
 
