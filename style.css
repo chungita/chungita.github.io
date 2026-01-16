@@ -686,6 +686,7 @@ section h2 {
     align-items: center;
     justify-content: center;
     border-radius: 8px;
+    z-index: 2;
     transition: opacity 0.3s ease;
 }
 
