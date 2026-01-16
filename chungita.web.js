@@ -104,6 +104,7 @@ class PortfolioApp {
         this.cachedSectionTop = null;
         this.lastScrollCheck = 0;
         this.SCROLL_THROTTLE = 100; // ms
+        this.resizeObserver = null;
         
         // 缓存DOM元素
         this.elements = {};
@@ -125,7 +126,37 @@ class PortfolioApp {
         this.cacheElements();
         this.bindEvents();
         this.translatePage(this.currentLang);
+        this.initializePositionCache();
         this.handleScrollForGameImages();
+    }
+
+    // 初始化位置缓存和監聽器
+    initializePositionCache() {
+        // 等待一個 frame 確保佈局完成
+        requestAnimationFrame(() => {
+            this.updateSectionTopCache();
+            this.setupResizeObserver();
+        });
+    }
+
+    // 更新位置缓存
+    updateSectionTopCache() {
+        if (this.elements.experiencesSection) {
+            this.cachedSectionTop = this.elements.experiencesSection.offsetTop;
+        }
+    }
+
+    // 設置 ResizeObserver 來監聽佈局變化
+    setupResizeObserver() {
+        if ('ResizeObserver' in window && this.elements.experiencesSection) {
+            this.resizeObserver = new ResizeObserver(() => {
+                // 使用 requestAnimationFrame 避免在重排期間讀取幾何屬性
+                requestAnimationFrame(() => {
+                    this.updateSectionTopCache();
+                });
+            });
+            this.resizeObserver.observe(this.elements.experiencesSection);
+        }
     }
 
     // 缓存DOM元素以提高性能
@@ -174,20 +205,28 @@ class PortfolioApp {
         
         if (!langData) return;
 
-        // 批量更新以减少重绘次数
+        // 批量更新以减少重绘次数和 CLS
         requestAnimationFrame(() => {
+            // 暂时隐藏变化的元素以减少 layout shift
+            document.documentElement.style.setProperty('--translation-update', '1');
+            
             elements.forEach(element => {
                 const key = element.getAttribute('data-key');
-                if (langData[key]) {
+                if (langData[key] && element.innerHTML !== langData[key]) {
                     element.innerHTML = langData[key];
                 }
             });
+            
+            // 特别处理手机版语言切换按钮
+            if (this.elements.langToggleMobile && langData['lang_toggle_mobile']) {
+                this.elements.langToggleMobile.innerHTML = langData['lang_toggle_mobile'];
+            }
+            
+            // 恢复正常显示
+            requestAnimationFrame(() => {
+                document.documentElement.style.removeProperty('--translation-update');
+            });
         });
-        
-        // 特别处理手机版语言切换按钮
-        if (this.elements.langToggleMobile && langData['lang_toggle_mobile']) {
-            this.elements.langToggleMobile.innerHTML = langData['lang_toggle_mobile'];
-        }
     }
 
     // 语言切换函数
@@ -223,9 +262,10 @@ class PortfolioApp {
         
         if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
         
-        // 缓存section位置以避免重复的offsetTop查询
+        // 使用缓存的位置避免強制重排
         if (this.cachedSectionTop === null) {
-            this.cachedSectionTop = experiencesSection.offsetTop;
+            // 如果緩存尚未初始化，先跳過此次處理
+            return;
         }
         
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -253,6 +293,14 @@ class PortfolioApp {
             targetImageElement.classList.remove('show');
             itemImageElement.classList.remove('show');
             this.isTargetVisible = false; // 离开区域后重置状态
+        }
+    }
+
+    // 清理資源
+    cleanup() {
+        if (this.resizeObserver) {
+            this.resizeObserver.disconnect();
+            this.resizeObserver = null;
         }
     }
 }
