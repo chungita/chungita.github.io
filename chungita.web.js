@@ -124,6 +124,7 @@ class PortfolioApp {
         this.translatePage(this.currentLang);
         this.initializePositionCache();
         this.handleScrollForGameImages();
+        this.initializeImageLoading(); // 新增圖片加載初始化
     }
 
     // 初始化位置缓存和監聽器
@@ -289,6 +290,84 @@ class PortfolioApp {
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
             this.resizeObserver = null;
+        }
+    }
+
+    // 初始化圖片加載監控
+    initializeImageLoading() {
+        // 為所有 picture 元素添加加載狀態監控
+        const pictures = document.querySelectorAll('picture');
+        pictures.forEach(picture => {
+            // 如果已經有 image-loader 類，跳過
+            if (picture.classList.contains('image-loader')) return;
+            
+            // 添加 image-loader 類
+            picture.classList.add('image-loader');
+            
+            const img = picture.querySelector('img');
+            if (!img) return;
+            
+            // 為圖片添加加載狀態監控
+            this.setupImageLoadListener(picture, img);
+        });
+
+        // 也為直接的 img 標籤設置監控（如果有的話）
+        const allImages = document.querySelectorAll('img[loading="lazy"], .project-image, .experience-media img');
+        allImages.forEach(img => {
+            if (img.closest('picture')) return; // 跳過已在 picture 中的圖片
+            this.setupImageLoadListener(img, img);
+        });
+    }
+
+    // 設置單個圖片的加載監控
+    setupImageLoadListener(container, img) {
+        const isLoaded = () => {
+            return img.complete && img.naturalHeight !== 0;
+        };
+
+        const handleLoad = () => {
+            // 移除加載狀態
+            container.classList.remove('loading');
+            img.classList.remove('loading');
+        };
+
+        const handleError = () => {
+            // 即使出錯也移除加載狀態
+            container.classList.remove('loading');
+            img.classList.remove('loading');
+        };
+
+        // 如果圖片已經加載過
+        if (isLoaded()) {
+            handleLoad();
+        } else {
+            // 添加加載狀態
+            container.classList.add('loading');
+            img.classList.add('loading');
+            
+            // 監聽加載事件
+            img.addEventListener('load', handleLoad, { once: true });
+            img.addEventListener('error', handleError, { once: true });
+        }
+
+        // 處理 srcset 變化的情況（Intersection Observer）
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // 圖片進入視口時，檢查加載狀態
+                        if (!isLoaded()) {
+                            container.classList.add('loading');
+                            img.classList.add('loading');
+                        } else {
+                            container.classList.remove('loading');
+                            img.classList.remove('loading');
+                        }
+                    }
+                });
+            }, { rootMargin: '50px' });
+            
+            observer.observe(img);
         }
     }
 }
