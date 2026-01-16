@@ -20,7 +20,6 @@ const STATIC_CACHE_URLS = [
   '/files/images/',
   '/files/PDF/',
   '.gif',
-  '.mp4',
   '.webp',
   '.png',
   '.jpg',
