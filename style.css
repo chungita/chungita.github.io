@@ -587,19 +587,19 @@ section h2 {
     justify-content: center;
     margin: 15px 0;
     gap: 15px;
-    flex-wrap: wrap; /* 手機與窄螢幕允許換行 */
+    flex-wrap: wrap;
 }
 
 .experience-card img {
+    width: 100%;
     height: auto;
-    max-height: 400px; /* 設置最大高度 */
+    max-height: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    object-fit: contain; /* 改為 contain 以保持比例且不裁切 */
-    /* 添加類似 project 2 的框架樣式 */
-    border: 1px solid #222;
-    background: #f4f7f6;
-    padding: 12px; /* 增加 padding 讓圖片有更多空間 */
+    object-fit: contain;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
+    padding: 10px;
     box-sizing: border-box;
 }
 
@@ -608,35 +608,42 @@ section h2 {
 .experience-card:first-child .experience-media > .censored-image-container {
     flex: 1 1 calc(50% - 7.5px);
     max-width: calc(50% - 7.5px);
-    height: 400px; /* 統一高度 */
-    object-fit: contain; /* 確保圖片比例正確 */
+    height: 300px;
+    object-fit: contain;
 }
 
-/* Experience 2：單張圖片占滿可用寬度 */
+/* Experience 2：单张图片居中显示 */
+.experience-card:last-child .experience-media {
+    justify-content: center;
+}
+
 .experience-card:last-child .experience-media img {
-    width: 100%;
-    max-width: 100%;
+    width: auto;
+    max-width: 500px;
+    height: 300px;
+    object-fit: contain;
 }
 
 /* 血腥內容警告樣式 */
 .censored-image-container {
     position: relative;
-    height: auto;
-    max-height: 400px;
+    height: 300px;
     border-radius: 8px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-    border: 1px solid #222;
-    background: #f4f7f6;
+    border: 1px solid #ddd;
+    background: #f9f9f9;
     box-sizing: border-box;
     cursor: pointer;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .censored-image,
 .censored-image-container picture img {
     width: 100%;
-    height: 100%; /* 填滿容器 */
-    max-height: 400px; /* 與容器保持一致 */
+    height: 100%;
     object-fit: contain;
     filter: blur(8px);
     transition: filter 0.3s ease;
@@ -899,6 +906,31 @@ footer {
         height: 300px; /* 固定高度確保一致性 */
         object-fit: contain; /* 確保內容適合容器 */
     }
+    
+    /* 桌面版经历媒体容器样式 */
+    .experience-media {
+        flex-direction: row;
+        justify-content: center;
+        gap: 15px;
+    }
+    
+    .experience-card:first-child .experience-media > img,
+    .experience-card:first-child .experience-media > .censored-image-container {
+        flex: 1 1 calc(50% - 7.5px);
+        max-width: calc(50% - 7.5px);
+        height: 300px;
+    }
+    
+    /* exp2 桌面版居中 */
+    .experience-card:last-child .experience-media {
+        justify-content: center;
+    }
+    
+    .experience-card:last-child .experience-media img {
+        width: auto;
+        max-width: 500px;
+        height: 300px;
+    }
 }
 /* =================================
    15. 手機版響應式樣式 (850px以下)
@@ -1050,6 +1082,7 @@ footer {
     .experience-media {
         flex-wrap: nowrap;
         flex-direction: column;
+        align-items: center;
     }
     
     .experience-card:first-child .experience-media > img,
@@ -1059,6 +1092,13 @@ footer {
         width: 100%;
         max-height: none !important;
         height: auto !important;
+    }
+    
+    /* exp2 手機版也居中 */
+    .experience-card:last-child .experience-media img {
+        max-width: 90%;
+        width: auto;
+        height: auto;
     }
     
     /* 手機版 censored-image 相關樣式 */
