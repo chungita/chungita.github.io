@@ -1,20 +1,30 @@
 // Service Worker for improved caching strategy - Optimized Version
-const CACHE_NAME = 'chungita-portfolio-v2.0.3';
-const CRITICAL_CACHE = 'critical-v2.0.3';
+const CACHE_NAME = 'chungita-portfolio-v2.0.5';
+const CRITICAL_CACHE = 'critical-v2.0.5';
 
 const urlsToCache = [
   '/',
   '/index.html',
   '/style.min.css?v=2.0.1',
   '/chungita.web.js',
-  '/projects/project-style.css?v=2.0.1',
-  '/projects/project-lang.js?v=2.0.1', 
   '/experiences/experience-style.css?v=2.0.1',
   '/experiences/experience-lang.js?v=2.0.1'
 ];
 
-// 关键资源 - 需要优先缓存
+// 关键资源 - 需要优先缓存 (優先載入 Projects)
 const criticalAssets = [
+  // Projects - 優先載入
+  '/projects/project-style.css?v=2.0.1',
+  '/projects/project-lang.js?v=2.0.1',
+  // Project 展示圖片 - 優先載入
+  '/files/projects/project_1/ultrasound_assisted_thrombosis_catheter-600w.webp',
+  '/files/projects/project_1/ultrasound_assisted_thrombosis_catheter-800w.webp',
+  '/files/projects/project_1/ultrasound_assisted_thrombosis_catheter.png',
+  '/files/projects/project_2/4ch_transducer-600w.webp',
+  '/files/projects/project_2/4ch_transducer.png',
+  '/files/projects/project_3/3D_track_example-600w.webp',
+  '/files/projects/project_3/3D_track_example.png',
+  // Badge images
   '/files/images/badge/KSHS_emblem.webp',
   '/files/images/badge/nthu_emblem.webp',
   '/files/images/badge/ROC_millitary_private_emblem.webp',
