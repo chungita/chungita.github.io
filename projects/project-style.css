@@ -1,3 +1,31 @@
+/* 骨架屏加載動畫 */
+@keyframes skeleton-pulse {
+    0%, 100% {
+        background-color: #f0f0f0;
+    }
+    50% {
+        background-color: #e0e0e0;
+    }
+}
+
+.skeleton-loading {
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
+    background-size: 200% 100%;
+}
+
+img.skeleton-loading,
+video.skeleton-loading,
+picture.skeleton-loading {
+    background-color: #f0f0f0;
+    animation: skeleton-pulse 1.5s ease-in-out infinite;
+}
+
+picture.skeleton-loading img {
+    opacity: 0.5;
+    background-color: #f0f0f0;
+}
+
 html {
     margin: 0;
     padding: 0;
@@ -752,9 +780,5 @@ footer {
     }
 }
 
-/* 圖片加載動畫 - 使用 loading-placeholder 類 */
-img.loading-placeholder {
-    object-fit: contain;
-    background: #f9f9f9;
-}
+/* 骨架屏動畫已遷移至 style.css 中的 .skeleton-loading 類 */
 

@@ -1,15 +1,5 @@
 // 優化版 JavaScript - 提高性能和加載速度
 
-// 預加載 loading.png
-const preloadLoadingGif = () => {
-    const img = new Image();
-    img.src = 'files/images/loading.png';
-};
-
-// 在腳本載入時立即預加載
-preloadLoadingGif();
-
-// 1. 使用常量存儲翻譯內容，減少內存占用
 const translations = Object.freeze({
     // 中文内容
     'zh': Object.freeze({
@@ -100,7 +90,7 @@ const translations = Object.freeze({
     })
 });
 
-// 2. 优化的DOM操作和事件处理
+// 2. 優化的 DOM 操作和事件處理
 class PortfolioApp {
     constructor() {
         this.currentLang = localStorage.getItem('lang') || 'en';
@@ -108,13 +98,9 @@ class PortfolioApp {
         this.currentTargetIndex = -1;
         this.cachedSectionTop = null;
         this.lastScrollCheck = 0;
-        this.SCROLL_THROTTLE = 100; // ms
+        this.SCROLL_THROTTLE = 100;
         this.resizeObserver = null;
-        
-        // 缓存DOM元素
         this.elements = {};
-        
-        // Target 和 Item 的配对关系
         this.targetItemPairs = Object.freeze([
             { target: 'files/images/game/targets/Coal_Ore.png', item: 'files/images/game/items/Coal.png' },
             { target: 'files/images/game/targets/Diamond_Ore.png', item: 'files/images/game/items/Diamond.png' },
@@ -126,37 +112,30 @@ class PortfolioApp {
         ]);
     }
 
-    // 初始化应用
     init() {
         this.cacheElements();
         this.bindEvents();
         this.translatePage(this.currentLang);
         this.initializePositionCache();
         this.handleScrollForGameImages();
-        this.initializeImageLoading(); // 新增圖片加載初始化
     }
 
-    // 初始化位置缓存和監聽器
     initializePositionCache() {
-        // 等待一個 frame 確保佈局完成
         requestAnimationFrame(() => {
             this.updateSectionTopCache();
             this.setupResizeObserver();
         });
     }
 
-    // 更新位置缓存
     updateSectionTopCache() {
         if (this.elements.experiencesSection) {
             this.cachedSectionTop = this.elements.experiencesSection.offsetTop;
         }
     }
 
-    // 設置 ResizeObserver 來監聽佈局變化
     setupResizeObserver() {
         if ('ResizeObserver' in window && this.elements.experiencesSection) {
             this.resizeObserver = new ResizeObserver(() => {
-                // 使用 requestAnimationFrame 避免在重排期間讀取幾何屬性
                 requestAnimationFrame(() => {
                     this.updateSectionTopCache();
                 });
@@ -165,7 +144,6 @@ class PortfolioApp {
         }
     }
 
-    // 缓存DOM元素以提高性能
     cacheElements() {
         this.elements = {
             langToggleMobile: document.getElementById('lang-toggle'),
@@ -177,108 +155,66 @@ class PortfolioApp {
         };
     }
 
-    // 绑定事件监听器
     bindEvents() {
-        // 语言切换事件
         if (this.elements.langToggleMobile) {
             this.elements.langToggleMobile.addEventListener('click', () => this.switchLanguage());
         }
-        
         if (this.elements.langToggleDesktop) {
             this.elements.langToggleDesktop.addEventListener('click', () => this.switchLanguage());
         }
-
-        // 优化的滚动事件监听器 - 使用被动监听器
         window.addEventListener('scroll', () => this.handleScrollForGameImages(), { passive: true });
     }
 
-    // 翻译页面的函数
     translatePage(lang) {
-        // 更新 <html> 的 lang 属性
         document.documentElement.lang = lang;
-        
-        // 使用文档片段减少重绘
         const elements = document.querySelectorAll('[data-key]');
         const langData = translations[lang];
-        
         if (!langData) return;
 
-        // 批量更新以减少重绘次数和 CLS
         requestAnimationFrame(() => {
-            // 暂时隐藏变化的元素以减少 layout shift
-            document.documentElement.style.setProperty('--translation-update', '1');
-            
             elements.forEach(element => {
                 const key = element.getAttribute('data-key');
                 if (langData[key] && element.innerHTML !== langData[key]) {
                     element.innerHTML = langData[key];
                 }
             });
-            
-            // 特别处理手机版语言切换按钮
-            if (this.elements.langToggleMobile && langData['lang_toggle_mobile']) {
-                this.elements.langToggleMobile.innerHTML = langData['lang_toggle_mobile'];
-            }
-            
-            // 恢复正常显示
-            requestAnimationFrame(() => {
-                document.documentElement.style.removeProperty('--translation-update');
-            });
         });
     }
 
-    // 语言切换函数
     switchLanguage() {
-        // 切换语言
         this.currentLang = (this.currentLang === 'zh') ? 'en' : 'zh';
-        
-        // 储存新的语言选择到 localStorage
         localStorage.setItem('lang', this.currentLang);
-        
-        // 重新翻译页面
         this.translatePage(this.currentLang);
     }
 
-    // 选择随机目标和物品
     selectRandomTargetAndItem() {
         let newIndex;
         do {
             newIndex = Math.floor(Math.random() * this.targetItemPairs.length);
         } while (newIndex === this.currentTargetIndex && this.targetItemPairs.length > 1);
-        
         this.currentTargetIndex = newIndex;
         return this.targetItemPairs[this.currentTargetIndex];
     }
 
-    // 优化的滚动处理函数
     handleScrollForGameImages() {
         const now = Date.now();
         if (now - this.lastScrollCheck < this.SCROLL_THROTTLE) return;
         this.lastScrollCheck = now;
-        
+
         const { experiencesSection, gameImageElement, targetImageElement, itemImageElement } = this.elements;
-        
         if (!experiencesSection || !gameImageElement || !targetImageElement || !itemImageElement) return;
-        
-        // 使用缓存的位置避免強制重排
-        if (this.cachedSectionTop === null) {
-            // 如果緩存尚未初始化，先跳過此次處理
-            return;
-        }
-        
+        if (this.cachedSectionTop === null) return;
+
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const windowHeight = window.innerHeight;
         const viewportBottom = scrollTop + windowHeight;
-        
-        // Steve 永远显示
+
         if (!gameImageElement.src.includes('Steve_pickaxe.png')) {
             gameImageElement.src = 'files/images/game/Steve_pickaxe.png';
             gameImageElement.classList.add('show');
         }
-        
-        // Target 和 Item 只在滚动到 experiences 区域时显示
+
         if (viewportBottom >= this.cachedSectionTop) {
-            // 当 target 从不可见变为可见时，选择新的配对
             if (!this.isTargetVisible) {
                 const pair = this.selectRandomTargetAndItem();
                 targetImageElement.src = pair.target;
@@ -290,102 +226,24 @@ class PortfolioApp {
         } else {
             targetImageElement.classList.remove('show');
             itemImageElement.classList.remove('show');
-            this.isTargetVisible = false; // 离开区域后重置状态
+            this.isTargetVisible = false;
         }
     }
 
-    // 清理資源
     cleanup() {
         if (this.resizeObserver) {
             this.resizeObserver.disconnect();
             this.resizeObserver = null;
         }
     }
-
-    // 初始化圖片加載監控
-    initializeImageLoading() {
-        // 為所有 picture 元素添加加載狀態監控
-        const pictures = document.querySelectorAll('picture');
-        pictures.forEach(picture => {
-            const img = picture.querySelector('img');
-            if (!img) return;
-            
-            // 保存原始 src
-            const originalSrc = img.src;
-            const originalSrcset = img.srcset;
-            
-            // 設置為 loading.png
-            img.src = 'files/images/loading.png';
-            img.removeAttribute('srcset');
-            img.classList.add('loading-placeholder');
-            
-            // 在背景加載真正的圖片
-            this.loadImageInBackground(img, originalSrc, originalSrcset, picture);
-        });
-
-        // 也為直接的 img 標籤設置監控
-        const allImages = document.querySelectorAll('img[loading="lazy"], .project-image, .experience-media img');
-        allImages.forEach(img => {
-            if (img.closest('picture')) return; // 跳過已在 picture 中的圖片
-            
-            const originalSrc = img.src;
-            
-            // 設置為 loading.png
-            img.src = 'files/images/loading.png';
-            img.classList.add('loading-placeholder');
-            
-            // 在背景加載真正的圖片
-            this.loadImageInBackground(img, originalSrc, null, img.parentElement);
-        });
-    }
-
-    // 在背景加載真正的圖片
-    loadImageInBackground(imgElement, originalSrc, originalSrcset, container) {
-        // 創建一個新的 Image 對象在背景加載
-        const tempImg = new Image();
-        
-        const onLoadComplete = () => {
-            // 加載完成，替換圖片
-            imgElement.src = originalSrc;
-            if (originalSrcset) {
-                imgElement.srcset = originalSrcset;
-            }
-            imgElement.classList.remove('loading-placeholder');
-            
-            // 添加淡入效果
-            imgElement.style.opacity = '0';
-            setTimeout(() => {
-                imgElement.style.transition = 'opacity 0.3s ease';
-                imgElement.style.opacity = '1';
-            }, 10);
-        };
-        
-        const onError = () => {
-            // 加載失敗，還原原始 src（讓瀏覽器顯示錯誤）
-            imgElement.src = originalSrc;
-            imgElement.classList.remove('loading-placeholder');
-        };
-        
-        tempImg.onload = onLoadComplete;
-        tempImg.onerror = onError;
-        
-        // 開始加載
-        tempImg.src = originalSrc;
-    }
-
-
 }
 
-// 使用 DOMContentLoaded 事件优化初始化时机
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', () => {
         const app = new PortfolioApp();
         app.init();
     });
 } else {
-    // DOM已经加载完成
     const app = new PortfolioApp();
     app.init();
 }
-
-

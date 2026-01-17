@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="無人機追蹤專案 - 利用AIRSIM製作雙目立體視覺模擬資料訓練YOLOv12 + RaftStereo模型，偵測並追蹤無人機在空間中的位置。Drone Object Tracking using YOLOv12 project.">
     <title data-key="project3_title"></title>
-    <link rel="preload" href="../files/images/loading.png" as="image" type="image/png">
     <link rel="stylesheet" href="project-style.css?v=2.0.1">
-    <script src="project-image-loader.js" async></script>
 </head>
 <body>
     <header>
@@ -22,7 +20,7 @@
             
             <div class="image-row">
                 <div class="video-container">
-                    <video autoplay muted loop playsinline title="YOLO Detection Example">
+                    <video autoplay muted loop playsinline title="YOLO Detection Example" class="skeleton-loading">
                         <source src="../files/projects/project_3/YOLO_example.mp4" type="video/mp4">
                         <source src="../files/projects/project_3/YOLO_example.webm" type="video/webm">
                         您的瀏覽器不支援影片播放。
@@ -46,11 +44,11 @@
                 
                 <div class="stereo-vision-grid">
                     <div class="stereo-vision-item">
-                        <img src="../files/projects/project_3/left_img_example.png" alt="Left Camera View" loading="lazy">
+                        <img src="../files/projects/project_3/left_img_example.png" alt="Left Camera View" loading="lazy" class="skeleton-loading">
                         <p class="image-caption" data-key="project3_left_camera_caption"></p>
                     </div>
                     <div class="stereo-vision-item">
-                        <img src="../files/projects/project_3/right_img_example.png" alt="Right Camera View" loading="lazy">
+                        <img src="../files/projects/project_3/right_img_example.png" alt="Right Camera View" loading="lazy" class="skeleton-loading">
                         <p class="image-caption" data-key="project3_right_camera_caption"></p>
                     </div>
                 </div>
@@ -61,7 +59,7 @@
                 
                 <div class="depth-map-container">
                     <div class="stereo-vision-item">
-                        <img src="../files/projects/project_3/depth_example.png" alt="Depth Map" loading="lazy">
+                        <img src="../files/projects/project_3/depth_example.png" alt="Depth Map" loading="lazy" class="skeleton-loading">
                         <p class="image-caption" data-key="project3_depth_caption"></p>
                     </div>
                 </div>
@@ -73,7 +71,7 @@
                 
                 <div class="tracking-grid">
                     <div class="tracking-item">
-                        <video autoplay muted loop playsinline title="Multi-Object Tracking">
+                        <video autoplay muted loop playsinline title="Multi-Object Tracking" class="skeleton-loading">
                             <source src="../files/projects/project_3/MOT_example.mp4" type="video/mp4">
                             <source src="../files/projects/project_3/MOT_example.webm" type="video/webm">
                             您的瀏覽器不支援影片播放。
@@ -81,7 +79,7 @@
                         <p class="image-caption" data-key="project3_mot_caption"></p>
                     </div>
                     <div class="tracking-item">
-                        <img src="../files/projects/project_3/3D_track_example.png" alt="3D Tracking" loading="lazy">
+                        <img src="../files/projects/project_3/3D_track_example.png" alt="3D Tracking" loading="lazy" class="skeleton-loading">
                         <p class="image-caption" data-key="project3_3d_track_caption"></p>
                     </div>
                 </div>
@@ -92,7 +90,7 @@
                 <p data-key="project3_results_desc"></p>
                 
                 <div class="image-row">
-                    <img src="../files/projects/project_3/Track_4_3D_XY_Frame_61_556.png" alt="3D Tracking Visualization" loading="lazy">
+                    <img src="../files/projects/project_3/Track_4_3D_XY_Frame_61_556.png" alt="3D Tracking Visualization" loading="lazy" class="skeleton-loading">
                 </div>
                 <p class="image-caption" data-key="project3_3d_visualization_caption"></p>
             </section>
@@ -124,7 +122,7 @@
     </main>
     <footer>
         <img id="item-image" class="item-image" src="" alt="Item" loading="lazy">
-        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table" loading="lazy">
+        <img src="../files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table skeleton-loading" loading="lazy">
         <p data-key="footer_text"></p>
     </footer>
     <script src="project-lang.js?v=2.0.1" defer></script>
