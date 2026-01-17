@@ -11,13 +11,12 @@
     
     <!-- Preload critical resources -->
     <link rel="preload" href="chungita.web.js" as="script">
-    <link rel="preload" href="files/projects/project_1/ultrasound_assisted_thrombosis_catheter-600w.webp" as="image" type="image/webp">
+    <link rel="preload" href="files/images/loading.png" as="image" type="image/png">
     <link rel="preload" href="files/images/badge/KSHS_emblem.webp" as="image" type="image/webp">
     <link rel="preload" href="files/images/badge/nthu_emblem.webp" as="image" type="image/webp">
     <link rel="preload" href="files/images/badge/ROC_millitary_private_emblem.webp" as="image" type="image/webp">
     
-    <!-- Preload system fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     
     <!-- Critical CSS inlined to prevent render blocking -->
     <style>
@@ -183,7 +182,6 @@
     </main>
 
     <footer>
-        <img id="item-image" class="item-image" src="" alt="Item" width="50" height="50">
         <picture>
   <source type="image/webp" srcset="files/images/game/crafting_table.webp">
   <img src="files/images/game/crafting_table.png" alt="Crafting Table" class="footer-crafting-table" width="175" height="175">
@@ -217,31 +215,6 @@
     
     <script src="chungita.web.js" async></script>
 
-    <!-- Service Worker Registration for Enhanced Caching -->
-    <script>
-        // 使用 requestIdleCallback 优化 Service Worker 注册时机
-        if ('serviceWorker' in navigator) {
-            const registerSW = () => {
-                navigator.serviceWorker.register('/sw.js')
-                .then(registration => {
-                    console.log('SW registered: ', registration);
-                })
-                .catch(registrationError => {
-                    console.log('SW registration failed: ', registrationError);
-                });
-            };
-            
-            if ('requestIdleCallback' in window) {
-                requestIdleCallback(registerSW);
-            } else {
-                setTimeout(registerSW, 1000);
-            }
-        }
-    </script>
-
-    <img id="random-game-image" class="random-game-image" src="" alt="Random Game Character" width="211" height="263">
-
-    <img id="target-image" class="target-image" src="" alt="Target" width="100" height="100">
 
     </body>
 </html>

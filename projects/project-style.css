@@ -733,42 +733,9 @@ footer {
     }
 }
 
-/* 圖片加載動畫 */
-.image-loader {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-}
-
-.image-loader.loading {
+/* 圖片加載動畫 - 使用 loading-placeholder 類 */
+img.loading-placeholder {
+    object-fit: contain;
     background: #f9f9f9;
-    border-radius: 8px;
-}
-
-.image-loader.loading::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 60px;
-    height: 60px;
-    background-image: url('../files/images/loading.gif');
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-    opacity: 0.7;
-    z-index: 5;
-    min-height: 200px;
-}
-
-.image-loader img {
-    display: block;
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-.image-loader img.loading {
-    opacity: 0;
 }
 

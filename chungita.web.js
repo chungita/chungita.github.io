@@ -1,9 +1,9 @@
 // 優化版 JavaScript - 提高性能和加載速度
 
-// 預加載 loading.gif
+// 預加載 loading.png
 const preloadLoadingGif = () => {
     const img = new Image();
-    img.src = 'files/images/loading.gif';
+    img.src = 'files/images/loading.png';
 };
 
 // 在腳本載入時立即預加載
@@ -307,108 +307,73 @@ class PortfolioApp {
         // 為所有 picture 元素添加加載狀態監控
         const pictures = document.querySelectorAll('picture');
         pictures.forEach(picture => {
-            // 如果已經有 image-loader 類，跳過
-            if (picture.classList.contains('image-loader')) return;
-            
-            // 添加 image-loader 類
-            picture.classList.add('image-loader');
-            
             const img = picture.querySelector('img');
             if (!img) return;
             
-            // 為圖片添加加載狀態監控
-            this.setupImageLoadListener(picture, img);
+            // 保存原始 src
+            const originalSrc = img.src;
+            const originalSrcset = img.srcset;
+            
+            // 設置為 loading.png
+            img.src = 'files/images/loading.png';
+            img.removeAttribute('srcset');
+            img.classList.add('loading-placeholder');
+            
+            // 在背景加載真正的圖片
+            this.loadImageInBackground(img, originalSrc, originalSrcset, picture);
         });
 
-        // 也為直接的 img 標籤設置監控（如果有的話）
+        // 也為直接的 img 標籤設置監控
         const allImages = document.querySelectorAll('img[loading="lazy"], .project-image, .experience-media img');
         allImages.forEach(img => {
             if (img.closest('picture')) return; // 跳過已在 picture 中的圖片
-            this.setupImageLoadListener(img, img);
+            
+            const originalSrc = img.src;
+            
+            // 設置為 loading.png
+            img.src = 'files/images/loading.png';
+            img.classList.add('loading-placeholder');
+            
+            // 在背景加載真正的圖片
+            this.loadImageInBackground(img, originalSrc, null, img.parentElement);
         });
     }
 
-    // 設置單個圖片的加載監控
-    setupImageLoadListener(container, img) {
-        const handleLoad = () => {
-            // 移除加載狀態
-            container.classList.remove('loading');
-            if (img) img.classList.remove('loading');
-        };
-
-        const handleError = () => {
-            // 即使出錯也移除加載狀態
-            container.classList.remove('loading');
-            if (img) img.classList.remove('loading');
-        };
-
-        // 添加 image-loader 類
-        if (!container.classList.contains('image-loader')) {
-            container.classList.add('image-loader');
-        }
-
-        // 關鍵修復：檢查圖片加載狀態的準確方式
-        const checkIfLoaded = () => {
-            // 必須同時滿足：complete 為 true 且有有效尺寸
-            return img.complete && img.naturalHeight > 0 && img.naturalWidth > 0;
-        };
-
-        // 關鍵修復：監聽 img 的 src/srcset 變化
-        const startLoadingMonitor = () => {
-            // 立即移除加載狀態（暫時性質，用於觀察）
-            container.classList.add('loading');
-            if (img) img.classList.add('loading');
-
-            // 設置加載監聽
-            const onLoadComplete = () => {
-                handleLoad();
-                // 移除所有監聽器
-                img.removeEventListener('load', onLoadComplete);
-                img.removeEventListener('error', handleError);
-                observer?.disconnect();
-            };
-
-            img.addEventListener('load', onLoadComplete, { once: true });
-            img.addEventListener('error', handleError, { once: true });
-
-            // 使用 Mutation Observer 監聽 src 屬性變化
-            if ('MutationObserver' in window) {
-                const observer = new MutationObserver(() => {
-                    // 如果 src 變化，重新開始監聽
-                    if (!img.complete) {
-                        container.classList.add('loading');
-                        if (img) img.classList.add('loading');
-                    }
-                });
-
-                observer.observe(img, {
-                    attributes: true,
-                    attributeFilter: ['src', 'srcset']
-                });
+    // 在背景加載真正的圖片
+    loadImageInBackground(imgElement, originalSrc, originalSrcset, container) {
+        // 創建一個新的 Image 對象在背景加載
+        const tempImg = new Image();
+        
+        const onLoadComplete = () => {
+            // 加載完成，替換圖片
+            imgElement.src = originalSrc;
+            if (originalSrcset) {
+                imgElement.srcset = originalSrcset;
             }
+            imgElement.classList.remove('loading-placeholder');
+            
+            // 添加淡入效果
+            imgElement.style.opacity = '0';
+            setTimeout(() => {
+                imgElement.style.transition = 'opacity 0.3s ease';
+                imgElement.style.opacity = '1';
+            }, 10);
         };
-
-        // 關鍵修復：立即開始監控，不等待 complete
-        startLoadingMonitor();
-
-        // 備用方案：使用 Intersection Observer 監控進入視口的圖片
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // 確保監聽已設置
-                        if (!img.hasLoadListener) {
-                            img.addEventListener('load', handleLoad, { once: true });
-                            img.addEventListener('error', handleError, { once: true });
-                            img.hasLoadListener = true;
-                        }
-                    }
-                });
-            }, { rootMargin: '100px' });
-
-            observer.observe(img);
-        }
+        
+        const onError = () => {
+            // 加載失敗，還原原始 src（讓瀏覽器顯示錯誤）
+            imgElement.src = originalSrc;
+            imgElement.classList.remove('loading-placeholder');
+        };
+        
+        tempImg.onload = onLoadComplete;
+        tempImg.onerror = onError;
+        
+        // 開始加載
+        tempImg.src = originalSrc;
     }
+
+
 }
 
 // 使用 DOMContentLoaded 事件优化初始化时机

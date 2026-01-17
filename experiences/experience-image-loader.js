@@ -1,9 +1,9 @@
 // Experiences 頁面圖片加載初始化
 
-// 預加載 loading.gif
+// 預加載 loading.png
 const preloadLoadingGif = () => {
     const img = new Image();
-    img.src = '../files/images/loading.gif';
+    img.src = '../files/images/loading.png';
 };
 
 preloadLoadingGif();
@@ -26,86 +26,63 @@ class ExperienceImageLoader {
         // 為所有 img 標籤設置加載監控
         const allImages = document.querySelectorAll('img');
         allImages.forEach(img => {
-            this.setupImageLoadListener(img);
+            // 跳過已經是 loading.png 的圖片
+            if (img.src.includes('loading.png')) return;
+            
+            const originalSrc = img.src;
+            const originalSrcset = img.srcset;
+            
+            // 設置為 loading.png
+            img.src = '../files/images/loading.png';
+            img.removeAttribute('srcset');
+            img.classList.add('loading-placeholder');
+            
+            // 在背景加載真正的圖片
+            this.loadImageInBackground(img, originalSrc, originalSrcset);
         });
 
         // 為所有 picture 元素設置加載監控
         const pictures = document.querySelectorAll('picture');
         pictures.forEach(picture => {
             const img = picture.querySelector('img');
-            if (img) {
-                this.setupImageLoadListener(img, picture);
+            if (img && !img.src.includes('loading.png')) {
+                const originalSrc = img.src;
+                const originalSrcset = img.srcset;
+                
+                img.src = '../files/images/loading.png';
+                img.removeAttribute('srcset');
+                img.classList.add('loading-placeholder');
+                
+                this.loadImageInBackground(img, originalSrc, originalSrcset);
             }
         });
     }
 
-    setupImageLoadListener(img, container = null) {
-        const targetContainer = container || img.parentElement || img;
-
-        const handleLoad = () => {
-            targetContainer.classList.remove('loading');
-            if (img) img.classList.remove('loading');
-        };
-
-        const handleError = () => {
-            targetContainer.classList.remove('loading');
-            if (img) img.classList.remove('loading');
-        };
-
-        // 添加 image-loader 類
-        if (!targetContainer.classList.contains('image-loader')) {
-            targetContainer.classList.add('image-loader');
-        }
-
-        // 關鍵修復：立即添加加載狀態
-        const startLoadingMonitor = () => {
-            targetContainer.classList.add('loading');
-            if (img) img.classList.add('loading');
-
-            const onLoadComplete = () => {
-                handleLoad();
-                img.removeEventListener('load', onLoadComplete);
-                img.removeEventListener('error', handleError);
-                observer?.disconnect();
-            };
-
-            img.addEventListener('load', onLoadComplete, { once: true });
-            img.addEventListener('error', handleError, { once: true });
-
-            // 監聽 src 屬性變化
-            if ('MutationObserver' in window) {
-                const observer = new MutationObserver(() => {
-                    if (!img.complete) {
-                        targetContainer.classList.add('loading');
-                        if (img) img.classList.add('loading');
-                    }
-                });
-
-                observer.observe(img, {
-                    attributes: true,
-                    attributeFilter: ['src', 'srcset']
-                });
+    loadImageInBackground(imgElement, originalSrc, originalSrcset) {
+        const tempImg = new Image();
+        
+        const onLoadComplete = () => {
+            imgElement.src = originalSrc;
+            if (originalSrcset) {
+                imgElement.srcset = originalSrcset;
             }
+            imgElement.classList.remove('loading-placeholder');
+            
+            imgElement.style.opacity = '0';
+            setTimeout(() => {
+                imgElement.style.transition = 'opacity 0.3s ease';
+                imgElement.style.opacity = '1';
+            }, 10);
         };
-
-        startLoadingMonitor();
-
-        // Intersection Observer 用於 lazy loading 圖片
-        if ('IntersectionObserver' in window) {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        if (!img.hasLoadListener) {
-                            img.addEventListener('load', handleLoad, { once: true });
-                            img.addEventListener('error', handleError, { once: true });
-                            img.hasLoadListener = true;
-                        }
-                    }
-                });
-            }, { rootMargin: '100px' });
-
-            observer.observe(img);
-        }
+        
+        const onError = () => {
+            imgElement.src = originalSrc;
+            imgElement.classList.remove('loading-placeholder');
+        };
+        
+        tempImg.onload = onLoadComplete;
+        tempImg.onerror = onError;
+        tempImg.src = originalSrc;
     }
 }
 
