@@ -37,9 +37,6 @@ const translations = {
         'exp1_skills_desc': ``,
         'exp1_certificate_title': '實習證書',
         'exp1_certificate_desc': '',
-        'warning_content': '血腥內容警告',
-        'warning_click': '點擊查看',
-        'warning_click_to_reveal': '點擊下方圖片以查看',
         
         // Experience 2: 中醫社社長
         'exp2_title': '中醫社社長',
@@ -124,9 +121,6 @@ const translations = {
         'exp1_skills_desc': ``,
         'exp1_certificate_title': 'Internship Certificate',
         'exp1_certificate_desc': '',
-        'warning_content': 'Graphic Content Warning',
-        'warning_click': 'Click to View',
-        'warning_click_to_reveal': 'Click images below to reveal',
         
         // Experience 2: President of Traditional Chinese Medicine Club
         'exp2_title': 'President of Traditional Chinese Medicine Club',
