@@ -47,12 +47,21 @@
     FileETag None
     
     # Set cache control headers based on file types
+    # HTML files - validate each time for fresh content
     <FilesMatch "\.(html|htm)$">
-        Header set Cache-Control "max-age=3600, must-revalidate"
+        Header set Cache-Control "no-cache, must-revalidate, public"
+        Header set Pragma "public"
     </FilesMatch>
     
+    # CSS and JS with versioning - safe to cache long-term
     <FilesMatch "\.(css|js)$">
-        Header set Cache-Control "max-age=2592000, public"
+        Header set Cache-Control "max-age=31536000, public, immutable"
+        Header set Pragma "public"
+    </FilesMatch>
+    
+    # Minified CSS and JS - aggressive caching
+    <FilesMatch "\.min\.(css|js)$">
+        Header set Cache-Control "max-age=31536000, public, immutable"
     </FilesMatch>
     
     <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg)$">
@@ -74,9 +83,10 @@
 
 # Compression to reduce file sizes
 <IfModule mod_deflate.c>
-    # Compress HTML, CSS, JS
+    # Compress HTML, CSS, JS, and more aggressive compression
     AddOutputFilterByType DEFLATE text/html
     AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/plain
     AddOutputFilterByType DEFLATE text/javascript
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
@@ -84,6 +94,12 @@
     AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE application/xml+rss
     AddOutputFilterByType DEFLATE application/json
+    AddOutputFilterByType DEFLATE application/ld+json
+    AddOutputFilterByType DEFLATE font/woff
+    AddOutputFilterByType DEFLATE font/woff2
+    
+    # Set compression level to maximum
+    DeflateCompressionLevel 9
 </IfModule>
 
 # Security headers
@@ -96,4 +112,7 @@
     
     # Enable XSS protection
     Header always set X-XSS-Protection "1; mode=block"
+    
+    # Enable conditional request support (helps reduce bandwidth on repeat visits)
+    Header always set Vary "Accept-Encoding"
 </IfModule>

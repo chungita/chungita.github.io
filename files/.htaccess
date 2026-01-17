@@ -20,14 +20,25 @@
 <IfModule mod_headers.c>
     # Set cache control headers for different file types
     <FilesMatch "\.(mp4|webm)$">
-        Header set Cache-Control "max-age=7776000, public"
+        Header set Cache-Control "max-age=7776000, public, immutable"
+        Header set Vary "Accept-Encoding"
     </FilesMatch>
     
     <FilesMatch "\.(gif|jpg|jpeg|png|webp)$">
-        Header set Cache-Control "max-age=15552000, public"
+        Header set Cache-Control "max-age=15552000, public, immutable"
+        Header set Vary "Accept-Encoding"
     </FilesMatch>
     
     <FilesMatch "\.(pdf)$">
         Header set Cache-Control "max-age=2592000, public"
+        Header set Vary "Accept-Encoding"
     </FilesMatch>
+</IfModule>
+
+# Compression for PDFs and other compressible content in files directory
+<IfModule mod_deflate.c>
+    # Compress PDFs and other text-based files
+    AddOutputFilterByType DEFLATE application/pdf
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE application/json
 </IfModule>
