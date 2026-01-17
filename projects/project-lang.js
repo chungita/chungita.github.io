@@ -350,6 +350,59 @@ const translations = {
     }
 };
 
+// 設置骨架屏加載處理
+function setupSkeletonLoading() {
+    // Handle img elements with skeleton-loading class
+    document.querySelectorAll('img.skeleton-loading').forEach(img => {
+        if (img.complete) {
+            // Image is already cached/loaded
+            img.classList.remove('skeleton-loading');
+        } else {
+            img.addEventListener('load', () => {
+                img.classList.remove('skeleton-loading');
+            });
+            img.addEventListener('error', () => {
+                img.classList.remove('skeleton-loading');
+            });
+        }
+    });
+
+    // Handle picture elements with skeleton-loading class
+    document.querySelectorAll('picture.skeleton-loading').forEach(picture => {
+        const img = picture.querySelector('img');
+        if (img) {
+            if (img.complete) {
+                picture.classList.remove('skeleton-loading');
+            } else {
+                img.addEventListener('load', () => {
+                    picture.classList.remove('skeleton-loading');
+                });
+                img.addEventListener('error', () => {
+                    picture.classList.remove('skeleton-loading');
+                });
+            }
+        }
+    });
+
+    // Handle video elements with skeleton-loading class
+    document.querySelectorAll('video.skeleton-loading').forEach(video => {
+        const handleCanPlay = () => {
+            video.classList.remove('skeleton-loading');
+        };
+        const handleError = () => {
+            video.classList.remove('skeleton-loading');
+        };
+
+        video.addEventListener('canplay', handleCanPlay);
+        video.addEventListener('error', handleError);
+        
+        // If video is already playing/loaded
+        if (video.readyState >= 2) {
+            video.classList.remove('skeleton-loading');
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     const langToggle = document.getElementById('lang-toggle');
 
@@ -379,6 +432,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (langToggle) {
         langToggle.addEventListener('click', switchLanguage);
     }
+
+    // 設置骨架屏加載
+    setupSkeletonLoading();
 
     // 初始化遊戲圖片功能
     initializeGameImages();

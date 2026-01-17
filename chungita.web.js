@@ -116,6 +116,7 @@ class PortfolioApp {
         this.cacheElements();
         this.bindEvents();
         this.translatePage(this.currentLang);
+        this.setupSkeletonLoading();
         this.initializePositionCache();
         this.handleScrollForGameImages();
     }
@@ -163,6 +164,61 @@ class PortfolioApp {
             this.elements.langToggleDesktop.addEventListener('click', () => this.switchLanguage());
         }
         window.addEventListener('scroll', () => this.handleScrollForGameImages(), { passive: true });
+    }
+
+    setupSkeletonLoading() {
+        // Handle img elements with skeleton-loading class
+        document.querySelectorAll('img.skeleton-loading').forEach(img => {
+            if (img.complete) {
+                // Image is already cached/loaded
+                img.classList.remove('skeleton-loading');
+            } else {
+                img.addEventListener('load', () => {
+                    img.classList.remove('skeleton-loading');
+                });
+                img.addEventListener('error', () => {
+                    img.classList.remove('skeleton-loading');
+                });
+            }
+        });
+
+        // Handle picture elements with skeleton-loading class
+        document.querySelectorAll('picture.skeleton-loading').forEach(picture => {
+            const img = picture.querySelector('img');
+            if (img) {
+                if (img.complete) {
+                    picture.classList.remove('skeleton-loading');
+                } else {
+                    img.addEventListener('load', () => {
+                        picture.classList.remove('skeleton-loading');
+                    });
+                    img.addEventListener('error', () => {
+                        picture.classList.remove('skeleton-loading');
+                    });
+                }
+            }
+        });
+
+        // Handle video elements with skeleton-loading class
+        document.querySelectorAll('video.skeleton-loading').forEach(video => {
+            const handleLoadStart = () => {
+                video.classList.add('skeleton-loading');
+            };
+            const handleCanPlay = () => {
+                video.classList.remove('skeleton-loading');
+            };
+            const handleError = () => {
+                video.classList.remove('skeleton-loading');
+            };
+
+            video.addEventListener('canplay', handleCanPlay);
+            video.addEventListener('error', handleError);
+            
+            // If video is already playing/loaded
+            if (video.readyState >= 2) {
+                video.classList.remove('skeleton-loading');
+            }
+        });
     }
 
     translatePage(lang) {

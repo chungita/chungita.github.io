@@ -9,21 +9,21 @@
 }
 
 .skeleton-loading {
-    animation: skeleton-pulse 1.5s ease-in-out infinite;
-    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%);
-    background-size: 200% 100%;
+    animation: skeleton-pulse 1.5s ease-in-out infinite !important;
+    background: linear-gradient(90deg, #f0f0f0 0%, #e0e0e0 50%, #f0f0f0 100%) !important;
+    background-size: 200% 100% !important;
+    pointer-events: none;
 }
 
 img.skeleton-loading,
 video.skeleton-loading,
 picture.skeleton-loading {
-    background-color: #f0f0f0;
-    animation: skeleton-pulse 1.5s ease-in-out infinite;
+    background-color: #f0f0f0 !important;
+    animation: skeleton-pulse 1.5s ease-in-out infinite !important;
 }
 
 picture.skeleton-loading img {
-    opacity: 0.5;
-    background-color: #f0f0f0;
+    background-color: #f0f0f0 !important;
 }
 
 html {
