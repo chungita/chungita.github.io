@@ -101,6 +101,13 @@ class PortfolioApp {
         this.SCROLL_THROTTLE = 100;
         this.resizeObserver = null;
         this.elements = {};
+        this.headshotPhotos = Object.freeze([
+            'files/images/headshot/chungita_nthu_2024_graduation_photo1.jpg',
+            'files/images/headshot/chungita_nthu_2024_graduation_photo2.jpg',
+            'files/images/headshot/chungita_nthu_2024_graduation_photo3.jpg',
+            'files/images/headshot/chungita_nthu_2024_graduation_photo4.jpg',
+            'files/images/headshot/chungita_nthu_2024_graduation_photo5.jpg'
+        ]);
         this.targetItemPairs = Object.freeze([
             { target: 'files/images/game/targets/Coal_Ore.png', item: 'files/images/game/items/Coal.png' },
             { target: 'files/images/game/targets/Diamond_Ore.png', item: 'files/images/game/items/Diamond.png' },
@@ -116,6 +123,7 @@ class PortfolioApp {
         this.cacheElements();
         this.bindEvents();
         this.translatePage(this.currentLang);
+        this.loadRandomHeadshot();
         this.setupSkeletonLoading();
         this.initializePositionCache();
         this.handleScrollForGameImages();
@@ -152,8 +160,38 @@ class PortfolioApp {
             experiencesSection: document.getElementById('experiences'),
             gameImageElement: document.getElementById('random-game-image'),
             targetImageElement: document.getElementById('target-image'),
-            itemImageElement: document.getElementById('item-image')
+            itemImageElement: document.getElementById('item-image'),
+            headshotElement: document.getElementById('random-headshot')
         };
+    }
+
+    loadRandomHeadshot() {
+        if (!this.elements.headshotElement) return;
+        
+        // 获取上次使用的照片索引
+        const lastUsedIndex = parseInt(localStorage.getItem('lastHeadshotIndex')) || -1;
+        
+        // 创建可用照片索引数组（排除上次使用的）
+        let availableIndices = [];
+        for (let i = 0; i < this.headshotPhotos.length; i++) {
+            if (i !== lastUsedIndex) {
+                availableIndices.push(i);
+            }
+        }
+        
+        // 如果所有照片都用过了（只有在只有一张照片时才会发生），则重置
+        if (availableIndices.length === 0) {
+            availableIndices = Array.from({ length: this.headshotPhotos.length }, (_, i) => i);
+        }
+        
+        // 随机选择一个索引
+        const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)];
+        
+        // 设置图片
+        this.elements.headshotElement.src = this.headshotPhotos[randomIndex];
+        
+        // 保存这次使用的索引
+        localStorage.setItem('lastHeadshotIndex', randomIndex.toString());
     }
 
     bindEvents() {
